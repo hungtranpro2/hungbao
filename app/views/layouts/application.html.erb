@@ -12,8 +12,13 @@
    </head>
 
   <body>
-    <%= render "layouts/body" %>
+
+    <%unless current_user.blank? %>
+     <%= render "layouts/body" %>
+    <%end%>
     <%= yield %>
-    <%= render "layouts/footer" %>
+    <%unless current_user.blank? %>
+     <%= render "layouts/footer" %>
+    <%end%>
   </body>
 </html>

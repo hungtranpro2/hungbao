@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
 	enum role: {member: 0, manager: 1, admin: 2}
   enum staff_type: {EDU: 0, Intern: 1, Fresher: 2, Developer: 3}
   enum nationality: {Vietnam: 0, Japan: 1}
@@ -8,7 +12,11 @@ class User < ApplicationRecord
 
   has_many :user_projects, dependent: :destroy
   has_many :projects, through: :user_projects
+
   has_many :messages, dependent: :destroy
   has_many :list_messages, through: :messages
+
+  validates :name, presence: true, length: {maximum: 50}
+  validates :phone, :numericality => true
 
 end
