@@ -1,0 +1,21 @@
+<div class="direct-chat-msg" data-role="message-template">
+  <div class="direct-chat-infos clearfix">
+    <span class="direct-chat-name float-left"><%= message.user.name %></span>
+    <span class="rep">
+      <i class="fas fa-reply"></i>
+      Alexander Pierce
+    </span>
+    <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
+  </div>
+  <!-- /.direct-chat-infos -->
+  <%= image_tag "user.jpg", class: "direct-chat-img" %>
+  <!-- /.direct-chat-img -->
+  <div class="direct-chat-text" data-role="message-text">
+    <%= message.content %>
+  </div>
+  <%= link_to "#", class: "rep float-right" do %>
+    <i class="fas fa-reply"></i>
+    Reply
+  <% end %>
+  <!-- /.direct-chat-text -->
+</div>

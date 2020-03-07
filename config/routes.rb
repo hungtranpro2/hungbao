@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-	root "static_pages#index"
-  get 'static_pages/index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+	root "room_chats#index"
+  mount ActionCable.server => "/cable"
+
+	resources :static_pages
+  resources :room_chats
+  resources :messages
 end
