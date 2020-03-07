@@ -1,13 +1,14 @@
 3.times do |n|
-	name  = Faker::Name.name
-	email = "bao#{n+1}@gmail.com"
-	password = "password"
-	User.create(name:  name,
-		           email: email,
-		           birthday: Time.zone.now,
-		           phone: "0388967331",
-		           skill: "Khong co ki nang chi",
-		           role: 2)
+  name  = Faker::Name.name
+  email = "bao#{n+1}@gmail.com"
+  User.create(name:  name,
+               email: email,
+               password: "123456",
+               password_confirmation: "123456",
+               birthday: Time.zone.now,
+               phone: "0388967331",
+               skill: "Khong co ki nang chi",
+               role: 2)
 end
 
 6.times do |n|

@@ -1,5 +1,5 @@
 class RoomChatsController < ApplicationController
-
+before_action :authenticate_user!
   def index
     @message = Message.new
 

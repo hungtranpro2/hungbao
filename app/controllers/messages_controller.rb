@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+before_action :authenticate_user!
+
   def create
     @message = Message.create message_params
     if @message.save
