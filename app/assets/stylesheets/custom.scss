@@ -34,8 +34,23 @@
 }
 .avatar {
   max-height:30px;
-  border-radius: 15px;
-  width:auto;
-  vertical-align:middle;
+}
 
+.avatar-max {
+  max-height: 60px;
+}
+
+.navbar-expand .navbar-nav .dropdown-menu {
+    position: absolute;
+    width: 300px;
+    padding:10px;
+    left: -100px;
+}
+
+.user-header{
+  padding: 10px;
+}
+
+.footer-user-profile{
+  margin-top: 10px;
 }
