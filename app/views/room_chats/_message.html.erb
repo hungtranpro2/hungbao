@@ -1,21 +1,27 @@
 <div class="direct-chat-msg" data-role="message-template">
-  <div class="direct-chat-infos clearfix">
-    <span class="direct-chat-name float-left"><%= message.user.name %></span>
-    <span class="rep">
-      <i class="fas fa-reply"></i>
-      Alexander Pierce
-    </span>
-    <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
+  <div class="direct-chat-infos clearfix row">
+    <%= image_tag "user.jpg", class: "message-item green" %>
+    <div class="message-chat">
+      <div class="direct-chat-infos clearfix">
+        <span class="message-name"><%= message.user.name %></span>
+        <span class="direct-chat-timestamp float-right">
+          <i class="far fa-clock"></i>
+          23 Jan 2:00 pm
+        </span>
+      </div>
+
+      <div data-role="message-text">
+        <%= Rinku.auto_link(message.content).html_safe %>
+      </div>
+      <% if message.file_name.present? %>
+        <div class="attachment">
+          <p><b>New file uploaded.</b></p>
+          <%= link_to message_path(message), target: :_blank do %>
+            <i class="fas fa-download"></i>
+            <%= message.file_name %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <!-- /.direct-chat-infos -->
-  <%= image_tag "user.jpg", class: "direct-chat-img" %>
-  <!-- /.direct-chat-img -->
-  <div class="direct-chat-text" data-role="message-text">
-    <%= message.content %>
-  </div>
-  <%= link_to "#", class: "rep float-right" do %>
-    <i class="fas fa-reply"></i>
-    Reply
-  <% end %>
-  <!-- /.direct-chat-text -->
 </div>

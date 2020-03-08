@@ -29,6 +29,8 @@ gem 'toastr-rails'
 
 gem 'simple_form'
 
+gem 'rinku', '~> 2.0', '>= 2.0.2'
+
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -39,6 +41,13 @@ gem 'redis', '~> 4.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+
+gem 'carrierwave',             '1.2.2'
+gem 'mini_magick',             '4.7.0'
+
+group :production do
+  gem 'fog', '1.42'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

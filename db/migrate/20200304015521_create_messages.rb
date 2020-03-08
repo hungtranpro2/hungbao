@@ -2,6 +2,7 @@ class CreateMessages < ActiveRecord::Migration[6.0]
   def change
     create_table :messages do |t|
       t.string :content
+      t.string :file_name
       t.integer :to_id
       t.integer :rep_id
       t.references :list_message, foreign_key: true

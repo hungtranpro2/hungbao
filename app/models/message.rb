@@ -6,8 +6,6 @@ class Message < ApplicationRecord
 	belongs_to :list_message
   belongs_to :user
 
-  validates_presence_of :content
-
   private
 
   def send_message
