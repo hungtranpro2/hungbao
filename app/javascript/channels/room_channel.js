@@ -8,7 +8,6 @@ $(document).on('turbolinks:load', function () {
   $('[data-channel-subscribe="room"]').each(function(index, element){
     var  $element = $(element)
     var  room_id = $element.data('chat-room-id')
-    console.log($element)
     $element.animate({ scrollTop: $element.prop("scrollHeight")}, 1000)
 
         // console.log(messageTemplate)
@@ -23,14 +22,8 @@ $(document).on('turbolinks:load', function () {
       },
 
       received(data) {
-        // console.log(data.message)
-        // console.log(data.layout)
-        // let content = messageTemplate.children().clone(true, true);
-        // // content.find('[data-role="user-avatar"]').attr('src', data.user_avatar_url);
-        // content.find('[data-role="message-text"]').text(data.message);
-        // // content.find('[data-role="message-date"]').text(data.updated_at);
+        console.log(data.layout)
         $element.append(data.layout);
-        console.log($element.prop("scrollHeight"))
         $element.animate({scrollTop: $element.prop("scrollHeight")}, 1000);
       }
     });

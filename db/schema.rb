@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2020_03_05_072514) do
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "content"
+    t.string "file_name"
     t.integer "to_id"
     t.integer "rep_id"
     t.bigint "list_message_id"
