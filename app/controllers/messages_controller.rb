@@ -24,6 +24,11 @@ before_action :authenticate_user!
     else
       flash[:error] = "Tin nhan khoi tao that bai"
     end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 

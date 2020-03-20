@@ -3,7 +3,6 @@ $(document).on('turbolinks:load', function () {
   $("#message").on('scroll', function(){
     var more_posts_url = $('.pagination a:last').attr('href');
     var scroll = $("#message").scrollTop();
-     console.log(scroll);
     if (scroll  <  1 && isFetching == false) {
       // $('#loading').css('display', 'block');
       setTimeout(function() {

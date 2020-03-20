@@ -10,9 +10,6 @@ $(document).on('turbolinks:load', function () {
     var  room_id = $element.data('chat-room-id')
     $element.animate({ scrollTop: $element.prop("scrollHeight")}, 1000)
 
-        // console.log(messageTemplate)
-
-
     consumer.subscriptions.create({ channel: "RoomChannel", chat_room_id: room_id}, {
       connected() {
       },
@@ -22,11 +19,14 @@ $(document).on('turbolinks:load', function () {
       },
 
       received(data) {
+
         console.log(data.messages)
+
         $element.append(data.layout);
         $element.animate({scrollTop: $element.prop("scrollHeight")}, 1000);
-      }
-    });
 
+      }
+
+    });
   });
 });
