@@ -3,7 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-	enum role: {member: 0, manager: 1, admin: 2}
+
+  PARAMS_PROFILE = %i(name birthday phone skill gender).freeze
+  PARAMS_PASSWORD = %i(password).freeze
+
+  enum role: {member: 0, manager: 1, admin: 2}
   enum staff_type: {EDU: 0, Intern: 1, Fresher: 2, Developer: 3}
   enum nationality: {Vietnam: 0, Japan: 1}
   enum workspace: {Hanoi: 0, DaNang: 1}
@@ -17,6 +21,8 @@ class User < ApplicationRecord
   has_many :list_messages, through: :messages
 
   validates :name, presence: true, length: {maximum: 50}
-  validates :phone, :numericality => true
+  validates :phone, :numericality => true, presence: true
+  validates :skill, presence: true
+
 
 end
