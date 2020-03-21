@@ -177,7 +177,7 @@
                 <%= form_for @message, url: messages_path, remote: true do |f| %>
                   <div class="input-group">
                     <%= f.file_field :file_name %>
-                    <%= f.text_field :content, class: "form-control", placeholder: "Type Message ..." %>
+                    <%= f.text_field :content, class: "form-control", id: "sms_chat", placeholder: "Type Message ..." %>
                     <%= f.submit "Submit", class: "btn btn-primary" %>
                   </div>
                   <%= f.hidden_field :user_id, value: current_user.id %>
