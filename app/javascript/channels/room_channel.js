@@ -22,7 +22,7 @@ $(document).on('turbolinks:load', function () {
       },
 
       received(data) {
-        console.log(data.layout)
+        console.log(data.messages)
         $element.append(data.layout);
         $element.animate({scrollTop: $element.prop("scrollHeight")}, 1000);
       }
