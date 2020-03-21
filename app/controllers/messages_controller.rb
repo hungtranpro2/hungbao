@@ -10,11 +10,15 @@ before_action :authenticate_user!
 
   def create
     uploaded_to = params[:message][:file_name]
-    File.open(Rails.root.join('public', 'uploads', uploaded_to.original_filename), 'wb') do |file|
-      file.write(uploaded_to.read)
+    if uploaded_to.present?
+      File.open(Rails.root.join('public', 'uploads', uploaded_to.original_filename), 'wb') do |file|
+        file.write(uploaded_to.read)
+      end
+      @file_name = uploaded_to.original_filename;
+      @message = Message.create message_params.merge(file_name: @file_name)
+    else
+      @message = Message.create message_params
     end
-    @file_name = uploaded_to.original_filename;
-    @message = Message.create message_params.merge(file_name: @file_name)
     if @message.save
 
     else

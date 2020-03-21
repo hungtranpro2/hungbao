@@ -17,11 +17,17 @@ end
 end
 
 200.times do |n|
-  content = Faker::Lorem.paragraph(30)
+  content = "This is Message #{n+1}"
 
   Message.create(
     list_message_id: rand(ListMessage.count),
     user_id: rand(User.count),
     content: content
   )
+end
+
+50.times do |n|
+  title = "Post #{n}"
+  body = Faker::Lorem.sentence 5
+  Post.create! title: title, body: body
 end

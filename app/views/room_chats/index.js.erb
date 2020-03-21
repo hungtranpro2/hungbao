@@ -1,0 +1,9 @@
+$('#message').prepend('<%= j render partial: "room_chats/message", collection: @messages %>');
+
+<% if @messages.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate @messages %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>
+
+<% sleep 2 %>
