@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_20_155341) do
+ActiveRecord::Schema.define(version: 2020_03_22_092223) do
 
   create_table "list_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
@@ -33,11 +33,28 @@ ActiveRecord::Schema.define(version: 2020_03_20_155341) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "title"
-    t.text "body"
+    t.integer "object_id"
+    t.string "object_type"
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.integer "status", default: 0
+    t.boolean "seen", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "personal_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.integer "request_type", default: 0
+    t.datetime "time_from"
+    t.datetime "time_to"
+    t.text "reason"
+    t.integer "status", default: 0
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_personal_requests_on_user_id"
   end
 
   create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -45,6 +62,19 @@ ActiveRecord::Schema.define(version: 2020_03_20_155341) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "title"
+    t.integer "group_id"
+    t.text "plan"
+    t.text "actual"
+    t.text "next_plan"
+    t.text "issue"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
   create_table "user_projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -81,6 +111,8 @@ ActiveRecord::Schema.define(version: 2020_03_20_155341) do
 
   add_foreign_key "messages", "list_messages"
   add_foreign_key "messages", "users"
+  add_foreign_key "personal_requests", "users"
+  add_foreign_key "reports", "users"
   add_foreign_key "user_projects", "projects"
   add_foreign_key "user_projects", "users"
 end

@@ -1,0 +1,13 @@
+<li>
+  <a href="#">
+      <%= image_tag "user.jpg", class: "contacts-list-img" %>
+    <div class="contacts-list-info">
+      <span class="contacts-list-name">
+        <%= message.user.name %>
+        <small class="contacts-list-date float-right"><%= message.created_at %></small>
+      </span>
+      <span class="contacts-list-msg"><%= message.content %></span>
+    </div>
+    <!-- /.contacts-list-info -->
+  </a>
+</li>
