@@ -1,4 +1,4 @@
-3.times do |n|
+5.times do |n|
   name  = Faker::Name.name
   email = "bao#{n+1}@gmail.com"
   User.create(name:  name,
@@ -11,7 +11,7 @@
                role: 2)
 end
 
-6.times do |n|
+3.times do |n|
   name  = Faker::Name.name
   ListMessage.create(name: name)
 end
@@ -26,8 +26,3 @@ end
   )
 end
 
-50.times do |n|
-  title = "Post #{n}"
-  body = Faker::Lorem.sentence 5
-  Post.create! title: title, body: body
-end

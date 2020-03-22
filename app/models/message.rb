@@ -5,6 +5,7 @@ class Message < ApplicationRecord
 
 	belongs_to :list_message
   belongs_to :user
+  has_many :notifications, as: :object
 
   private
 
