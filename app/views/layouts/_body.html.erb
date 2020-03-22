@@ -30,49 +30,11 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-       <li class="dropdown nav-item">
-        <a class="dropdown-toggle nav-link" data-toggle="dropdown" data-widget="pushmenu" href="#">
-          <%= image_tag "user.jpg", class: "brand-image img-circle avatar" %>
-          <span class="hidden-xs">Alexander Pierce</span>
-        </a>
-         <ul class="dropdown-menu nav-item" >
-          <!-- User image -->
-          <li class="user-header text-center">
-             <%= image_tag "user.jpg", class: "img-circle avatar-max" %>
-            <p>
-              Alexander Pierce - Web Developer
-              <small>Member since Nov. 2012</small>
-            </p>
-          </li>
-          <!-- Menu Body -->
-          <li class="text-center row">
-            <div class="col-4 text-center">
-              <a href="#">Followers</a>
-            </div>
-            <div class="col-4 text-center">
-              <a href="#">Sales</a>
-            </div>
-            <div class="col-4 text-center">
-              <a href="#">Friends</a>
-            </div>
-          <!-- /.row -->
-          </li>
-          <!-- Menu Footer-->
-          <li class="row footer-user-profile">
-            <div class="col-6 text-center">
-              <%= link_to 'Profile', profile_path(current_user), class: 'btn btn-primary' %>
-            </div>
-            <div class="col-6 text-center">
-              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
-            </div>
-          </li>
-        </ul>
-      </li>
-      <!-- Notifications Dropdown Menu -->
+        <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
+        <a class="nav-link" data-toggle="dropdown" href="#" style="margin-right: 10px;">
           <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+          <span class="badge badge-warning navbar-badge" style="position: absolute; top: -4px; right: -9px;">15</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header">15 Notifications</span>
@@ -94,6 +56,44 @@
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
+      </li>
+
+       <li class="dropdown nav-item">
+        <a class="dropdown-toggle nav-link" data-toggle="dropdown" data-widget="pushmenu" href="#">
+          <%= image_tag "user.jpg", class: "brand-image img-circle avatar" %>
+          <span class="hidden-xs"><%= current_user.name %></span>
+        </a>
+         <ul class="dropdown-menu nav-item" >
+          <!-- User image -->
+          <li class="user-header text-center">
+             <%= image_tag "user.jpg", class: "img-circle avatar-max" %>
+            <p>
+              <%= "#{current_user.name} - #{current_user.position}" %>
+              <small><%= current_user.birthday %></small>
+            </p>
+          </li>
+
+          <li class="text-center row">
+            <div class="col-4 text-center">
+              <a href="#">Followers</a>
+            </div>
+            <div class="col-4 text-center">
+              <a href="#">Sales</a>
+            </div>
+            <div class="col-4 text-center">
+              <a href="#">Friends</a>
+            </div>
+          </li>
+          <!-- Menu Footer-->
+          <li class="row footer-user-profile">
+            <div class="col-6 text-center">
+              <%= link_to 'Profile', profile_path(current_user), class: 'btn btn-primary' %>
+            </div>
+            <div class="col-6 text-center">
+              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+            </div>
+          </li>
+        </ul>
       </li>
 
       <li class="nav-item">

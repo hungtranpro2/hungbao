@@ -19,9 +19,8 @@ before_action :authenticate_user!
     else
       @message = Message.create message_params
     end
-    if @message.save
 
-    else
+    unless  @message.save
       flash[:error] = "Tin nhan khoi tao that bai"
     end
 
