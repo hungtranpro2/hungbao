@@ -12,6 +12,22 @@
 
 ActiveRecord::Schema.define(version: 2020_03_28_102325) do
 
+
+  create_table "approval_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.integer "status", default: 0
+    t.integer "send_for", default: 0
+    t.integer "personal_request_id"
+    t.integer "division_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "divisions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "approval_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "status", default: 0
     t.integer "send_for", default: 0
@@ -86,6 +102,7 @@ ActiveRecord::Schema.define(version: 2020_03_28_102325) do
 
   create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
+    t.integer "division_id"
     t.string "description"
     t.string "document_link"
     t.datetime "created_at", precision: 6, null: false
@@ -134,6 +151,7 @@ ActiveRecord::Schema.define(version: 2020_03_28_102325) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
