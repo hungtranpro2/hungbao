@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  PARAMS_PROFILE = %i(name birthday phone skill gender).freeze
+  PARAMS_PROFILE = %i(name birthday phone skill gender avatar).freeze
   PARAMS_PASSWORD = %i(password).freeze
 
   enum role: {member: 0, manager: 1, admin: 2}
@@ -24,5 +24,5 @@ class User < ApplicationRecord
   validates :phone, :numericality => true, presence: true
   validates :skill, presence: true
 
-
+  mount_uploader :avatar, AvatarUploader
 end

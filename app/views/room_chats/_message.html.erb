@@ -1,6 +1,10 @@
 <div class="direct-chat-msg" data-role="message-template">
   <div class="direct-chat-infos clearfix row">
-    <%= image_tag "user.jpg", class: "message-item green" %>
+    <%if message.user.avatar?%>
+      <%= image_tag message.user.avatar.url, class: "message-item green" %>
+    <%else%>
+      <%= image_tag "user-5.png", class: "message-item green" %>
+    <%end%>
     <div class="message-chat">
       <div class="direct-chat-infos clearfix">
         <span class="message-name"><%= message.user.name %></span>
