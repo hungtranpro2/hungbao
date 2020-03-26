@@ -14,13 +14,10 @@
             <div class="card-header p-2">
               <ul class="nav nav-pills">
                 <li class="nav-item">
-                  <%= link_to "Notifications", profile_path, class: "nav-link" %>
-                </li>
-                <li class="nav-item">
                   <%= link_to "Update Profile", edit_profile_path(@user), class: "nav-link active" %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "Reset Password", "#", class: "nav-link" %>
+                  <%= link_to "Reset Password", edit_reset_password_path, class: "nav-link" %>
                 </li>
               </ul>
             </div><!-- /.card-header -->
