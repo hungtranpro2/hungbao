@@ -87,7 +87,7 @@
           <!-- Menu Footer-->
           <li class="row footer-user-profile">
             <div class="col-6 text-center">
-              <%= link_to 'Profile', edit_profile_path(@user), class: 'btn btn-primary' %>
+              <%= link_to 'Profile', edit_profile_path(current_user), class: 'btn btn-primary' %>
             </div>
             <div class="col-6 text-center">
               <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>

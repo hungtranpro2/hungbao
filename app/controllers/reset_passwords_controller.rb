@@ -16,7 +16,7 @@ class ResetPasswordsController < ApplicationController
     elsif @user.update_attributes(user_params)
       sign_in @user
       flash[:success] = "Password has been reset."
-      redirect_to profile_path(@user)
+      redirect_to edit_profile_path(@user)
     else
       flash.now[:error] = "Password reset failed"
       render :edit
