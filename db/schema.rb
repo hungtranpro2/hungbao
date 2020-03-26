@@ -12,6 +12,17 @@
 
 ActiveRecord::Schema.define(version: 2020_04_01_030828) do
 
+
+  create_table "approval_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.integer "status", default: 0
+    t.integer "send_for", default: 0
+    t.integer "personal_request_id"
+    t.integer "division_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+
   create_table "approval_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "status", default: 0
     t.integer "send_for", default: 0
@@ -86,6 +97,7 @@ ActiveRecord::Schema.define(version: 2020_04_01_030828) do
 
   create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
+    t.integer "division_id"
     t.string "description"
     t.string "document_link"
     t.string "client_company"
