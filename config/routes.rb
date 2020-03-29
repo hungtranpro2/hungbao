@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :message_notifications, only: [:index]
   resources :reset_passwords, only: [:edit, :update]
   resources :requests
+  resources :reports
+  resources :manage_projects
   devise_for :users
   # get 'static_pages/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -11,4 +11,12 @@ module ProfilesHelper
   def request_type_select
     PersonalRequest.request_types.keys.map{|i| i}
   end
+
+  def my_group_select
+    current_user.projects.map{|i| i}
+  end
+
+  def current_division_select
+    current_division
+  end
 end
