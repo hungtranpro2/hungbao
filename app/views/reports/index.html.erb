@@ -1,0 +1,30 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <%= render partial: "shared/head_profile", locals: {path1: "", title: "Manage Report", link1: "", link2: ""}%>
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3">
+          <%= link_to "Create a Report", new_report_path, class: "btn btn-primary btn-block mb-3" %>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">List Group</h3>
+            </div>
+            <div class="card-body p-0">
+              <ul class="nav nav-pills flex-column">
+                <%= render partial: "reports/group", collection: @groups %>
+              </ul>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+        <!-- /.col -->
+        <div id="tbody_report" class="col-md-9">
+          <%= render partial: "reports/content", locals: {path: reports_path, group: nil} %>
+        </div>
+    </div>
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
+</div>

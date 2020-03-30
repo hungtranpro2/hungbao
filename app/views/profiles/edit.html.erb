@@ -1,6 +1,6 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
-  <%= render partial: "shared/head_profile", locals: {path1: profile_path(@user), title: "Profile", link1: @user.name, link2: "Update Profile"}%>
+  <%= render partial: "shared/head_profile", locals: {path1: profile_path(@user), title: "Profile", link1: "Profile", link2: "Update Profile"}%>
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
@@ -51,7 +51,6 @@
                         </div>
                       </div>
                     </div>
-
                      <div class="form-group row">
                       <%= f.label :gender, class: "col-sm-2 col-form-label" %>
                       <div class="col-sm-10">

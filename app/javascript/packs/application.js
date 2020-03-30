@@ -11,7 +11,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("jquery")
-// require("toastr")
+global.toastr = require("toastr")
 
 require("packs/demo")
 require("packs/adminlte")

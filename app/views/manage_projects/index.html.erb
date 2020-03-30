@@ -1,0 +1,56 @@
+<% provide(:title, t(".begin_title")) %>
+<div class="content-wrapper">
+  <%= render partial: "shared/head_profile", locals: {path1: nil, title: "Manage Group Project", link1: "", link2: nil}%>
+  <section class="content">
+    <div id="my_container" style="min-height: 600px">
+      <div class="col-12">
+        <div class="row">
+          <div class="create col-sm-3">
+          <%= link_to "+ Create Group Project", new_manage_project_path, class: "btn btn-primary" %>
+        </div>
+         <div class="create col-sm-3">
+          <%= link_to "+ Add Member to Group Project", "#", class: "btn btn-primary" %>
+        </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><b>Manage Group</b></h3>
+              <% if @groups.blank? %>
+                <h3 class="no_data card-title">( <i>No data displayed!</i> )</h3>
+              <% end %>
+              <div class="card-tools">
+                <%= search_form_for @q, url: manage_projects_path, class: "form-inline" do |f| %>
+                  <%= f.search_field :name_or_description_cont_any, class: "form-control mr-sm-2", placeholder: "Search" %>
+                  <%= f.submit class: "btn btn-outline-success my-2 my-sm-0" do %>
+                    <i class="fas fa-search"></i>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0" style="height: 500px;">
+              <table class="table table-head-fixed table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Group Name</th>
+                    <th scope="col">Division of Group</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%= render partial: "group", collection: @groups %>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <div class="container">
+          <%= will_paginate @groups if @groups %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /.content -->
+</div>

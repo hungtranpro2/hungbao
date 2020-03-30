@@ -1,3 +1,7 @@
+2.times do
+  Division.create!(name: Faker::Name.name)
+end
+
 5.times do |n|
   name  = Faker::Name.name
   email = "bao#{n+1}@gmail.com"
@@ -7,6 +11,7 @@
                password_confirmation: "123456",
                birthday: Time.zone.now,
                phone: "0388967331",
+               division_id: rand(0..2),
                skill: "Khong co ki nang chi",
                role: 2)
 end
