@@ -4,6 +4,7 @@ class CreateProjects < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :description
       t.string :document_link
+      t.string :client_company
       t.timestamps
     end
   end

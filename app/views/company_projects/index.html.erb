@@ -5,11 +5,11 @@
   <!-- Main content -->
   <section class="content">
     <div class="card-header row" style="margin: 10px 1px;">
-      <div class="col-3">
+      <div>
         <%= link_to "Tạo Dự Án", new_company_project_path, class: "btn btn-success" %>
       </div>
 
-      <div class="card-tools col-9">
+      <div>
         <%= search_form_for @q, url: company_projects_path, class: "form-inline" do |f| %>
           <%= f.search_field :name_cont, class: "form-control mr-sm-2", placeholder: "Search" %>
           <%= f.submit class: "btn btn-outline-success my-2 my-sm-0" do %>
