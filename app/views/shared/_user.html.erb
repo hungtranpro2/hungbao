@@ -1,0 +1,19 @@
+<tr>
+  <td><%= user_counter + 1 %></td>
+  <td><%= user.email %></td>
+  <td><%= user.name %></td>
+  <td><%= user.gender %></td>
+  <td><%= user.birthday %></td>
+  <td><%= user.phone %></td>
+  <td><%= user.staff_type %></td>
+  <td><%= user.workspace %></td>
+  <td>
+    <%= link_to "#", {class: "my_icon", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+     <i class="nav-icon far fa-eye"></i>
+    <% end %>
+
+    <%= link_to add_member_path(user), {class: "my_icon", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+      <i class="nav-icon far fa-plus-square"></i>
+    <% end %>
+  </td>
+</tr>
