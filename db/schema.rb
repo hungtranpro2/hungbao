@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2020_03_28_102325) do
 
   create_table "divisions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
+    t.integer "is_project", default: 0
+    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -75,6 +77,7 @@ ActiveRecord::Schema.define(version: 2020_03_28_102325) do
   create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.string "document_link"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
