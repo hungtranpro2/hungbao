@@ -1,0 +1,39 @@
+<div class="card-body">
+  <div class="active tab-pane" id="settings">
+    <%= form_for(@user_project, url: add_members_path, class: "form-horizontal") do |f|%>
+      <%= render "shared/error_messages", object: f.object %>
+      <div class="form-group row">
+        <%= f.label :user_id, class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+          <%= f.text_field :user_id, {class: "form-control",readonly:"readonly", value: @user.name} %>
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <%= f.hidden_field :user_id, {class: "form-control",readonly:"readonly", value: @user.id}  %>
+      </div>
+      <div class="form-group row">
+        <%= f.label :project_id, class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+          <% if @projects.blank? %>
+            <input class="form-control", readonly="readonly", value="Group-Project empty!"/>
+          <% else %>
+            <%= f.select :project_id, @projects.collect{|i| [i.name, i.id]}, {} , {class: "form-control custom-select" }  %>
+          <% end %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :role, class: "col-sm-3 col-form-label" %>
+         <div class="col-sm-9">
+          <%= f.select :role, role_project_select, {} , {class: "form-control custom-select" }  %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-5 col-sm-10">
+          <% if @projects.present? %>
+            <%= f.submit "Submit", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div><!-- /.card-body -->

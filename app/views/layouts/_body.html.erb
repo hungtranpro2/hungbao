@@ -143,12 +143,33 @@
             </ul>
           </li>
 
-          <% if current_user.manager? %>
+          <% if current_user.manager? && current_division.is_project %>
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-copy"></i>
                 <p>
-                  Quản lý dự án
+                  Dự án công ty
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <%= link_to company_projects_path, class: "nav-link" do %>
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Danh sách dự án</p>
+                  <% end %>
+                </li>
+
+              </ul>
+            </li>
+          <% end %>
+
+          <% if current_user.manager?%>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-copy"></i>
+                <p>
+                  Dự án bộ phận
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>

@@ -1,8 +1,9 @@
-2.times do
-  Division.create!(name: Faker::Name.name)
-end
+Division.create!(name: "Project Department", is_project: true, image: "project.jpg")
+Division.create!(name: "Design Department", image: "design.png")
+Division.create!(name: "Android Department", image: "android.png")
+Division.create!(name: "IOS Department", image: "ios.png")
 
-5.times do |n|
+10.times do |n|
   name  = Faker::Name.name
   email = "bao#{n+1}@gmail.com"
   User.create(name:  name,
@@ -11,9 +12,9 @@ end
                password_confirmation: "123456",
                birthday: Time.zone.now,
                phone: "0388967331",
-               division_id: rand(0..2),
+               division_id: rand(Division.count),
                skill: "Khong co ki nang chi",
-               role: 2)
+               role: 1)
 end
 
 3.times do |n|

@@ -13,10 +13,15 @@ module ProfilesHelper
   end
 
   def my_group_select
-    current_user.projects.map{|i| i}
+    Project.all.map{|i| i}
   end
 
   def current_division_select
     current_division
   end
+
+  def role_project_select
+    UserProject.roles.keys.map{|i| i}
+  end
+
 end

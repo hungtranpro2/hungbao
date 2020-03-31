@@ -12,17 +12,11 @@
 
 ActiveRecord::Schema.define(version: 2020_03_28_102325) do
 
-  create_table "approval_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "approval_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "status", default: 0
     t.integer "send_for", default: 0
     t.integer "personal_request_id"
     t.integer "division_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "divisions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -35,6 +29,14 @@ ActiveRecord::Schema.define(version: 2020_03_28_102325) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["list_message_id"], name: "index_count_messes_on_list_message_id"
     t.index ["user_id"], name: "index_count_messes_on_user_id"
+  end
+
+  create_table "divisions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.integer "is_project", default: 0
+    t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "list_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -84,8 +86,8 @@ ActiveRecord::Schema.define(version: 2020_03_28_102325) do
 
   create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
-    t.integer "division_id"
     t.string "description"
+    t.string "document_link"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

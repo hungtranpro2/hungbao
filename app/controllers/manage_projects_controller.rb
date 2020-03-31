@@ -8,7 +8,7 @@ class ManageProjectsController < ApplicationController
   end
 
   def new
-    @group = current_division.projects.new
+    @group = Project.new
   end
 
   def show
@@ -25,7 +25,7 @@ class ManageProjectsController < ApplicationController
   end
 
   def create
-    @group = current_division.projects.new group_params
+    @group = Project.new group_params
     if @group.save
       flash[:success] = "Tạo dự án thành công"
       redirect_to manage_projects_path
