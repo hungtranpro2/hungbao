@@ -1,4 +1,6 @@
 class UserProject < ApplicationRecord
+  PARAMS = %i(user_id project_id role).freeze
+
 	enum role: {member: 0, leader: 1}
   belongs_to :user
   belongs_to :project
