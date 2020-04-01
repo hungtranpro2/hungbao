@@ -1,5 +1,5 @@
-Division.create!(name: "Project Department", is_project: true, image: "project.jpg")
-Division.create!(name: "Design Department", image: "design.png")
+Division.create!(name: "Project Department", is_project: true, image: "project.png")
+Division.create!(name: "Design Department", image: "design.jpg")
 Division.create!(name: "Android Department", image: "android.png")
 Division.create!(name: "IOS Department", image: "ios.png")
 

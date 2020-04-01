@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :manage_projects
   resources :add_members
   resources :company_projects
+  resources :project_members
+  resources :add_project_managers
   devise_for :users
   # get 'static_pages/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

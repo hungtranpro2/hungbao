@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2020_03_28_102325) do
     t.string "name"
     t.string "description"
     t.string "document_link"
+    t.string "client_company"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -116,6 +117,7 @@ ActiveRecord::Schema.define(version: 2020_03_28_102325) do
     t.integer "nationality", default: 0
     t.integer "position", default: 0
     t.integer "role", default: 0
+    t.integer "status", default: 0
     t.integer "division_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
