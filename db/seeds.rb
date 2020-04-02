@@ -3,7 +3,7 @@ Division.create!(name: "Design Department", image: "design.jpg")
 Division.create!(name: "Android Department", image: "android.png")
 Division.create!(name: "IOS Department", image: "ios.png")
 
-10.times do |n|
+50.times do |n|
   name  = Faker::Name.name
   email = "bao#{n+1}@gmail.com"
   User.create(name:  name,
@@ -12,9 +12,10 @@ Division.create!(name: "IOS Department", image: "ios.png")
                password_confirmation: "123456",
                birthday: Time.zone.now,
                phone: "0388967331",
-               division_id: rand(Division.count),
+               status: rand(0..2),
+               division_id: rand(0..(Division.count-1)),
                skill: "Khong co ki nang chi",
-               role: 2)
+               role: 0)
 end
 
 3.times do |n|
@@ -27,7 +28,7 @@ end
 
   Message.create(
     list_message_id: rand(ListMessage.count),
-    user_id: rand(User.count),
+    user_id: rand(0..(User.count-1)),
     content: content
   )
 end

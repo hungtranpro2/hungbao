@@ -1,56 +1,65 @@
-<% provide(:title, t(".begin_title")) %>
 <div class="content-wrapper">
-  <%= render partial: "shared/head_profile", locals: {path1: nil, title: "Manage Group Project", link1: "", link2: nil}%>
+  <!-- Content Header (Page header) -->
+  <%= render partial: "shared/head_profile", locals: {path1: manage_projects_path, title: "Manage Member", link1: "Manage Group", link2: "Member in Group"}%>
+
+  <!-- Main content -->
   <section class="content">
-    <div id="my_container" style="min-height: 600px">
-      <div class="col-12">
-        <div class="row">
-          <div class="create col-sm-3">
-          <%= link_to "+ Create Group Project", new_manage_project_path, class: "btn btn-primary" %>
-        </div>
-         <div class="create col-sm-3">
-          <%= link_to "+ Add Member to Group Project", add_members_path, class: "btn btn-primary" %>
-        </div>
-        </div>
-        <div class="card">
-            <div class="card-header">
-              <h3 class="card-title"><b>Manage Group</b></h3>
-              <% if @groups.blank? %>
-                <h3 class="no_data card-title">( <i>No data displayed!</i> )</h3>
-              <% end %>
-              <div class="card-tools">
-                <%= search_form_for @q, url: manage_projects_path, class: "form-inline" do |f| %>
-                  <%= f.search_field :name_or_description_cont_any, class: "form-control mr-sm-2", placeholder: "Search" %>
-                  <%= f.submit class: "btn btn-outline-success my-2 my-sm-0" do %>
-                    <i class="fas fa-search"></i>
-                  <% end %>
-                <% end %>
-              </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body table-responsive p-0" style="height: 500px;">
-              <table class="table table-head-fixed table-bordered">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Group Name</th>
-                    <th scope="col">Division of Group</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <%= render partial: "group", collection: @groups %>
-                </tbody>
-              </table>
-            </div>
-            <!-- /.card-body -->
-        </div>
-        <div class="container">
-          <%= will_paginate @groups if @groups %>
-        </div>
+    <div class="card-header row" style="margin: 10px 1px;">
+      <div>
+        <%= search_form_for @q, url: company_projects_path, class: "form-inline" do |f| %>
+          <%= f.search_field :name_cont, class: "form-control mr-sm-2", placeholder: "Search" %>
+          <%= f.submit class: "btn btn-outline-success my-2 my-sm-0" do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        <% end %>
       </div>
     </div>
+    <!-- Default box -->
+    <div class="card" style="height: 500px;">
+      <div class="card-header">
+        <h3 class="card-title">Projects</h3>
+        <% if @projects.blank? %>
+          <h3 class="card-title" style="margin-left: 10px; color: red;">- No Data</h3>
+        <% end %>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+            <i class="fas fa-minus"></i></button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+            <i class="fas fa-times"></i></button>
+        </div>
+      </div>
+      <div class="card-body p-0">
+        <table class="table table-striped projects">
+            <thead>
+                <tr>
+                    <th style="width: 1%">
+                        #
+                    </th>
+                    <th style="width: 20%">
+                        Project Name
+                    </th>
+                    <th style="width: 30%">
+                        Division
+                    </th>
+                    <th>
+                        Project Progress
+                    </th>
+                    <th style="width: 8%" class="text-center">
+                        Status
+                    </th>
+                    <th style="width: 20%">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "manage_projects/project", collection: @projects %>
+            </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
   </section>
   <!-- /.content -->
 </div>
