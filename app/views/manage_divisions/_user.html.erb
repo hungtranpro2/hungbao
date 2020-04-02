@@ -5,6 +5,7 @@
    <%= user.name %>
   </td>
   <td><%= user.division.name %></td>
+  <td><%= user.role %></td>
   <td><%= user.skill %></td>
   <td><%= "#{user.user_projects.count} Project" %></td>
   <td>
@@ -35,13 +36,11 @@
       </i>
       View
     <% end %>
-    <% if user.projects.where(id: @project.id).blank? && user.status != "busy"%>
-      <% if @project.user_projects.where(role: 1).blank? %>
-        <%= link_to add_project_managers_path(user_id: user.id, project_id: @project.id),{ class: "btn btn-success btn-sm", method: :post} do %>
-          <i class="fas fa-plus">
-          </i>
-          Add
-        <% end %>
+    <% if user.member? &&  user.status != "busy"%>
+      <%= link_to show_project_path(user), { class: "btn btn-success btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+        <i class="fas fa-plus">
+        </i>
+        Add
       <% end %>
     <% end %>
   </td>

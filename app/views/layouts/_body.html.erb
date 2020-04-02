@@ -143,7 +143,7 @@
             </ul>
           </li>
 
-          <% if current_user.manager? && current_division.is_project %>
+          <% if current_user.manager? && current_division.is_project == 1%>
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-copy"></i>
@@ -164,12 +164,12 @@
             </li>
           <% end %>
 
-          <% if current_user.manager?%>
+          <% if current_user.member? && current_division.is_project%>
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-copy"></i>
                 <p>
-                  Dự án bộ phận
+                  Nhà quản lý dự án
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
@@ -177,7 +177,28 @@
                 <li class="nav-item">
                   <%= link_to manage_projects_path, class: "nav-link" do %>
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Báo cáo ngày</p>
+                    <p>Quản lý dự án</p>
+                  <% end %>
+                </li>
+
+              </ul>
+            </li>
+          <% end %>
+
+          <% if current_user.manager? && current_division.is_project == 0%>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-copy"></i>
+                <p>
+                  Quản lý bộ phận
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <%= link_to manage_divisions_path, class: "nav-link" do %>
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Quản lý bộ phận dự án</p>
                   <% end %>
                 </li>
 

@@ -5,7 +5,22 @@
     <div class="col-12">
     <div class="card-header row" style="margin: 10px 1px;">
       <div style="margin-right: 50px;">
-        <%= link_to "Thêm quản lý dự án", add_project_manager_path(@project), class: "btn btn-success" %>
+        <% if current_user.manager? %>
+          <%= link_to add_project_manager_path(@project), class: "btn btn-success" do %>
+            <i class="fas fa-plus"></i>
+            Thêm quản lý dự án
+          <% end %>
+
+          <%= link_to add_project_division_path(@project), class: "btn btn-success" do %>
+          <i class="fas fa-plus"></i>
+            Thêm bộ phận dự án
+          <% end %>
+       <% else %>
+          <%= link_to add_project_member_path(@project), class: "btn btn-success" do %>
+            <i class="fas fa-plus"></i>
+            Thêm thành viên dự án
+          <% end %>
+       <% end %>
       </div>
       <div>
         <%= search_form_for @q, url:"#", class: "form-inline" do |f| %>

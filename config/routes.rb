@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'project_divisions/index'
 	root "room_chats#index"
   mount ActionCable.server => "/cable"
 
@@ -16,6 +17,10 @@ Rails.application.routes.draw do
   resources :company_projects
   resources :project_members
   resources :add_project_managers
+  resources :add_project_members
+  resources :add_project_divisions
+  resources :manage_divisions
+  resources :show_projects
   devise_for :users
   # get 'static_pages/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

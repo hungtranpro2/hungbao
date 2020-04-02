@@ -1,6 +1,6 @@
 <% provide(:title, t(".begin_title")) %>
 <div class="content-wrapper" style="height: 500px;">
-  <%= render partial: "shared/head_profile", locals: {path1: project_member_path(@project), title: "Thêm quản lý dự án", link1: "Thành viên dự án", link2: "Thêm thành viên cho dự án #{@project.id}"}%>
+  <%= render partial: "shared/head_profile", locals: {path1: project_member_path(@project), title: "Yêu cầu thành viên cho dự án", link1: "Thành viên của dự án", link2: "Yêu cầu thành viên cho dự án #{@project.id}"}%>
   <section class="content">
     <div class="col-12">
     <div class="card-header row" style="margin: 10px 1px;">
@@ -16,10 +16,6 @@
      <div class="card">
         <div class="card-header border-0">
           <h3 class="card-title">Thêm quản lý dự án</h3>
-          <% if @project.user_projects.where(role: 1).present? %>
-           <h6 class="card-title" style="margin-left: 10px; color: #dc3545; font-weight: 900">- Đã có quản lý cho dự án này
-           </h6>
-          <% end %>
           <div class="card-tools">
             <a href="#" class="btn btn-tool btn-sm">
               <i class="fas fa-download"></i>
@@ -36,6 +32,7 @@
               <th>#</th>
               <th>Member</th>
               <th>Position</th>
+              <th>Role</th>
               <th>Skill</th>
               <th>Join the project</th>
               <th>Progress</th>
@@ -44,7 +41,7 @@
             </tr>
             </thead>
             <tbody>
-              <%= render partial: "add_project_managers/user", collection: @users %>
+              <%= render partial: "add_project_members/user", collection: @users %>
             </tbody>
           </table>
         </div>
