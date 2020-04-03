@@ -2,7 +2,9 @@ class ReportsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @groups = current_user.projects
+    @projects = current_user.projects if @projects.blank?
+    @project = Project.find_by name: params[:project] if params[:project].present?
+    @q = current_user.reports.where(project_id: @project.id).ransack(params[:q]) if @project.present?
     @q = current_user.reports.ransack(params[:q])
     @reports = @q.result.paginate(page: params[:page], per_page: 10)
   end
@@ -18,14 +20,14 @@ class ReportsController < ApplicationController
 
   def create
     @report = current_user.reports.new report_params
-    @group_id = params[:report][:group_id]
+    @project_id = params[:report][:project_id]
     ActiveRecord::Base.transaction do
       @report.save!
-      send_notification @report, @group_id
-      flash[:success] = t ".create_success"
+      send_notification @report, @project_id
+      flash[:success] = "Tạo báo cáo thành công"
       redirect_to reports_path
     rescue ActiveRecord::RecordInvalid
-      flash.now[:error] = t ".create_fault"
+      flash.now[:error] = "Tạo báo cáo thất bại"
       render :new
     end
   end
@@ -36,18 +38,14 @@ class ReportsController < ApplicationController
     params.require(:report).permit Report::PARAMS
   end
 
-  def send_notification report, group_id
-    @group = Group.find_by(id: group_id)
-    @user_groups = @group.user_groups.where(role: "leader")
-    @manager_projects =  manager_project @user_groups
-    @manager_projects.each do |manager|
-      report.notifications.create!(title: t(".notifi_title"), sender_id: current_user.id, receiver_id: manager.id)
+  def send_notification report, project_id
+    @project = Project.find_by(id: project_id)
+    current_division.users.manager.each do |manager|
+      report.notifications.create!(title: report.title, sender_id: current_user.id, receiver_id: manager.id)
     end
-  end
 
-  def manager_project user_group
-    @manager_projects = []
-    user_group.each{|i| @manager_projects.push(i.user) if i.user != current_user}
-    @manager_projects
+    @project.users.where(division_id: 1).each do |manager|
+      report.notifications.create!(title: report.title, sender_id: current_user.id, receiver_id: manager.id)
+    end
   end
 end

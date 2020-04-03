@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2020_03_28_102325) do
 
   create_table "reports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "title"
-    t.integer "group_id"
+    t.integer "project_id"
     t.text "plan"
     t.text "actual"
     t.text "next_plan"
