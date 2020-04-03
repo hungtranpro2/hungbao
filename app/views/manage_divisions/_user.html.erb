@@ -31,12 +31,12 @@
     <% end %>
   </td>
   <td class="project-actions text-right">
-    <%= link_to "#", class: "btn btn-primary btn-sm" do %>
+    <%= link_to show_profile_path(user), {class: "btn btn-primary btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
       <i class="fas fa-folder">
       </i>
       View
     <% end %>
-    <% if user.member? &&  user.status != "busy"%>
+    <% if user.member? &&  user.status != "busy" %>
       <%= link_to show_project_path(user), { class: "btn btn-success btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
         <i class="fas fa-plus">
         </i>

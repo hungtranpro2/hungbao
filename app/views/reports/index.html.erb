@@ -1,30 +1,64 @@
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <%= render partial: "shared/head_profile", locals: {path1: "", title: "Manage Report", link1: "", link2: ""}%>
-  <!-- Main content -->
+<% provide(:title, t(".begin_title")) %>
+<div class="content-wrapper" style="height: 500px;">
+  <%= render partial: "shared/head_profile", locals: {path1: "#", title: "Yêu cầu thành viên cho dự án", link1: "Thành viên của dự án", link2: "Yêu cầu thành viên cho dự án"}%>
   <section class="content">
-    <div class="container-fluid">
+    <div class="col-12">
+    <div class="card-header row" style="margin: 10px 1px;">
       <div class="row">
-        <div class="col-md-3">
-          <%= link_to "Create a Report", new_report_path, class: "btn btn-primary btn-block mb-3" %>
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">List Group</h3>
-            </div>
-            <div class="card-body p-0">
-              <ul class="nav nav-pills flex-column">
-                <%= render partial: "reports/group", collection: @groups %>
-              </ul>
-            </div>
-            <!-- /.card-body -->
+        <div style="margin-right: 50px;">
+          <%= link_to new_report_path, class: "btn btn-success" do %>
+            <i class="fas fa-plus"></i>
+            Viết báo cáo
+          <% end %>
+        </div>
+        <%= search_form_for @q, url: reports_path, class: "form-inline" do |f| %>
+          <%= f.search_field :title_cont, class: "form-control mr-sm-2", placeholder: "Search" %>
+          <%= f.submit class: "btn btn-outline-success my-2 my-sm-0" do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        <% end %>
+        <div style="margin-left: 10px;">
+          <%= form_tag reports_path, class: "form-inline", method: :get do |f| %>
+            <%= select_tag :project, raw(@projects.collect {|i| "<option>#{i.name}</option>"}) , {include_blank: "Choose date", class: "form-control select", onchange: "this.form.submit()"} %>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+     <div class="card">
+        <div class="card-header border-0">
+          <h3 class="card-title">Thêm quản lý dự án</h3>
+          <div class="card-tools">
+            <a href="#" class="btn btn-tool btn-sm">
+              <i class="fas fa-download"></i>
+            </a>
+            <a href="#" class="btn btn-tool btn-sm">
+              <i class="fas fa-bars"></i>
+            </a>
           </div>
         </div>
-        <!-- /.col -->
-        <div id="tbody_report" class="col-md-9">
-          <%= render partial: "reports/content", locals: {path: reports_path, group: nil} %>
+        <div class="card-body table-responsive p-0">
+          <table class="table table-striped table-valign-middle">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Tên dự án</th>
+              <th>Ngày khởi tạo</th>
+              <th>Kế hoạch</th>
+              <th>Thực tế</th>
+              <th>Kế hoạch tới</th>
+              <th>Vấn đề</th>
+              <th class="text-center">More</th>
+            </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "reports/report", collection: @reports %>
+            </tbody>
+          </table>
         </div>
+      </div>
+      <%= will_paginate @users if @users %>
     </div>
-    <!-- /.row -->
   </section>
   <!-- /.content -->
 </div>
