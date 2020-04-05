@@ -1,9 +1,9 @@
 <tr>
   <td><%= request_counter + 1 %></td>
   <td><%= request.created_at %></td>
-  <td><%= request.request_type %></td>
-  <td><%= request.reason %></td>
-  <td  class="hidden_content"><%= "#{request.time_from} - #{request.time_to}" %></td>
+  <td><%= request.personal_request.request_type %></td>
+  <td><%= request.personal_request.reason %></td>
+  <td  class="hidden_content"><%= "#{request.personal_request.time_from} - #{request.personal_request.time_to}" %></td>
   <td>
     <% if request.status == "waiting" %>
       <span class="badge badge-primary"><%= request.status %></span>
@@ -21,18 +21,17 @@
       </i>
       View
     <% end %>
-
     <% if request.status == "waiting" %>
-      <%= link_to edit_request_path(request),{ class: "btn btn-info btn-sm"} do %>
-        <i class="fas fa-pencil-alt">
+      <%= link_to approval_request_path(request, status: "approval"),{ class: "btn btn-info btn-sm", method: :patch, data:{ confirm: "Bạn có chắc!"}} do %>
+        <i class="fas fa-check">
         </i>
-        Edit
+        Approve
       <% end %>
 
-       <%= link_to request_path(request), { class: "btn btn-danger btn-sm", method: :delete, data:{ confirm: "Bạn có chắc xóa yêu cầu này"}} do %>
-        <i class="fas fa-trash">
+       <%= link_to approval_request_path(request, status: "rejected"), { class: "btn btn-danger btn-sm", method: :patch, data:{ confirm: "Bạn có chắc!"}} do %>
+        <i class="fas fa-times">
         </i>
-        Delete
+        Rejected
       <% end %>
     <% end %>
   </td>
