@@ -23,7 +23,7 @@ class ReportsController < ApplicationController
     @project_id = params[:report][:project_id]
     ActiveRecord::Base.transaction do
       @report.save!
-      send_notification @report, @project_id
+      send_notification(@report, @project_id) if current_user.member?
       flash[:success] = "Tạo báo cáo thành công"
       redirect_to reports_path
     rescue ActiveRecord::RecordInvalid

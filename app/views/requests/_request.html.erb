@@ -1,23 +1,28 @@
 <tr>
-  <td><%= request_counter += 1 %></td>
-  <td><%= "RQ#{request.id}" %></td>
-  <td><%= request.user.name %></td>
+  <td><%= request_counter + 1 %></td>
+  <td><%= request.created_at %></td>
   <td><%= request.request_type %></td>
-  <td><%= l(request.created_at, format: :short) %></td>
-  <td><%= "#{l(request.time_from, format: :short)} - #{l(request.time_to, format: :short)}" %></td>
   <td><%= request.reason %></td>
-  <td><%= request.status %></td>
+  <td  class="hidden_content"><%= "#{request.time_from} - #{request.time_to}" %></td>
   <td>
-    <%= link_to request_path(request, type: "request"), {class: "my_icon", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
-       <i class="nav-icon far fa-eye"></i>
+    <span class="badge badge-success"><%= request.status %></span>
+  </td>
+  <td class="project-actions text-right">
+    <%= link_to request_path(request), {class: "btn btn-primary btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+      <i class="fas fa-folder">
+      </i>
+      View
     <% end %>
-    <% if request.waiting? %>
-      <%= link_to edit_request_path(request) do %>
-         <i class="nav-icon far fa-edit"></i>
-      <% end %>
-      <%= link_to request_path(request), method: :delete, data: {confirm: t(".sure")} do %>
-        <i class="nav-icon far fa-trash-alt"></i>
-      <% end %>
+    <%= link_to edit_request_path(request),{ class: "btn btn-info btn-sm"} do %>
+      <i class="fas fa-pencil-alt">
+      </i>
+      Edit
+    <% end %>
+
+     <%= link_to request_path(request), { class: "btn btn-danger btn-sm", method: :delete, data:{ confirm: "Bạn có chắc xóa yêu cầu này"}} do %>
+      <i class="fas fa-trash">
+      </i>
+      Delete
     <% end %>
   </td>
 </tr>
