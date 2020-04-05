@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :show_profiles
   resources :project_divisions
   resources :show_reports
+  resources :approval_requests
   devise_for :users
   # get 'static_pages/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
