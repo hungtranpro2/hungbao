@@ -7,7 +7,7 @@ class User < ApplicationRecord
   PARAMS_PROFILE = %i(name birthday phone skill gender).freeze
   PARAMS_PASSWORD = %i(password).freeze
 
-  enum role: {member: 0, manager: 1}
+  enum role: {member: 0, manager: 1, hr: 2}
   enum staff_type: {EDU: 0, Intern: 1, Fresher: 2, Developer: 3}
   enum nationality: {Vietnam: 0, Japan: 1}
   enum workspace: {Hanoi: 0, DaNang: 1}

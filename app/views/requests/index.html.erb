@@ -1,53 +1,59 @@
 <% provide(:title, t(".begin_title")) %>
-<div class="content-wrapper">
-  <%= render partial: "shared/head_profile", locals: {path1: "", title: "List request IL, LE, LO", link1: "", link2: ""}%>
+<div class="content-wrapper" style="height: 500px;">
+  <%= render partial: "shared/head_profile", locals: {path1: "#", title: "Yêu cầu thành viên cho dự án", link1: "Thành viên của dự án", link2: "Yêu cầu thành viên cho dự án"}%>
   <section class="content">
     <div class="col-12">
-      <div class="create">
-        <%= link_to "Create new a Request", new_request_path, class: "btn btn-primary" %>
+    <div class="card-header row" style="margin: 10px 1px;">
+      <div class="row">
+        <div style="margin-right: 50px;">
+          <%= link_to new_request_path, class: "btn btn-success" do %>
+            <i class="fas fa-plus"></i>
+            Rạo yêu cầu
+          <% end %>
+        </div>
+        <%= search_form_for @q, url: requests_path, class: "form-inline", method: :get do |f| %>
+          <%= f.date_field :created_at_gteq, class: "form-control select" %>
+          <%= f.date_field :created_at_lteq, class: "form-control select" %>
+          <%= f.select :status_cont, raw(status_request_select), {include_blank: "Choose status"}, class: "form-control select" %>
+          <%= f.search_field :reason_cont, class: "form-control mr-sm-2", placeholder: "Search" %>
+          <%= f.submit class: "btn btn-outline-success my-2 my-sm-0" do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        <% end %>
       </div>
-      <div class="card">
-          <div class="card-header">
-            <h3 class="card-title"><b>List your request</b></h3>
-            <% if @requests.blank? %>
-              <h3 class="no_data card-title" style="color: red">_( <i>No data displayed!</i> )</h3>
-            <% end %>
-            <div class="card-tools">
-              <%= search_form_for @q, url: requests_path, class: "form-inline", method: :get do |f| %>
-                <%= f.date_field :created_at_gteq, class: "form-control select" %>
-                <%= f.date_field :created_at_lteq, class: "form-control select" %>
-                <%= f.select :status_cont, raw(status_request_select), {include_blank: "Choose status"}, class: "form-control select" %>
-                <%= f.search_field :user_name_or_reason_cont_any, class: "form-control mr-sm-2", placeholder: "Search" %>
-                <%= f.submit class: "btn btn-outline-success my-2 my-sm-0" do %>
-                  <i class="fas fa-search"></i>
-                <% end %>
-              <% end %>
-            </div>
+    </div>
+     <div class="card">
+        <div class="card-header border-0">
+          <h3 class="card-title">Thêm quản lý dự án</h3>
+          <div class="card-tools">
+            <a href="#" class="btn btn-tool btn-sm">
+              <i class="fas fa-download"></i>
+            </a>
+            <a href="#" class="btn btn-tool btn-sm">
+              <i class="fas fa-bars"></i>
+            </a>
           </div>
-          <!-- /.card-header -->
-          <div class="card-body table-responsive p-0" style="height: 500px;">
-            <table class="table table-head-fixed table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Staff Code</th>
-                  <th scope="col">Staff Name</th>
-                  <th scope="col">KIND</th>
-                  <th scope="col">Time Of Creation </th>
-                  <th scope="col">Time Request</th>
-                  <th scope="col">Reason</th>
-                  <th scope="col">STATUS</th>
-                  <th scope="col">ACTION</th>
-                </tr>
-              </thead>
-              <tbody>
-                <%= render partial: "requests/request", collection: @requests, locals: {type_show: true} %>
-              </tbody>
-            </table>
-          </div>
-          <!-- /.card-body -->
+        </div>
+        <div class="card-body table-responsive p-0">
+          <table class="table table-striped table-valign-middle">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Ngày khởi tạo</th>
+              <th>Loại yêu cầu</th>
+              <th>Lý do</th>
+              <th>Thời gian yêu cầu</th>
+              <th>Trạng thái</th>
+              <th class="text-center">More</th>
+            </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "requests/request", collection: @requests %>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <%= will_paginate @requests %>
+      <%= will_paginate @users if @users %>
     </div>
   </section>
   <!-- /.content -->

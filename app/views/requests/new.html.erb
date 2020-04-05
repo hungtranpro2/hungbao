@@ -1,7 +1,7 @@
 <% provide(:title, t(".begin_title")) %>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
-  <%= render partial: "shared/head_profile", locals: {path1: requests_path, title: "New Request", link1: "Requests", link2: "Create new a request"}%>
+  <%= render partial: "shared/head_profile", locals: {path1: requests_path, title: "Tạo yêu cầu", link1: "Danh sách yêu cầu", link2: "Viết yêu cầu"}%>
 
   <!-- Main content -->
   <%= render partial: "requests/form", locals: {division: @request, path: requests_path}%>
