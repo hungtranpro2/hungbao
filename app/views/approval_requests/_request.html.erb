@@ -16,7 +16,7 @@
     <% end %>
   </td>
   <td class="project-actions text-right">
-    <%= link_to request_path(request), {class: "btn btn-primary btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+    <%= link_to request_path(request.personal_request.id), {class: "btn btn-primary btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
       <i class="fas fa-folder">
       </i>
       View

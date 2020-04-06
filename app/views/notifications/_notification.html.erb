@@ -1,0 +1,20 @@
+<div class="dropdown-divider"></div>
+<% if notification.object_type == "Report" %>
+  <%= link_to show_report_path(notification.object_id), {class: "dropdown-item", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+    <i class="fas fa-envelope mr-2"></i><span style="font-weight: 700"><%= notification.title %></span>
+    <p style="color: green"><%= notification.sender.name %></p>
+    <span class="float-right text-muted text-sm"><%= notification.created_at %></span>
+  <% end %>
+<% elsif notification.object_type == "ApprovalRequest" %>
+  <%= link_to request_path(notification.object&.personal_request.id), {class: "dropdown-item", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+    <i class="fas fa-envelope mr-2"></i><span style="font-weight: 700"><%= notification.title %></span>
+    <p style="color: green"><%= notification.sender.name %></p>
+    <span class="float-right text-muted text-sm"><%= notification.created_at %></span>
+  <% end %>
+<% else %>
+  <%= link_to request_path(notification.object_id), {class: "dropdown-item", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+    <i class="fas fa-envelope mr-2"></i><span style="font-weight: 700"><%= notification.title %></span>
+    <p style="color: green"><%= notification.sender.name %></p>
+    <span class="float-right text-muted text-sm"><%= notification.created_at %></span>
+  <% end %>
+<% end %>

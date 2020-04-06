@@ -25,7 +25,8 @@ class User < ApplicationRecord
 
   has_many :personal_requests, dependent: :destroy
   has_many :reports, dependent: :destroy
-
+  has_many :notifications, class_name: Notification.name,
+                           foreign_key: :receiver_id, dependent: :destroy
   validates :name, presence: true, length: {maximum: 50}
   validates :phone, :numericality => true, presence: true
   validates :skill, presence: true

@@ -10,10 +10,11 @@
             <i class="fas fa-plus"></i>
             Thêm quản lý dự án
           <% end %>
-
-          <%= link_to add_project_division_path(@project), class: "btn btn-success" do %>
-          <i class="fas fa-plus"></i>
-            Thêm bộ phận dự án
+          <% if @project.users.present? %>
+            <%= link_to add_project_division_path(@project), class: "btn btn-success" do %>
+            <i class="fas fa-plus"></i>
+              Thêm bộ phận dự án
+            <% end %>
           <% end %>
        <% else %>
           <%= link_to add_project_member_path(@project), class: "btn btn-success" do %>
