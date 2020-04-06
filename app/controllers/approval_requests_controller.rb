@@ -1,4 +1,6 @@
 class ApprovalRequestsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     if current_division.is_project? && current_user.manager?
       @q = current_division.approval_requests.where(send_for: 0).ransack(params[:q])
@@ -55,7 +57,7 @@ class ApprovalRequestsController < ApplicationController
 
   def send_notifi_manager user_request
     current_user.projects.each do |project|
-      user_request.notifications.create!(title: "Bạn có một yêu cầu được chuyển tiếp", sender_id: current_user.id, receiver_id: project.users.first.id)
+      user_request.notifications.create!(title: "Bạn có một yêu cầu được chuyển tiếp", sender_id: current_user.id, receiver_id: project.users.where(division_id: 1).first.id)
     end
   end
 

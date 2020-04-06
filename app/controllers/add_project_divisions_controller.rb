@@ -8,15 +8,19 @@ class AddProjectDivisionsController < ApplicationController
   end
 
   def create
-    @user_id = params[:user_id]
-    @project_id = params[:project_id]
-    @user_project = UserProject.new user_id: @user_id, project_id: @project_id
-    if @user_project.save
-      flash[:success] = "Thêm quản lý bộ phận thành công"
-      redirect_to project_member_path(params[:project_id])
+    @project = Project.find_by id: params[:project_id]
+    if @project.users.present?
+      @user_project = UserProject.new user_id: params[:user_id], project_id: params[:project_id]
+      if @user_project.save
+        flash[:success] = "Thêm quản lý bộ phận thành công"
+        redirect_to project_member_path(params[:project_id])
+      else
+        flash[:error] = "Thêm quản lý bộ phận thất bại"
+        redirect_to root_path
+      end
     else
-      flash[:error] = "Thêm quản lý bộ phận thất bại"
-      redirect_to root_path
+      flash[:error] = "Dự án này chưa có người quản lý"
+      redirect_to project_member_path(params[:project_id])
     end
   end
 end

@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
 
   def show
     @user = User.find_by id: params[:id]
+    @notification = current_user.notifications.paginate(page: params[:page], per_page: 10)
   end
 
   def edit
