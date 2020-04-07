@@ -25,6 +25,9 @@ class User < ApplicationRecord
   has_many :personal_requests, dependent: :destroy
   has_many :reports, dependent: :destroy
 
+  has_many :tasks
+
+
   validates :name, presence: true, length: {maximum: 50}
   validates :phone, :numericality => true, presence: true
   validates :skill, presence: true

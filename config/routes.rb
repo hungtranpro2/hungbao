@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resources :reports
   resources :manage_projects
   resources :add_members
-  resources :company_projects
+  resources :company_projects do
+    resources :tasks
+  end
 
   devise_for :users
   # get 'static_pages/index'

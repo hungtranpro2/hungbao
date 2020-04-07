@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  start_day: 2020-04-01 10:08:28
+  end_day: 2020-04-01 10:08:28
+  description: MyString
+  path_github: MyString
+  status: 
+  progess: 
+  time_reality: 2020-04-01 10:08:28
+
+two:
+  name: MyString
+  start_day: 2020-04-01 10:08:28
+  end_day: 2020-04-01 10:08:28
+  description: MyString
+  path_github: MyString
+  status: 
+  progess: 
+  time_reality: 2020-04-01 10:08:28

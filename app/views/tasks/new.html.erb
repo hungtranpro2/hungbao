@@ -1,0 +1,111 @@
+<% provide(:title, t(".begin_title")) %>
+<div id="my_container" class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <%= render partial: "shared/head_profile", locals: {path1: company_project_tasks_path, title: "Create Task Project", link1: "Manage Task Project", link2: "Create Task Project"}%>
+  <!-- Main content -->
+ <section class="content" style="height: 600px; margin-top: 50px;">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Add Tasks</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                  <i class="fas fa-minus"></i></button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                  <i class="fas fa-times"></i></button>
+              </div>
+            </div>
+
+            <div class="card-body" style="margin: 20px 0px;">
+              <div class="tab-content">
+                <div class="active tab-pane" id="settings">
+                  <%= form_for(@task, url: company_project_tasks_path, class: "form-horizontal") do |f|%>
+                    <%= render "shared/error_messages", object: f.object %>
+                    <%= f.hidden_field :path, value: @path %>
+                    <div class="form-group row">
+                      <div class="col-sm-2">
+                        <%= f.label :name, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-10">
+                        <%= f.text_field :name, class: "form-control", placeholder:"Task Name" %>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-2">
+                        <%= f.label :description, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-10">
+                        <%= f.text_area :description, class: "form-control", placeholder:"Description" %>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-sm-2">
+                        <%= f.label :start_day, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-4">
+                        <%= f.datetime_field :start_day , {class: "form-control"} %>
+                      </div>
+                      <div class="col-sm-1">
+                        <%= f.label :end_day, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-5">
+                        <%= f.datetime_field :end_day , {class: "form-control"} %>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-2">
+                        <%= f.label :path_github, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-10">
+                        <%= f.text_field :path_github, class: "form-control", placeholder:"Path Github" %>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-2">
+                        <%= f.label :progess, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-2">
+                        <%= f.select :progess, [0,10,20,30,40,50,60,70,80,90,100], {class: "form-control custom-select"} %>%
+                      </div>
+                      <div class="col-sm-2">
+                        <%= f.label :priority, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-2">
+                        <%= f.select :priority, priority_select,{}, {class: "form-control custom-select" }  %>
+                      </div>
+                      <div class="col-sm-2">
+                        <%= f.label :estimated_time, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-2">
+                        <%= f.text_field :estimated_time, class: "form-control"%>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="offset-sm-2 col-sm-10">
+                        <%= f.submit "Add Task", class: "btn btn-success" %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+                <!-- /.tab-pane -->
+              </div>
+              <!-- /.tab-content -->
+            </div><!-- /.card-body -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-2">
+        </div>
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+
+</div>

@@ -5,6 +5,9 @@ class Project < ApplicationRecord
   has_many :users, through: :user_projects
   has_many :divisions, through: :users
 
+  has_many :tasks, dependent: :destroy
+
+
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
 
