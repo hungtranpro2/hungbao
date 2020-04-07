@@ -1,0 +1,81 @@
+<div class="card" style="margin-top: 10px;">
+  <div class="card-body">
+    <div class="tab-content">
+      <div class="active tab-pane" id="settings">
+
+        <div class="form-group row">
+          <div class="col-sm-2">
+            <label class="col-form-label">Tên người gửi</label>
+          </div>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" disabled="disabled"  placeholder="<%= @request.user.name %>">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-2">
+            <label class="col-form-label">Email</label>
+          </div>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" disabled="disabled"  placeholder="<%= @request.user.email %>">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-2">
+            <label class="col-form-label">Vị trí</label>
+          </div>
+          <div class="col-sm-10">
+            <input type="position" class="form-control" disabled="disabled"  placeholder="<%= @request.user.position %>">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-2">
+            <label class="col-form-label">Nơi làm việc</label>
+          </div>
+          <div class="col-sm-10">
+            <input type="workspace" class="form-control" disabled="disabled"  placeholder="<%= @request.user.workspace %>">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-2">
+            <label class="col-form-label">Loại yêu cầu</label>
+          </div>
+          <div class="col-sm-10">
+            <input type="workspace" class="form-control" disabled="disabled"  placeholder="<%= @request.request_type %>">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-2">
+            <label class="col-form-label">Thời gian bắt đầu</label>
+          </div>
+          <div class="col-sm-10">
+            <input type="workspace" class="form-control" disabled="disabled"  placeholder="<%= @request.time_from %>">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-2">
+            <label class="col-form-label">Thời gian kết thúc</label>
+          </div>
+          <div class="col-sm-10">
+            <input type="workspace" class="form-control" disabled="disabled"  placeholder="<%= @request.time_to %>">
+          </div>
+        </div>
+
+         <div class="form-group row">
+          <div class="col-sm-2">
+            <label class="col-form-label">Lý do</label>
+          </div>
+          <div class="col-sm-10">
+            <textarea type="workspace" class="form-control" disabled="disabled"  placeholder="<%= @request.reason %>"></textarea>
+          </div>
+        </div>
+
+      </div>
+      <!-- /.tab-pane -->
+    </div>
+    <!-- /.tab-content -->
+  </div><!-- /.card-body -->
+</div>

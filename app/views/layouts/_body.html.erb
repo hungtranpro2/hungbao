@@ -31,32 +31,7 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#" style="margin-right: 10px;">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge" style="position: absolute; top: -4px; right: -9px;">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
+        <%= render partial: "notifications/notification_center" %>
 
        <li class="dropdown nav-item">
         <a class="dropdown-toggle nav-link" data-toggle="dropdown" data-widget="pushmenu" href="#">
@@ -67,7 +42,7 @@
           <%end%>
           <span class="hidden-xs"><%= current_user.name %></span>
         </a>
-         <ul class="dropdown-menu nav-item" >
+         <ul id="profile_drop" class="dropdown-menu nav-item" >
           <!-- User image -->
           <li class="user-header text-center">
             <%if current_user.avatar?%>
@@ -151,7 +126,7 @@
             </ul>
           </li>
 
-          <% if current_user.manager? && current_division.is_project %>
+          <% if current_user.manager? && current_division.is_project == 1%>
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-copy"></i>
@@ -172,12 +147,12 @@
             </li>
           <% end %>
 
-          <% if current_user.manager?%>
+          <% if current_user.member? && current_division.is_project%>
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-copy"></i>
                 <p>
-                  Dự án bộ phận
+                  Nhà quản lý dự án
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
@@ -185,13 +160,54 @@
                 <li class="nav-item">
                   <%= link_to manage_projects_path, class: "nav-link" do %>
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Báo cáo ngày</p>
+                    <p>Quản lý dự án</p>
                   <% end %>
                 </li>
 
               </ul>
             </li>
           <% end %>
+
+          <% if current_user.manager? && current_division.is_project == 0%>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-copy"></i>
+                <p>
+                  Quản lý bộ phận
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <%= link_to manage_divisions_path, class: "nav-link" do %>
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Quản lý bộ phận dự án</p>
+                  <% end %>
+                </li>
+
+              </ul>
+            </li>
+          <% end %>
+
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Phê duyệt yêu cầu
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <%= link_to approval_requests_path, class: "nav-link" do %>
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh sách yêu cầu</p>
+                <% end %>
+              </li>
+
+            </ul>
+          </li>
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">

@@ -3,8 +3,8 @@ class ManageProjectsController < ApplicationController
   before_action :correct_group, only: [:destroy, :update]
 
   def index
-    @q = Project.ransack(params[:q])
-    @groups = @q.result.paginate(page: params[:page], per_page: 10)
+    @q = current_user.projects.ransack(params[:q])
+    @projects = @q.result.paginate(page: params[:page], per_page: 10)
   end
 
   def new

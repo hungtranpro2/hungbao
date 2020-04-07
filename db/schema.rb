@@ -88,13 +88,14 @@ ActiveRecord::Schema.define(version: 2020_04_01_030828) do
     t.string "name"
     t.string "description"
     t.string "document_link"
+    t.string "client_company"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "reports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
-    t.integer "group_id"
+    t.integer "project_id"
     t.text "plan"
     t.text "actual"
     t.text "next_plan"
@@ -145,6 +146,7 @@ ActiveRecord::Schema.define(version: 2020_04_01_030828) do
     t.integer "nationality", default: 0
     t.integer "position", default: 0
     t.integer "role", default: 0
+    t.integer "status", default: 0
     t.integer "division_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

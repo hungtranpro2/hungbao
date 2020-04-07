@@ -12,7 +12,29 @@ img.table-avatar {
     width: 50px;
 }
 
-footer.main-footer {
+.content-wrapper {
+  height: 500px;
+  min_height: none;
+}
+
+.hidden_content td {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#profile_drop {
     position: absolute;
-    bottom: 0px;
+    width: 300px;
+    padding: 10px;
+    left: -150px;
+}
+
+#notifi-show {
+    position: absolute;
+    min-width: 397px;
+    left: -330px;
+    max-height: 500px;
+    overflow: auto;
 }

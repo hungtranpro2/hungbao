@@ -1,6 +1,6 @@
 <div class="content-wrapper">
   <section class="content">
-    <%= render partial: "shared/head_profile", locals: {path1: "#", title: "Manage User", link1: "Manage User", link2: "Create new a user"}%>
+    <%= render partial: "shared/head_profile", locals: {path1: reports_path, title: "Viết báo cáo", link1: "Danh sách báo cáo", link2: "Viết báo cáo cho dự án"}%>
     <div class="container-fluid">
       <div class="row">
         <!-- /.col -->
@@ -8,19 +8,19 @@
         </div>
 
         <div class="col-md-8">
-          <div class="card">
+          <div class="card" style="margin-top: 50px;">
             <div class="card-body">
               <div class="tab-content">
                 <div class="active tab-pane" id="settings">
                   <%= form_for(@report, url: path, class: "form-horizontal") do |f|%>
                     <%= render "shared/error_messages", object: f.object %>
                     <div class="form-group row">
-                      <%= f.label :group_id, class: "col-sm-2 col-form-label" %>
+                      <%= f.label :project_id, class: "col-sm-2 col-form-label" %>
                       <div class="col-sm-10">
                         <% if my_group_select.blank? %>
                           <input class="form-control", readonly="readonly", value="Group-Project empty!"/>
                         <% else %>
-                          <%= f.select :group_id, my_group_select.collect{|i| [i.name, i.id]}, {} , {class: "form-control custom-select" }  %>
+                          <%= f.select :project_id, my_group_select.collect{|i| [i.name, i.id]}, {} , {class: "form-control custom-select" }  %>
                         <% end %>
                       </div>
                     </div>
@@ -73,7 +73,7 @@
                     <div class="form-group row">
                       <% if my_group_select.present? %>
                         <div class="offset-sm-2 col-sm-10">
-                          <%= f.submit "Submit", class: "btn btn-danger" %>
+                          <%= f.submit "Tạo báo cáo", class: "btn btn-success" %>
                         </div>
                       <% end %>
                     </div>

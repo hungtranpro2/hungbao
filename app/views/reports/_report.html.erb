@@ -1,10 +1,16 @@
-<tr>
-  <td><%= report_counter += 1 %></td>
-  <td><%= report.group.name %></td>
-  <td><%= report.title %></td>
-  <td><%= report.plan %></td>
-  <td><%= report.actual %></td>
-  <td><%= report.next_plan %></td>
-  <td><%= report.issue %></td>
-  <td><%= l(report.created_at, format: :long) %></td>
+<tr class="hidden_content">
+  <td><%= report_counter +1 %></td>
+  <td><%= report.project.name %></td>
+  <td><%= report.created_at %></td>
+  <td><%= Rinku.auto_link(report.plan).html_safe %></td>
+  <td><%= Rinku.auto_link(report.actual).html_safe %></td>
+  <td><%= Rinku.auto_link(report.next_plan).html_safe %></td>
+  <td><%= Rinku.auto_link(report.issue).html_safe %></td>
+  <td class="project-actions text-right">
+    <%= link_to show_report_path(report), {class: "btn btn-primary btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+      <i class="fas fa-folder">
+      </i>
+      View
+    <% end %>
+  </td>
 </tr>

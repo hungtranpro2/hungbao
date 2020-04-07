@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-	root "room_chats#index"
+	root "static_pages#index"
   mount ActionCable.server => "/cable"
 
 	resources :static_pages
@@ -16,6 +16,16 @@ Rails.application.routes.draw do
   resources :company_projects do
     resources :tasks
   end
+  resources :project_members
+  resources :add_project_managers
+  resources :add_project_members
+  resources :add_project_divisions
+  resources :manage_divisions
+  resources :show_projects
+  resources :show_profiles
+  resources :project_divisions
+  resources :show_reports
+  resources :approval_requests
 
   devise_for :users
   # get 'static_pages/index'
