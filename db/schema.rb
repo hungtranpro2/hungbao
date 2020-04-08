@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_28_102325) do
+ActiveRecord::Schema.define(version: 2020_04_07_081755) do
 
   create_table "approval_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "status", default: 0
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2020_03_28_102325) do
 
   create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.string "document_link"
     t.string "client_company"
     t.datetime "created_at", precision: 6, null: false
@@ -94,6 +94,25 @@ ActiveRecord::Schema.define(version: 2020_03_28_102325) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_reports_on_user_id"
+  end
+
+  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "title"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.text "description"
+    t.string "path_github"
+    t.integer "percent", default: 0
+    t.integer "parent_id"
+    t.boolean "parent_task", default: false
+    t.integer "progess"
+    t.datetime "reality_time"
+    t.bigint "user_id"
+    t.bigint "project_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_tasks_on_project_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "user_projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -134,6 +153,8 @@ ActiveRecord::Schema.define(version: 2020_03_28_102325) do
   add_foreign_key "messages", "users"
   add_foreign_key "personal_requests", "users"
   add_foreign_key "reports", "users"
+  add_foreign_key "tasks", "projects"
+  add_foreign_key "tasks", "users"
   add_foreign_key "user_projects", "projects"
   add_foreign_key "user_projects", "users"
 end

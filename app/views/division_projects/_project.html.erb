@@ -1,0 +1,33 @@
+<tr>
+  <td><a href="pages/examples/invoice.html"><%= "OR#{project.id}" %></a></td>
+  <td><%= project.name %></td>
+  <td><%= project.client_company %></td>
+  <td>
+    <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
+  </td>
+   <td><span class="badge badge-success">start</span></td>
+  <td>
+
+  <td class="project-actions text-right">
+    <%= link_to overview_personal_path(project.id), class: "btn btn-primary btn-sm" do %>
+      <i class="fas fa-project-diagram">
+      </i>
+      View
+    <% end %>
+    <%= link_to project_member_path(project.id), {class: "btn btn-warning btn-sm", style: "color: white;"} do %>
+      <i class="fas fa-users" style="color: white;">
+      </i>
+      Members
+    <% end %>
+     <%= link_to share_task_path(project.id), {class: "btn btn-success btn-sm", style: "color: white;"} do %>
+      <i class="fas fa-tasks" style="color: white;">
+      </i>
+      Tasks
+    <% end %>
+     <%= link_to overview_personal_path(project.id), {class: "btn btn-danger btn-sm", style: "color: white;"} do %>
+      <i class="fas fa-edit" style="color: white;">
+      </i>
+      Reports
+    <% end %>
+  </td>
+</tr>
