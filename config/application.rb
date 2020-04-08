@@ -12,6 +12,7 @@ module Daily
     config.load_defaults 6.0
     Dir.glob("#{Rails.root}/app/assets/images/**/").each do |path|
 	  config.assets.paths << path
+    config.time_zone = "Asia/Bangkok"
 	end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

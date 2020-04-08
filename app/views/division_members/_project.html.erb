@@ -1,6 +1,6 @@
 <div class="card-body">
   <div class="active tab-pane" id="settings">
-    <%= form_for(@user_project, url: manage_divisions_path, class: "form-horizontal") do |f|%>
+    <%= form_for(@user_project, url: division_members_path, class: "form-horizontal") do |f|%>
       <%= render "shared/error_messages", object: f.object %>
       <div class="form-group row">
         <%= f.label :user_id, class: "col-sm-3 col-form-label" %>

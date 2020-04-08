@@ -1,0 +1,38 @@
+<div class="card-body">
+  <div class="active tab-pane" id="settings">
+    <%= form_for(@task, url: add_task_user_path, class: "form-horizontal") do |f|%>
+      <%= render "shared/error_messages", object: f.object %>
+
+       <div class="form-group row">
+          <%= f.label :title, class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+          <%= f.text_field :title, class: "form-control", readonly:"readonly"%>
+        </div>
+      </div>
+
+      <div class="col-sm-9">
+        <%= f.hidden_field :id, {class: "form-control", readonly:"readonly", value: "#{@task.id}"}  %>
+      </div>
+
+      <div class="form-group row">
+        <%= f.label :user_id, class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+          <% if @users.blank? %>
+            <input class="form-control", readonly="readonly", value="Không có dự án để tham gia!"/>
+          <% else %>
+            <%= f.select :user_id, @users.collect{|i| ["#{i.name} - #{i.tasks.first&.title}", i.id]}, {} , {class: "form-control custom-select" }  %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div style="margin-left: 50px">
+          <% if @users.present? %>
+            <%= f.submit "Xác nhận", class: "btn btn-info" do %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div><!-- /.card-body -->

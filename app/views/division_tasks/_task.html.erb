@@ -1,0 +1,25 @@
+<tr>
+  <td><%= task_counter + 1 %></td>
+  <td><%= "OR#{task.id}" %></td>
+  <td><%= task.title %></td>
+  <td><span class="badge badge-success">Shipped</span></td>
+  <td>
+    <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
+  </td>
+
+
+  <td class="project-actions text-right" style="max-width: 150px;">
+    <%= link_to "#", class: "btn btn-primary btn-sm" do %>
+      <i class="fas fa-project-diagram">
+      </i>
+      View
+    <% end %>
+    <% if task.user_id == current_user.id && !task.parent_task? %>
+      <%= link_to add_task_user_path(task), {class: "btn btn-success btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+        <i class="fas fa-plus">
+        </i>
+        Add User
+      <% end %>
+    <% end %>
+  </td>
+</tr>
