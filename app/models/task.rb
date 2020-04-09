@@ -1,9 +1,15 @@
 class Task < ApplicationRecord
 
-  PARAMS = %i(name description start_day end_day path_github progess time_reality estimated_time priority project_id user_id).freeze
+  PARAMS = %i{user_id project_id title start_time end_time description percent progess reality_time path_github}
+  enum percent: {close: 0, in_process: 1, finished: 2}
 
   belongs_to :user
   belongs_to :project
+  belongs_to :parent, class_name: Task.name, optional: true
 
-  enum priority: {low: 0, normal:1, high: 2}
+  validates :title, presence: true
+  validates :start_time, presence: true
+  validates :end_time, presence: true
+  validates :path_github, presence: true
+
 end

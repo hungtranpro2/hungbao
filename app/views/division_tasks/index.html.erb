@@ -1,0 +1,164 @@
+<div class="content-wrapper">
+   <%= render partial: "shared/head_profile", locals: {path1: overview_divisions_path, title: "Quản lý task dự án thuộc bộ phận", link1: "Quản lý bộ phận", link2: "Danh sách Tasks"}%>
+    <section class="content">
+
+      <div class="card">
+
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-9 order-2 order-md-1">
+
+              <div class="row">
+                <div class="col-12 col-sm-6 col-md-4">
+                  <div class="info-box mb-3">
+                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-tasks"></i></span>
+
+                    <div class="info-box-content">
+                      <span class="info-box-text">Task dự kiến</span>
+                      <span class="info-box-number">
+                        536
+                        <small>Task</small>
+                        / 3005
+                        <small>Hours</small>
+                      </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                  <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-12 col-sm-6 col-md-4">
+                  <div class="info-box mb-3">
+                    <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-clock"></i></span>
+
+                    <div class="info-box-content">
+                      <span class="info-box-text">Hiện tại</span>
+                      <span class="info-box-number">
+                        53
+                        <small>%</small>
+                        / 267
+                        <small>Task</small>
+                      </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                  <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
+                <!-- fix for small devices only -->
+                <div class="clearfix hidden-md-up"></div>
+
+                <div class="col-12 col-sm-6 col-md-4">
+                  <div class="info-box mb-3">
+                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-clipboard-check"></i></span>
+
+                    <div class="info-box-content">
+                      <span class="info-box-text">Thực tế</span>
+                      <span class="info-box-number">
+                        51
+                        <small>%</small>
+                        / 260
+                        <small>Task</small>
+                      </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                  <!-- /.info-box -->
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="row float-right" style="margin: 0 0 10px 0px;">
+                    <%= search_form_for @q, url: division_tasks_path, class: "form-inline", method: :get do |f| %>
+                      <%= f.select :project_id_in, @projects.collect{|i| [i.name, i.id]}, {include_blank: "Choose Project"}, class: "form-control select mr-sm-2" %>
+                      <%= f.select :user_id_in, parent_tasks.collect{|i| i}, {include_blank: "Choose Type Task"}, class: "form-control select mr-sm-2" %>
+                      <%= f.search_field :title_cont, class: "form-control mr-sm-2", placeholder: "Search" %>
+                      <%= f.submit class: "btn btn-outline-success my-2 mr-sm-2 my-sm-0" %>
+                    <% end %>
+                  </div>
+
+                  <div class="card" style="width: 100%">
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                      <div class="table-responsive">
+                        <table class="table m-0 table-striped projects">
+                          <thead>
+                          <tr style="color: #17a2b8;">
+                            <th>#</th>
+                            <th>Order ID</th>
+                            <th>Item</th>
+                            <th>Status</th>
+                            <th>Popularity</th>
+                            <th class="text-center">More</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                            <%= render partial: "division_tasks/task", collection: @tasks %>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer clearfix">
+                      <div id="pagina" class="btn btn-sm float-right">
+                        <%= link_to new_division_task_path, {class: "btn btn-sm btn-info float-left"} do %>
+                         <i class="fas fa-tasks"></i>
+                          Thêm tasks cho dự án
+                        <% end %>
+                        <%= will_paginate @tasks if @tasks %>
+                      </div>
+                    </div>
+                    <!-- /.card-footer -->
+                  </div>
+                  <!-- /.card -->
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-12 col-lg-3 order-1 order-md-2 card" style="background: #FAFAFA; padding-top: 10px;">
+              <h3 class="text-primary"><i class="fas fa-paint-brush"></i> AdminLTE v3</h3>
+              <p class="text-muted">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
+              <br>
+              <div class="text-muted">
+                <p class="text-sm">Client Company
+                  <b class="d-block">Deveint Inc</b>
+                </p>
+                <p class="text-sm">Project Leader
+                  <b class="d-block">Tony Chicken</b>
+                </p>
+              </div>
+
+              <h5 class="mt-5 text-muted">Project files</h5>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i> Functional-requirements.docx</a>
+                </li>
+                <li>
+                  <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-pdf"></i> UAT.pdf</a>
+                </li>
+                <li>
+                  <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-envelope"></i> Email-from-flatbal.mln</a>
+                </li>
+                <li>
+                  <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-image "></i> Logo.png</a>
+                </li>
+                <li>
+                  <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i> Contract-10_12_2014.docx</a>
+                </li>
+              </ul>
+              <div class="text-center mt-5 mb-3">
+                <a href="#" class="btn btn-sm btn-primary">Add files</a>
+                <a href="#" class="btn btn-sm btn-warning">Report contact</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </section>
+    <!-- /.content -->
+  </div>

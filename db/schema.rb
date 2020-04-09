@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_01_030828) do
+ActiveRecord::Schema.define(version: 2020_04_07_081755) do
 
   create_table "approval_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "status", default: 0
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 2020_04_01_030828) do
 
   create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.string "document_link"
     t.string "client_company"
     t.datetime "created_at", precision: 6, null: false
@@ -107,16 +107,16 @@ ActiveRecord::Schema.define(version: 2020_04_01_030828) do
   end
 
   create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.datetime "start_day"
-    t.datetime "end_day"
-    t.string "description"
+    t.string "title"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.text "description"
     t.string "path_github"
-    t.integer "status"
+    t.integer "percent", default: 0
+    t.integer "parent_id"
+    t.boolean "parent_task", default: false
     t.integer "progess"
-    t.datetime "time_reality"
-    t.integer "estimated_time"
-    t.integer "priority"
+    t.datetime "reality_time"
     t.bigint "user_id"
     t.bigint "project_id"
     t.datetime "created_at", precision: 6, null: false

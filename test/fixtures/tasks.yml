@@ -1,21 +1,12 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  start_day: 2020-04-01 10:08:28
-  end_day: 2020-04-01 10:08:28
-  description: MyString
-  path_github: MyString
-  status: 
-  progess: 
-  time_reality: 2020-04-01 10:08:28
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value
 
-two:
-  name: MyString
-  start_day: 2020-04-01 10:08:28
-  end_day: 2020-04-01 10:08:28
-  description: MyString
-  path_github: MyString
-  status: 
-  progess: 
-  time_reality: 2020-04-01 10:08:28

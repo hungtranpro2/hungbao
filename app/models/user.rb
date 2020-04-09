@@ -22,6 +22,7 @@ class User < ApplicationRecord
 
   has_many :messages, dependent: :destroy
   has_many :list_messages, through: :messages
+  has_many :tasks, dependent: :destroy
 
   has_many :personal_requests, dependent: :destroy
   has_many :reports, dependent: :destroy

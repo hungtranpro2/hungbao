@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-	root "static_pages#index"
+	root "overview_companys#index"
   mount ActionCable.server => "/cable"
 
 	resources :static_pages
@@ -26,7 +26,17 @@ Rails.application.routes.draw do
   resources :project_divisions
   resources :show_reports
   resources :approval_requests
-
+  resources :division_projects
+  resources :overview_companys
+  resources :share_tasks
+  resources :overview_divisions
+  resources :overview_personals
+  resources :errors, ony: [:index]
+  resources :division_members
+  resources :project_division_members
+  resources :division_reports
+  resources :division_tasks
+  resources :add_task_users
   devise_for :users
   # get 'static_pages/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
