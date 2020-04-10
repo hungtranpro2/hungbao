@@ -15,10 +15,10 @@
                     <div class="info-box-content">
                       <span class="info-box-text">Task dự kiến</span>
                       <span class="info-box-number">
-                        536
+                        <%= @children_tasks.count %>
                         <small>Task</small>
-                        / 3005
-                        <small>Hours</small>
+                        <%= "/ #{@count_day}" %>
+                        <small>Days</small>
                       </span>
                     </div>
                     <!-- /.info-box-content -->
@@ -33,10 +33,10 @@
                     <div class="info-box-content">
                       <span class="info-box-text">Hiện tại</span>
                       <span class="info-box-number">
-                        53
+                        <%= "#{(@now_day.to_f / @count_day *100).round(2)}" %>
                         <small>%</small>
-                        / 267
-                        <small>Task</small>
+                        <%="/ #{@now_day}" %>
+                        <small>Days</small>
                       </span>
                     </div>
                     <!-- /.info-box-content -->
@@ -55,10 +55,10 @@
                     <div class="info-box-content">
                       <span class="info-box-text">Thực tế</span>
                       <span class="info-box-number">
-                        51
+                        <%= @progress %>
                         <small>%</small>
-                        / 260
-                        <small>Task</small>
+                        <%="/ #{@now_day}" %>
+                        <small>Days</small>
                       </span>
                     </div>
                     <!-- /.info-box-content -->
