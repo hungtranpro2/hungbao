@@ -18,7 +18,7 @@
         <%= f.label :user_id, class: "col-sm-3 col-form-label" %>
         <div class="col-sm-9">
           <% if @users.blank? %>
-            <input class="form-control", readonly="readonly", value="Không có dự án để tham gia!"/>
+            <input class="form-control", readonly="readonly", value="Không có thành viên nào!"/>
           <% else %>
             <%= f.select :user_id, @users.collect{|i| ["#{i.name} - #{i.tasks.first&.title}", i.id]}, {} , {class: "form-control custom-select" }  %>
           <% end %>

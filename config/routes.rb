@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   resources :division_reports
   resources :division_tasks
   resources :add_task_users
+  resources :personal_tasks
+  resources :add_personal_tasks
   devise_for :users
   # get 'static_pages/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
