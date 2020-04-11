@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'personal_projects/index'
 	root "overview_companys#index"
   mount ActionCable.server => "/cable"
 

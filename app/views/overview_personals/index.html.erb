@@ -23,13 +23,13 @@
         <!-- Info boxes -->
         <div class="row">
           <div class="col-12 col-sm-6 col-md-3">
-          <%= link_to division_tasks_path, style: "text-decoration: none; color: #212529" do %>
+          <%= link_to personal_tasks_path, style: "text-decoration: none; color: #212529" do %>
             <div class="info-box">
               <span class="info-box-icon bg-info elevation-1"><i class="fas fa-tasks"></i></span>
               <div class="info-box-content">
                 <span class="info-box-text">Tasks</span>
                 <span class="info-box-number">
-                  10
+                  <%= @count_task %>
                   <small>Task</small>
                 </span>
               </div>
@@ -39,13 +39,13 @@
           </div>
           <!-- /.col -->
           <div class="col-12 col-sm-6 col-md-3">
-            <%= link_to division_reports_path, style: "text-decoration: none; color: #212529" do %>
+            <%= link_to reports_path, style: "text-decoration: none; color: #212529" do %>
               <div class="info-box mb-3">
                 <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-edit"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">Reports</span>
                   <span class="info-box-number">
-                    10
+                    <%= @count_report %>
                   <small>Report</small>
                 </div>
                 <!-- /.info-box-content -->
@@ -65,7 +65,7 @@
                 <div class="info-box-content">
                   <span class="info-box-text">Projects</span>
                   <span class="info-box-number">
-                    10
+                    <%= @count_project %>
                   <small>Project</small>
                 </span>
                 </div>
@@ -75,14 +75,14 @@
           </div>
           <!-- /.col -->
           <div class="col-12 col-sm-6 col-md-3">
-            <%= link_to division_members_path, style: "text-decoration: none; color: #212529" do %>
+            <%= link_to requests_path, style: "text-decoration: none; color: #212529" do %>
               <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-recycle"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">Members</span>
+                  <span class="info-box-text">Requests</span>
                   <span class="info-box-number">
-                  <%= @member_count %>
-                  <small>Member</small>
+                  <%= @count_request %>
+                  <small>Request</small>
                 </div>
                 <!-- /.info-box-content -->
               </div>
