@@ -51,7 +51,7 @@ gem 'mini_magick',             '4.7.0'
 gem "simple_calendar", "~> 2.0"
 
 group :production do
-  gem 'fog', '1.42'
+  gem 'fog-aws'
 end
 
 group :development, :test do
