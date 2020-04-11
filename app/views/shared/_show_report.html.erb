@@ -1,0 +1,50 @@
+<div class="card" style="margin-top: 10px;">
+  <table class="table table-striped projects">
+    <tbody>
+      <tr class="hidden_content">
+        <th>
+            Tiêu đề
+        </th>
+        <th>
+          <%= @report.title %>
+        </th>
+      </tr>
+
+      <tr class="hidden_content">
+        <th>
+          Kế hoạch
+        </th>
+        <th>
+          <%= Rinku.auto_link(@report.plan).html_safe %>
+        </th>
+      </tr>
+
+      <tr class="hidden_content">
+        <th>
+          Thực tế
+        </th>
+        <th>
+          <%= Rinku.auto_link(@report.actual).html_safe %>
+        </th>
+      </tr>
+
+       <tr class="hidden_content">
+        <th>
+          Kế hoạch tiếp theo
+        </th>
+        <th>
+          <%= Rinku.auto_link(@report.next_plan).html_safe %>
+        </th>
+      </tr>
+
+       <tr class="hidden_content">
+        <th>
+          Vấn đề gặp phải
+        </th>
+        <th>
+          <%= Rinku.auto_link(@report.issue).html_safe %>
+        </th>
+      </tr>
+    <tbody>
+  </table>
+</div>

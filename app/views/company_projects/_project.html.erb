@@ -1,0 +1,48 @@
+<tr>
+  <td>
+      #
+  </td>
+  <td>
+      <a>
+        <%= project.name %>
+      </a>
+      <br/>
+      <small>
+        <%= project.created_at %>
+      </small>
+  </td>
+  <td>
+    <ul class="list-inline">
+      <%= render partial: "company_projects/division", collection: project.divisions %>
+    </ul>
+  </td>
+  <td class="project_progress">
+      <div class="progress progress-sm">
+          <div class="progress-bar bg-green" role="progressbar" aria-volumenow="57" aria-volumemin="0" aria-volumemax="100" style="width: 57%">
+          </div>
+      </div>
+      <small>
+          57% Complete
+      </small>
+  </td>
+  <td class="project-state">
+      <span class="badge badge-success">Success</span>
+  </td>
+  <td class="project-actions text-right">
+    <%= link_to company_project_path(project), class: "btn btn-primary btn-sm" do %>
+      <i class="fas fa-folder">
+      </i>
+      View
+    <% end %>
+    <%= link_to edit_company_project_path(project), class: "btn btn-info btn-sm" do %>
+      <i class="fas fa-pencil-alt">
+      </i>
+      Edit
+    <% end %>
+    <%= link_to company_project_path(project), {method: :delete, class: "btn btn-danger btn-sm",data: {confirm: "Bạn chắc chứ"}} do %>
+      <i class="fas fa-trash">
+      </i>
+      Delete
+    <% end %>
+  </td>
+</tr>

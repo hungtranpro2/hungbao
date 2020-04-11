@@ -1,3 +1,77 @@
-// Place all the styles related to the profiles controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+input#user_password {
+    width: 280px;
+}
+
+.create{
+  margin: 20px 0px;
+}
+
+img.table-avatar {
+    height: 44px;
+    margin: 0px;
+    width: 50px;
+}
+
+.content-wrapper {
+  height: 500px;
+  min_height: none;
+}
+
+.hidden_content td:not(:last-child) {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#profile_drop {
+    position: absolute;
+    width: 300px;
+    padding: 10px;
+    left: -150px;
+}
+
+#notifi-show {
+    position: absolute;
+    min-width: 397px;
+    left: -330px;
+    max-height: 500px;
+    overflow: auto;
+}
+
+#pagina .pagination {
+  margin-bottom: 0px;
+}
+
+#task-calendar td.day{
+  padding: 2px;
+  height: 50px;
+}
+
+.calendar-day{
+  font-size: 12px;
+}
+
+.calendar-task{
+  background: #FAFAFA;
+  height: 10px;
+  margin: 0 1px 1px 1px;
+  border-radius: 2px;
+  position: relative;
+}
+
+.calendar-show{
+  position: absolute;
+  display: none;
+  background: #333333;
+  font-size: 12px;
+  width: 180px;
+  top: -60px;
+  right: 0px;
+  padding: 3px 5px;
+  border-radius: 7px;
+}
+
+.calendar-task:hover .calendar-show {
+  display: block;
+}

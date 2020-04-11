@@ -1,0 +1,47 @@
+ <tr>
+  <td><%= user_counter + 1 %></td>
+  <td>
+    <%= image_tag "user.jpg", class: "img-circle img-size-32 mr-2" %>
+   <%= user.name %>
+  </td>
+  <td><%= user.division.name %></td>
+  <td><%= user.role %></td>
+  <td><%= user.skill %></td>
+  <td><%= "#{user.user_projects.count} Project" %></td>
+  <td>
+    <small class="text-success mr-1">
+      <i class="fas fa-arrow-up"></i>
+      12%
+    </small>
+    50%
+    <small>-</small>
+    <small class="text-success mr-1">
+      <i class="fas fa-arrow-up"></i>
+      12%
+    </small>
+    80%
+  </td>
+  <td>
+    <% if user.status == "busy" %>
+      <span class="badge badge-success" style="background: #dc3545;"><%= user.status %></span>
+    <% elsif user.status == "medium" %>
+      <span class="badge badge-success" style="background: #6c757d;"><%= user.status %></span>
+    <% else %>
+      <span class="badge badge-success"><%= user.status %></span>
+    <% end %>
+  </td>
+  <td class="project-actions text-right">
+    <%= link_to show_profile_path(user), {class: "btn btn-primary btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+      <i class="fas fa-folder">
+      </i>
+      View
+    <% end %>
+    <% if user.projects.where(id: @project.id).blank? && user.status != "busy"%>
+      <%= link_to "#",{ class: "btn btn-success btn-sm", method: :post, data:{ confirm: "Yêu cầu sẽ được gửi đến quản lý bộ phận"}} do %>
+        <i class="fas fa-plus">
+        </i>
+        Yêu cầu
+      <% end %>
+    <% end %>
+  </td>
+</tr>

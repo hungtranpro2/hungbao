@@ -1,0 +1,74 @@
+<div class="card" style="margin-top: 10px;">
+  <table class="table table-striped projects">
+    <tbody>
+      <tr class="hidden_content">
+        <th>
+          Tiêu đề
+        </th>
+        <th>
+          <%= @task.title %>
+        </th>
+      </tr>
+
+      <tr class="hidden_content">
+        <th>
+          Tên dự án
+        </th>
+        <% if @task.project.present? %>
+          <th><%= @task.project.name %></td>
+        <% else %>
+          <th><%= @task.parent.project.name %></td>
+        <% end %>
+      </tr>
+
+      <tr class="hidden_content">
+        <th>
+          Loại Task
+        </th>
+        <th>
+          <% if @task.parent_task? %>
+            <span class="badge badge-info">parent task</span>
+          <% else %>
+            <span class="badge badge-warning">children task</span>
+          <% end %>
+        </th>
+      </tr>
+
+       <tr class="hidden_content">
+        <th>
+          Thời gian
+        </th>
+        <th>
+          <%= "#{@task.start_time} - #{@task.end_time}" %>
+        </th>
+      </tr>
+
+       <tr class="hidden_content">
+        <th>
+          Tiến độ
+        </th>
+        <th>
+          <%= "#{@task.progress} %" %>
+        </th>
+      </tr>
+
+       <tr class="hidden_content">
+        <th>
+          Link Github
+        </th>
+        <th>
+          <%= Rinku.auto_link(@task.path_github).html_safe %>
+        </th>
+      </tr>
+
+      <tr class="hidden_content">
+        <th>
+          Mô tả
+        </th>
+        <th>
+          <%= @task.description %>
+        </th>
+      </tr>
+    <tbody>
+  </table>
+</div>

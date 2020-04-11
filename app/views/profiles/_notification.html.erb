@@ -1,0 +1,26 @@
+ <div class="post" style="height: 60px;">
+  <div class="user-block" style="margin-bottom: 5px;">
+    <%= image_tag("user.jpg", class: "img-circle img-bordered-sm") %>
+    <span class="username">
+      <a href="#"><%= notification.sender.name %></a>
+    </span>
+    <span class="description"><%= "#{notification.title} - #{notification.created_at}" %></span>
+  </div>
+  <!-- /.user-block -->
+  <% if notification.object_type == "Report" %>
+    <%= link_to show_report_path(notification.object_id), {class: "float-right", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog", style: "background: white; padding-left: 14px;"} do %>
+      <i class="fas fa-eye"></i>
+      Xem chi tiết
+    <% end %>
+  <% elsif notification.object_type == "ApprovalRequest" %>
+    <%= link_to request_path(notification.object&.personal_request.id), {class: "float-right", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog", style: "background: white; padding-left: 14px;"} do %>
+      <i class="fas fa-eye"></i>
+      Xem chi tiết
+    <% end %>
+  <% else %>
+    <%= link_to request_path(notification.object_id), {class: "float-right", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog", style: "background: white; padding-left: 14px;"} do %>
+      <i class="fas fa-eye"></i>
+      Xem chi tiết
+    <% end %>
+  <% end %>
+</div>

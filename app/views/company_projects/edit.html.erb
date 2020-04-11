@@ -1,0 +1,79 @@
+<% provide(:title, t(".begin_title")) %>
+<div id="my_container" class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <%= render partial: "shared/head_profile", locals: {path1: manage_projects_path, title: "Create Group Project", link1: "Manage Group Project", link2: "Create Group Project"}%>
+  <!-- Main content -->
+ <section class="content" style="height: 600px; margin-top: 50px;">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Add Projects</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                  <i class="fas fa-minus"></i></button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                  <i class="fas fa-times"></i></button>
+              </div>
+            </div>
+
+            <div class="card-body" style="margin: 20px 0px;">
+              <div class="tab-content">
+                <div class="active tab-pane" id="settings">
+                  <%= form_for(@project, url: company_project_path, class: "form-horizontal") do |f|%>
+                    <%= render "shared/error_messages", object: f.object %>
+                    <%= f.hidden_field :path, value: @path %>
+                    <div class="form-group row">
+                      <div class="col-sm-2">
+                        <%= f.label :name, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-10">
+                        <%= f.text_field :name, class: "form-control", placeholder:"Project Name" %>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-sm-2">
+                        <%= f.label :document_link, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-10">
+                        <%= f.text_area :document_link, class: "form-control", placeholder:"Document Link" %>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-sm-2">
+                        <%= f.label :description, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-10">
+                        <%= f.text_area :description, class: "form-control", placeholder:"Description" %>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="offset-sm-2 col-sm-10">
+                        <%= f.submit "Cập nhật dự án", class: "btn btn-primary" %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+                <!-- /.tab-pane -->
+              </div>
+              <!-- /.tab-content -->
+            </div><!-- /.card-body -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-2">
+        </div>
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+
+</div>

@@ -1,0 +1,53 @@
+<% provide(:title, t(".begin_title")) %>
+<div class="content-wrapper" style="height: 500px;">
+  <%= render partial: "shared/head_profile", locals: {path1: overview_divisions_path , title: "Quản lý báo cáo", link1: "Thống kê", link2: "Danh sách báo cáo thành viên"}%>
+  <section class="content">
+    <div class="col-12">
+    <div class="card-header row" style="margin: 10px 1px;">
+      <div>
+        <%= search_form_for @q, url:"#", class: "form-inline" do |f| %>
+          <%= f.search_field :title_cont, class: "form-control mr-sm-2", placeholder: "Search" %>
+          <%= f.submit class: "btn btn-outline-success my-2 my-sm-0" do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+     <div class="card">
+        <div class="card-header border-0">
+          <h3 class="card-title" style="font-weight: 700; margin-right: 10px;">Danh sách yêu cầu</h3>
+          <% if @reports.blank? %>
+            <h5 class="card-title" style="font-weight: 600; color: #dc3545">(không có báo cáo nào)</h5>
+          <% end %>
+          <div class="card-tools">
+            <a href="#" class="btn btn-tool btn-sm">
+              <i class="fas fa-bars"></i>
+            </a>
+          </div>
+        </div>
+        <div class="card-body table-responsive p-0">
+          <table class="table table-striped table-valign-middle">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Project Name</th>
+              <th>Sender</th>
+              <th>Plan</th>
+              <th>Actual</th>
+              <th>Next Plan</th>
+              <th>Issue</th>
+              <th class="text-center">More</th>
+            </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "division_reports/report", collection: @reports %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <%= will_paginate @reports if @reports %>
+    </div>
+  </section>
+  <!-- /.content -->
+</div>

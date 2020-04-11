@@ -11,6 +11,8 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.integer :nationality, default: 0
       t.integer :position, default: 0
       t.integer :role, default: 0
+      t.integer :status, default: 0
+      t.integer :division_id
 
       t.timestamps
     end
