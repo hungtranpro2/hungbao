@@ -1,4 +1,5 @@
 <tr class="hidden_content">
+  <td><%= task_counter + 1 %></td>
   <td><%= "OR#{task.id}"%></a></td>
   <td><%= task.title %></td>
   <% if task.project.present? %>
@@ -12,7 +13,11 @@
     <td><span class="badge badge-warning">children task</span></td>
   <% end %>
   <td>
-    <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
+    <% if (task.end_time < Date.today) %>
+      <span style="color: #dc3545; font-weight: 800;"><%= "#{task.progress } %" %></span>
+    <% else %>
+      <span style="color: #28a745; font-weight: 800;"><%= "#{task.progress } %" %></span>
+    <% end %>
   </td>
 
   <td class="project-actions text-right">

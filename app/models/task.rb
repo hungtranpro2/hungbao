@@ -7,7 +7,7 @@ class Task < ApplicationRecord
   belongs_to :parent, class_name: Task.name, optional: true
   has_many :childrens, class_name: Task.name, foreign_key: :parent_id
 
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: true
   validates :start_time, presence: true
   validates :end_time, presence: true
   validates :path_github, presence: true
