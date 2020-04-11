@@ -31,6 +31,8 @@ module ProfilesHelper
     else
       image_tag "user-5.png", class: "profile-user-img img-fluid img-circle"
     end
+  end
+
   def lock_task_select
     Task.locks.keys.map {|i| i}
   end

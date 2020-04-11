@@ -1,5 +1,5 @@
 <div class="content-wrapper">
-   <%= render partial: "shared/head_profile", locals: {path1: overview_divisions_path, title: "Quản lý task dự án thuộc bộ phận", link1: "Quản lý bộ phận", link2: "Danh sách Tasks"}%>
+   <%= render partial: "shared/head_profile", locals: {path1: overview_personals_path, title: "Quản lý task dự án thuộc bộ phận", link1: "Quản lý cá nhân", link2: "Danh sách Tasks"}%>
     <section class="content">
 
       <div class="card">
@@ -69,6 +69,11 @@
 
               <div class="row">
                 <div class="col-md-12">
+                    <%= link_to new_personal_task_path, {class: "btn btn-success btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+                          <i class="fas fa-plus">
+                          </i>
+                          Add Childrent Task
+                        <% end %>
                   <div class="row float-right" style="margin: 0 0 10px 0px;">
                     <%= search_form_for @q, url: personal_tasks_path, class: "form-inline", method: :get do |f| %>
                       <%= f.select :project_id_in, @projects.collect{|i| [i.name, i.id]}, {include_blank: "Choose Project"}, class: "form-control select mr-sm-2" %>
@@ -84,11 +89,12 @@
                         <table class="table m-0 table-striped projects">
                           <thead>
                           <tr style="color: #17a2b8;">
+                            <th>#</th>
                             <th>Order ID</th>
-                            <th>Title</th>
-                            <th>Project</th>
+                            <th style="min-width: 200px;">Title</th>
+                            <th style="min-width: 180px;">Project</th>
                             <th>Type</th>
-                            <th>Popularity</th>
+                            <th>Progress</th>
                             <th class="text-center">More</th>
                           </tr>
                           </thead>
@@ -101,16 +107,7 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer clearfix">
-                      <div id="pagina" class="btn btn-sm">
-                        <%= link_to new_personal_task_path, {class: "btn btn-success btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
-                          <i class="fas fa-plus">
-                          </i>
-                          Add Childrent Task
-                        <% end %>
-                      </div>
-                      <div class="float-right">
-                        <%= will_paginate @tasks if @tasks %>
-                      </div>
+
                     </div>
                     <!-- /.card-footer -->
                   </div>

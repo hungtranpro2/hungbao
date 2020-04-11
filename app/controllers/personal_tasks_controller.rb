@@ -7,7 +7,7 @@ class PersonalTasksController < ApplicationController
   def index
     @projects = current_user.projects
     @q = current_user.tasks.where(active: true).ransack(params[:q])
-    @tasks = @q.result(distinct: true).paginate(page: params[:page], per_page: 7)
+    @tasks = @q.result(distinct: true)
     overview @tasks
     # overview_now @tasks
   end
@@ -31,7 +31,7 @@ class PersonalTasksController < ApplicationController
     @parent_task = current_user.tasks.find_by id: params[:task][:parent_id]
     @task = Task.new task_params.merge(progress: params[:task][:progress].to_i, project_id: @parent_task.project_id)
     is_time =  @task.start_time.to_s < @parent_task.start_time.to_s || @task.end_time.to_s > @parent_task.end_time.to_s
-    if current_user.tasks.where(parent_task: false).where("? <= end_time AND ? >= start_time", params[:task][:start_time], params[:task][:end_time]).present?
+    if current_user.tasks.where(parent_task: false, project_id: @parent_task.project_id).where("? <= end_time AND ? >= start_time", params[:task][:start_time], params[:task][:end_time]).present?
       @task.errors.add(:time_start, "time has coincided")
       render :new
     elsif is_time

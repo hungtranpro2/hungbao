@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'personal_projects/index'
 	root "overview_companys#index"
   mount ActionCable.server => "/cable"
 
@@ -38,6 +37,7 @@ Rails.application.routes.draw do
   resources :add_task_users
   resources :personal_tasks
   resources :add_personal_tasks
+  resources :personal_projects
   devise_for :users
   # get 'static_pages/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
