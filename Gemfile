@@ -48,6 +48,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'carrierwave',             '1.2.2'
 gem 'mini_magick',             '4.7.0'
 
+gem "simple_calendar", "~> 2.0"
+
 group :production do
   gem 'fog-aws'
 end

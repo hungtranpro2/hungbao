@@ -25,20 +25,24 @@ module ProfilesHelper
     UserProject.roles.keys.map{|i| i}
   end
 
-  def percent_task_select
-    Task.percents.keys.map {|i| i}
+  def lock_task_select
+    Task.locks.keys.map {|i| i}
   end
 
-  def progess_task_select
-    [10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map {|i| ["#{i} %", i]}
+  def progress_task_select
+    [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map {|i| ["#{i} %", i]}
   end
 
   def project_tag
     current_division.projects.uniq
   end
 
-  def parent_tasks
-    [["Parent Tasks", current_user.id], ["Childrent Tasks", ]].map {|i| i}
+  def personal_project
+    current_user.projects.uniq
+  end
+
+  def personal_parent_task
+    current_user.tasks.where(parent_task: true)
   end
 
   def avatar_for(user)

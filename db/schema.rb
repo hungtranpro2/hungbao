@@ -108,15 +108,14 @@ ActiveRecord::Schema.define(version: 2020_04_07_081755) do
 
   create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.date "start_time"
+    t.date "end_time"
     t.text "description"
     t.string "path_github"
-    t.integer "percent", default: 0
+    t.integer "lock", default: 0
     t.integer "parent_id"
     t.boolean "parent_task", default: false
-    t.integer "progess"
-    t.datetime "reality_time"
+    t.integer "progress"
     t.bigint "user_id"
     t.bigint "project_id"
     t.datetime "created_at", precision: 6, null: false
