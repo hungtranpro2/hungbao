@@ -14,6 +14,7 @@ module ProfilesHelper
 
   def my_group_select
     Project.all.map{|i| i}
+    current_user.projects.map{|i| i}
   end
 
   def current_division_select
@@ -24,6 +25,12 @@ module ProfilesHelper
     UserProject.roles.keys.map{|i| i}
   end
 
+  def avatar_for(user)
+    if user.avatar?
+      image_tag user.avatar.url(:thumb), class: "profile-user-img img-fluid img-circle"
+    else
+      image_tag "user-5.png", class: "profile-user-img img-fluid img-circle"
+    end
   def lock_task_select
     Task.locks.keys.map {|i| i}
   end

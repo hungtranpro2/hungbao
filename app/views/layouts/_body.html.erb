@@ -35,13 +35,21 @@
 
        <li class="dropdown nav-item">
         <a class="dropdown-toggle nav-link" data-toggle="dropdown" data-widget="pushmenu" href="#">
-          <%= image_tag "user.jpg", class: "brand-image img-circle avatar" %>
+          <%if current_user.avatar?%>
+            <%= image_tag current_user.avatar.url, class: "brand-image img-circle avatar" %>
+          <%else%>
+            <%= image_tag "user-5.png", class: "brand-image img-circle avatar" %>
+          <%end%>
           <span class="hidden-xs"><%= current_user.name %></span>
         </a>
          <ul id="profile_drop" class="dropdown-menu nav-item" >
           <!-- User image -->
           <li class="user-header text-center">
-             <%= image_tag "user.jpg", class: "img-circle avatar-max" %>
+            <%if current_user.avatar?%>
+              <%= image_tag current_user.avatar.url, class: "img-circle avatar-max" %>
+            <%else%>
+              <%= image_tag "user-5.png", class: "img-circle avatar-max" %>
+            <%end%>
             <p>
               <%= "#{current_user.name} - #{current_user.position}" %>
               <small><%= current_user.birthday %></small>

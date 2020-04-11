@@ -14,7 +14,7 @@ class ProfilesController < ApplicationController
     @user = User.find_by id: params[:id]
     if @user.update(user_params)
       flash.now[:success] = "Cập nhật thành công"
-      redirect_to profile_path(@user)
+      redirect_to edit_profile_path(@user)
     else
       flash.now[:error] = "Cập nhật thất bại"
       render :edit
