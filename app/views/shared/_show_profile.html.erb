@@ -1,13 +1,11 @@
-<!-- Profile Image -->
-<div class="card card-outline" style="margin-top: 10px;">
-  <div class="text-center">
-    <%= image_tag("user.jpg", class: "profile-user-img img-fluid img-circle") %>
-  </div>
-
-</div>
-
 <div class="card card-primary">
-
+  <div class="text-center" style="margin-top: 10px;">
+     <%if current_user.avatar?%>
+      <%= image_tag current_user.avatar.url, class: "img-circle img-fluid" %>
+    <%else%>
+      <%= image_tag "avatar.png", class: "img-circle img-fluid" %>
+    <%end%>
+  </div>
 <!-- /.card-header -->
 <div class="card-body">
   <strong><i class="fas fa-user mr-1"></i>Name</strong>

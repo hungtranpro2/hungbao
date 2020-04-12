@@ -1,0 +1,58 @@
+<div class="content-wrapper">
+ <%= render partial: "shared/head_profile", locals: {path1: root_path, title: "Lịch làm việc cá nhân", link1: "Trang chủ", link2: "Lịch"}%>
+
+  <div class="card-body  container">
+    <div class="row">
+
+      <div class="card bg-gradient col-12 col-md-12 col-lg-12 order-1 order-md-2" style="min-height: 600px;">
+        <div class="card-header bg-success border-0">
+
+          <h3 class="card-title">
+            <i class="far fa-calendar-alt"></i>
+            Calendar
+          </h3>
+          <!-- tools card -->
+          <div class="card-tools">
+            <!-- button with a dropdown -->
+            <div class="btn-group">
+              <% if current_user.member? && !current_division.is_project? %>
+                <%= link_to personal_tasks_path, class: "btn btn-success btn-sm" do %>
+                  <i class="fas fa-plus"></i>
+                  Thêm công việc
+                <% end %>
+              <% else %>
+                 <%= link_to my_works_path, class: "btn btn-success btn-sm" do %>
+                  <i class="fas fa-plus"></i>
+                  Thêm công việc
+                <% end %>
+              <% end %>
+              <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
+                <i class="fas fa-bars"></i></button>
+              <div class="dropdown-menu float-right" role="menu">
+                <%= link_to my_calendar_path(id: "week"), class: "dropdown-item", remote: true do %>
+                  Lịch tuần
+                <% end %>
+                <div class="dropdown-divider"></div>
+                <%= link_to my_calendar_path(id: "month"), class: "dropdown-item", remote: true do %>
+                  Lịch tháng
+                <% end %>
+              </div>
+            </div>
+            <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+          </div>
+          <!-- /. tools -->
+        </div>
+
+        <div class="card-body pt-0">
+          <!--The calendar -->
+          <div id="my-calendar" style="width: 100%">
+            <%= render partial: "my_calendars/week_calendar" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

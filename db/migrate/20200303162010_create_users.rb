@@ -13,7 +13,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.integer :role, default: 0
       t.integer :status, default: 0
       t.integer :division_id
-
+      t.string :avatar, default: "avatar.png"
       t.timestamps
     end
   end

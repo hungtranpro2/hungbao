@@ -27,6 +27,14 @@ class PersonalTasksController < ApplicationController
     end
   end
 
+  def edit
+    @task = Task.find_by id: params[:id]
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   def create
     @parent_task = current_user.tasks.find_by id: params[:task][:parent_id]
     @task = Task.new task_params.merge(progress: params[:task][:progress].to_i, project_id: @parent_task.project_id)
@@ -48,6 +56,31 @@ class PersonalTasksController < ApplicationController
     end
   end
 
+  def update
+    @task = Task.find_by id: params[:id]
+    @task.progress = params[:task][:progress].to_i
+    ActiveRecord::Base.transaction do
+      @task.update!(task_params)
+      update_parent_task @task
+      flash[:success] = "Cập nhật thành công"
+      redirect_to personal_tasks_path
+    rescue ActiveRecord::RecordInvalid
+      flash.now[:error] = "Cập nhật thất bại"
+      render :edit
+    end
+  end
+
+  def destroy
+    @task = Task.find_by id: params[:id]
+    if @task.destroy
+      flash[:success] = "Xóa thành công"
+      redirect_to personal_tasks_path
+    else
+      flash.now[:error] = "Xóa thất bại"
+      redirect_to errors_path
+    end
+  end
+
   private
 
   def task_params
@@ -60,6 +93,20 @@ class PersonalTasksController < ApplicationController
 
     flash[:error] = "Task không tồn tại"
     redirect_to errors_path
+  end
+
+  def update_parent_task task
+    @parent_task = task.parent
+    @children_tasks = @parent_task.childrens.uniq
+    @sum_day = @children_tasks.inject(0) do |sum, task|
+      (task.end_time < Date.today) ? sum + (task.start_time..task.end_time).count : sum + (task.start_time..Date.today).count
+    end
+    @sum_progress = @children_tasks.inject(0) do |sum, task|
+       sum + task.progress*(task.start_time..task.end_time).count
+    end
+
+    @parent_progress = (@sum_progress / @sum_day).round(2)
+    @parent_task.update!(progress: @parent_progress.to_i)
   end
 
   def overview tasks

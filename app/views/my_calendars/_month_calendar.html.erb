@@ -1,0 +1,9 @@
+<%= month_calendar events: @children_tasks do |date, tasks| %>
+  <div class="calendar-day"><%= date.day %></div>
+  <% tasks.each do |task| %>
+    <div class="my_calendar-task card">
+      <p><b><%= task.title %></b></p>
+      <span><%=" #{task.start_time} - #{task.end_time} " %></span>
+    </div>
+  <% end %>
+<% end %>
