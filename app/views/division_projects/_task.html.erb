@@ -1,0 +1,50 @@
+<tr class="hidden_content">
+  <td><%= task_counter + 1 %></td>
+  <td><%= "OR#{task.id}" %></td>
+  <td><%= task.title %></td>
+  <% if task.project.present? %>
+    <td><%= task.project.name %></td>
+  <% else %>
+    <td><%= task.parent&.project&.name %></td>
+  <% end %>
+  <td><%= task.user.name %></td>
+  <% if task.parent_task? %>
+    <td><span class="badge badge-info">parent task</span></td>
+  <% else %>
+    <td><span class="badge badge-warning">children task</span></td>
+  <% end %>
+  <td>
+    <% if task.progress < 100 %>
+      <span class="description-percentage text-danger">
+        <i class="fas fa-caret-down"></i>
+        <b><%= "#{task.progress - 100} %" %></b>
+      </span>
+    <% elsif task.progress == 100 %>
+       <span class="description-percentage text-warning">
+        <i class="fas fa-caret-left"></i>
+        <b><%= "#{task.progress - 100 } %" %></b>
+      </span>
+    <% else %>
+      <span class="description-percentage text-success">
+        <i class="fas fa-caret-up"></i>
+        <b><%= "#{task.progress - 100 } %" %></b>
+      </span>
+    <% end %>
+  </td>
+
+
+  <td class="project-actions text-right" style="max-width: 150px;">
+    <%= link_to personal_task_path(task), {class: "btn btn-primary btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+      <i class="fas fa-eye">
+      </i>
+      View
+    <% end %>
+    <% if task.user_id == current_user.id && task.parent_task? %>
+      <%= link_to add_task_user_path(task), {class: "btn btn-success btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+        <i class="fas fa-plus">
+        </i>
+        Add User
+      <% end %>
+    <% end %>
+  </td>
+</tr>

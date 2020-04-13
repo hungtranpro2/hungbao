@@ -1,7 +1,3 @@
-input#user_password {
-    width: 280px;
-}
-
 .create{
   margin: 20px 0px;
 }
@@ -43,35 +39,14 @@ img.table-avatar {
   margin-bottom: 0px;
 }
 
-#task-calendar td.day{
-  padding: 2px;
-  height: 50px;
-}
-
-.calendar-day{
-  font-size: 12px;
-}
-
-.calendar-task{
-  background: #FAFAFA;
-  height: 10px;
-  margin: 0 1px 1px 1px;
-  border-radius: 2px;
-  position: relative;
-}
-
-.calendar-show{
+button.close {
+  height: 35px;
+  width: 35px;
+  background-color: white;
+  opacity: 1;
+  border-radius: 50%;
   position: absolute;
-  display: none;
-  background: #333333;
-  font-size: 12px;
-  width: 180px;
-  top: -60px;
-  right: 0px;
-  padding: 3px 5px;
-  border-radius: 7px;
+  right: -15px;
+  top: -15px;
 }
 
-.calendar-task:hover .calendar-show {
-  display: block;
-}

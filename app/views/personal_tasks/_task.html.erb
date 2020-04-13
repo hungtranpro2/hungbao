@@ -1,4 +1,5 @@
 <tr class="hidden_content">
+  <td><%= task_counter + 1 %></td>
   <td><%= "OR#{task.id}"%></a></td>
   <td><%= task.title %></td>
   <% if task.project.present? %>
@@ -12,7 +13,30 @@
     <td><span class="badge badge-warning">children task</span></td>
   <% end %>
   <td>
-    <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
+      <% if task.parent_task? %>
+        <% if task.progress < 100 %>
+          <span class="description-percentage text-danger">
+            <i class="fas fa-caret-down"></i>
+            <b><%= "#{task.progress - 100} %" %></b>
+          </span>
+        <% elsif task.progress == 100 %>
+           <span class="description-percentage text-warning">
+            <i class="fas fa-caret-left"></i>
+            <b><%= "#{task.progress - 100 } %" %></b>
+          </span>
+        <% else %>
+          <span class="description-percentage text-success">
+            <i class="fas fa-caret-up"></i>
+            <b><%= "#{task.progress - 100 } %" %></b>
+          </span>
+        <% end %>
+      <% else %>
+        <% if (task.end_time < Date.today) %>
+          <span style="color: #dc3545; font-weight: 800;"><%= "#{task.progress } %" %></span>
+        <% else %>
+          <span style="color: #28a745; font-weight: 800;"><%= "#{task.progress } %" %></span>
+        <% end %>
+      <% end %>
   </td>
 
   <td class="project-actions text-right">
@@ -21,16 +45,19 @@
       </i>
       View
     <% end %>
-    <% if !task.parent_task? %>
-      <%= link_to personal_task_path(task), {class: "btn btn-info btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
-        <i class="fas fa-pencil-alt">
-        </i>
-        Edit
-      <% end %>
-      <%= link_to personal_task_path(task), {class: "btn btn-danger btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
-        <i class="fas fa-trash">
-        </i>
-        Delete
+    <% if !task.parent_task?%>
+      <% if task.parent.lock == "open" %>
+        <%= link_to personal_task_path(task), class: "btn btn-danger btn-sm", method: :delete do %>
+          <i class="fas fa-trash">
+          </i>
+          Delete
+        <% end %>
+      <% else %>
+        <%= link_to edit_personal_task_path(task), {class: "btn btn-info btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+          <i class="fas fa-pencil-alt">
+          </i>
+          Edit
+        <% end %>
       <% end %>
     <% end %>
   </td>

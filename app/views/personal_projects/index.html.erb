@@ -1,0 +1,31 @@
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+     <%= render partial: "shared/head_profile", locals: {path1: overview_personals_path, title: "Tành viên thuộc nhóm dự án", link1: "Quản lý cá nhân", link2: "Danh sách Members"}%>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="float-right" style="margin-bottom: 10px;">
+      <%= form_tag personal_projects_path, class: "form-inline", method: :get do %>
+        <%= select_tag :name, raw(@projects.collect {|i| "<option>#{i.name}</option>"}),{include_blank: "Choose date", class: "form-control select", onchange: "this.form.submit()"} %>
+      <% end %>
+    </div>
+<!-- Default box -->
+      <div class="card card-solid" style="width: 100%">
+        <div class="card-body pb-0">
+          <div class="row d-flex align-items-stretch">
+
+            <%= render partial: "personal_projects/user", collection: @users %>
+
+          </div>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer text-center">
+           <%= will_paginate @users if @users %>
+        </div>
+        <!-- /.card-footer -->
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+  </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_07_081755) do
+ActiveRecord::Schema.define(version: 2020_04_12_041239) do
 
   create_table "approval_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "status", default: 0
@@ -58,6 +58,17 @@ ActiveRecord::Schema.define(version: 2020_04_07_081755) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["list_message_id"], name: "index_messages_on_list_message_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "my_works", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.date "start_time"
+    t.date "end_time"
+    t.text "description"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_my_works_on_user_id"
   end
 
   create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -113,6 +124,7 @@ ActiveRecord::Schema.define(version: 2020_04_07_081755) do
     t.text "description"
     t.string "path_github"
     t.integer "lock", default: 0
+    t.boolean "active", default: true
     t.integer "parent_id"
     t.boolean "parent_task", default: false
     t.integer "progress"
@@ -147,6 +159,7 @@ ActiveRecord::Schema.define(version: 2020_04_07_081755) do
     t.integer "role", default: 0
     t.integer "status", default: 0
     t.integer "division_id"
+    t.string "avatar", default: "avatar.png"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false
@@ -154,7 +167,6 @@ ActiveRecord::Schema.define(version: 2020_04_07_081755) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -163,6 +175,7 @@ ActiveRecord::Schema.define(version: 2020_04_07_081755) do
   add_foreign_key "count_messes", "users"
   add_foreign_key "messages", "list_messages"
   add_foreign_key "messages", "users"
+  add_foreign_key "my_works", "users"
   add_foreign_key "personal_requests", "users"
   add_foreign_key "reports", "users"
   add_foreign_key "tasks", "projects"
