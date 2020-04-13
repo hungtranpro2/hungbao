@@ -12,6 +12,7 @@ User.create!(name:  "GD Du AN",
                phone: "0388967331",
                status: rand(0..2),
                division_id: 1,
+               avatar: "avatar.png",
                skill: "Khong co ki nang chi",
                role: 1)
 
@@ -23,6 +24,7 @@ User.create!(name:  "GD Design",
                phone: "0388967331",
                status: rand(0..2),
                division_id: 2,
+               avatar: "avatar.png",
                skill: "Khong co ki nang chi",
                role: 1)
 
@@ -34,6 +36,7 @@ User.create!(name:  "GD Android",
                phone: "0388967331",
                status: rand(0..2),
                division_id: 3,
+               avatar: "avatar.png",
                skill: "Khong co ki nang chi",
                role: 1)
 
@@ -45,6 +48,7 @@ User.create!(name:  "GD IOS",
                phone: "0388967331",
                status: rand(0..2),
                division_id: 4,
+               avatar: "avatar.png",
                skill: "Khong co ki nang chi",
                role: 1)
 
@@ -59,6 +63,7 @@ User.create!(name:  "GD IOS",
                phone: "0388967331",
                status: rand(0..2),
                division_id: 1,
+               avatar: "avatar.png",
                skill: "Khong co ki nang chi",
                role: 1)
 end
@@ -74,6 +79,7 @@ end
                phone: "0388967331",
                status: rand(0..2),
                division_id: rand(2..4),
+               avatar: "avatar.png",
                skill: "Khong co ki nang chi",
                role: 0)
 end

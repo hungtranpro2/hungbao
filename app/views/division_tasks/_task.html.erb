@@ -1,25 +1,52 @@
-<tr>
+<tr class="hidden_content">
   <td><%= task_counter + 1 %></td>
   <td><%= "OR#{task.id}" %></td>
   <td><%= task.title %></td>
+  <% if task.project.present? %>
+    <td><%= task.project.name %></td>
+  <% else %>
+    <td><%= task.parent&.project&.name %></td>
+  <% end %>
   <td><%= task.user.name %></td>
-  <td><span class="badge badge-success">Shipped</span></td>
+  <% if task.parent_task? %>
+    <td><span class="badge badge-info">parent task</span></td>
+  <% else %>
+    <td><span class="badge badge-warning">children task</span></td>
+  <% end %>
   <td>
-    <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
+    <% if (task.end_time < Date.today) %>
+      <span style="color: #dc3545; font-weight: 800;"><%= "#{task.progress } %" %></span>
+    <% else %>
+      <span style="color: #28a745; font-weight: 800;"><%= "#{task.progress } %" %></span>
+    <% end %>
   </td>
 
 
-  <td class="project-actions text-right" style="max-width: 150px;">
-    <%= link_to "#", class: "btn btn-primary btn-sm" do %>
-      <i class="fas fa-project-diagram">
+  <td class="project-actions text-right" style="min-width: 150px;">
+    <%= link_to personal_task_path(task), {class: "btn btn-primary btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+      <i class="fas fa-eye">
       </i>
       View
     <% end %>
+
+    <% if task.parent_task? && task.user_id != current_user.id %>
+      <%= link_to edit_division_task_path(task), {class: "btn btn-info btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+        <i class="fas fa-pencil-alt">
+        </i>
+        Edit
+      <% end %>
+    <% end %>
+
     <% if task.user_id == current_user.id && task.parent_task? %>
       <%= link_to add_task_user_path(task), {class: "btn btn-success btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
         <i class="fas fa-plus">
         </i>
         Add User
+      <% end %>
+      <%= link_to division_task_path(task), class: "btn btn-danger btn-sm", method: :delete do %>
+        <i class="fas fa-trash">
+        </i>
+        Delete
       <% end %>
     <% end %>
   </td>

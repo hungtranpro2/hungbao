@@ -4,13 +4,11 @@ class Task < ApplicationRecord
   enum lock: {open: 0, close: 1}
 
   belongs_to :user
-  belongs_to :project, optional: true
+  belongs_to :project , optional: true
   belongs_to :parent, class_name: Task.name, optional: true
-  has_many :childrens, class_name: Task.name, foreign_key: :parent_id
+  has_many :childrens, class_name: Task.name, foreign_key: :parent_id, dependent: :destroy
 
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: true
   validates :start_time, presence: true
   validates :end_time, presence: true
-  validates :path_github, presence: true
-
 end

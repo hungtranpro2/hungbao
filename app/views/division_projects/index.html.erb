@@ -52,27 +52,13 @@
                       <th>More</th>
                     </tr>
                     </thead>
-                    <tbody>
-                      <%= render partial: "division_projects/project", collection: @projects %>
+                    <tbody id="show-task-pr">
+                      <%= render partial: "division_projects/task", collection: @tasks %>
                     </tbody>
                   </table>
                 </div>
                 <!-- /.table-responsive -->
               </div>
-              <!-- /.card-body -->
-              <div class="card-footer clearfix">
-                <% if @projects.present? %>
-                  <%= link_to division_members_path, {class: "btn btn-sm btn-info float-left", style: "padding: 7.7px;margin: 3px 10px 0 0; color: white;"} do %>
-                   <i class="fas fa-user-plus"></i>
-                    Thêm thành viên cho dự án
-                  <% end %>
-                <% end %>
-
-                <div id="pagina" class="btn btn-sm float-right">
-                  <%= will_paginate @projects if @projects %>
-                </div>
-              </div>
-              <!-- /.card-footer -->
             </div>
             <!-- /.card -->
           </div>
@@ -80,46 +66,7 @@
 
           <div class="col-md-3">
             <!-- Info Boxes Style 2 -->
-            <div class="info-box mb-3 bg-warning">
-              <span class="info-box-icon"><i class="fas fa-tag"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Inventory</span>
-                <span class="info-box-number">5,200</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-            <div class="info-box mb-3 bg-success">
-              <span class="info-box-icon"><i class="far fa-heart"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Mentions</span>
-                <span class="info-box-number">92,050</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-            <div class="info-box mb-3 bg-danger">
-              <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Downloads</span>
-                <span class="info-box-number">114,381</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-            <div class="info-box mb-3 bg-info">
-              <span class="info-box-icon"><i class="far fa-comment"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Direct Messages</span>
-                <span class="info-box-number">163,921</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
+            <%= render partial: "division_projects/project", collection: @projects %>
 
           </div>
           <!-- /.col -->

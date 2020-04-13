@@ -25,6 +25,14 @@ module ProfilesHelper
     UserProject.roles.keys.map{|i| i}
   end
 
+  def avatar_for(user)
+    if user.avatar?
+      image_tag user.avatar.url(:thumb), class: "profile-user-img img-fluid img-circle"
+    else
+      image_tag "user-5.png", class: "profile-user-img img-fluid img-circle"
+    end
+  end
+
   def lock_task_select
     Task.locks.keys.map {|i| i}
   end

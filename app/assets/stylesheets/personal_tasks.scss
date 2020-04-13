@@ -11,3 +11,74 @@
   font-weight: 800;
   font-size: 30px;
 }
+
+#task-calendar td.day{
+  padding: 2px;
+  height: 50px;
+}
+
+.calendar-day{
+  font-size: 12px;
+}
+
+.calendar-task{
+  background: #FAFAFA;
+  height: 10px;
+  margin: 0 1px 1px 1px;
+  border-radius: 2px;
+  position: relative;
+}
+
+.calendar-show{
+  position: absolute;
+  display: none;
+  background: #333333;
+  font-size: 12px;
+  width: 180px;
+  top: -60px;
+  right: 0px;
+  padding: 3px 5px;
+  border-radius: 7px;
+}
+
+.calendar-task:hover .calendar-show {
+  display: block;
+}
+
+
+
+#my-calendar .calendar-heading {
+    text-align: center;
+}
+
+#my-calendar .calendar-heading a{
+  color: #333333;
+}
+
+#my-calendar .calendar-heading span{
+  color: #333333;
+  font-weight: 800;
+  font-size: 30px;
+}
+
+#my-calendar td.day{
+  padding: 2px;
+  height: 50px;
+}
+
+#my-calendar tr{
+  background-color: #FFFFFF;
+}
+
+#my-calendar thead tr{
+  background-color: #28a745;
+}
+
+#my-calendar thead tr{
+  color: #FFFFFF;
+}
+
+
+.my_calendar-task {
+  padding: 5px 10px;
+}

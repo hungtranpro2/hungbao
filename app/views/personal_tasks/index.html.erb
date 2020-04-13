@@ -1,171 +1,168 @@
 <div class="content-wrapper">
-   <%= render partial: "shared/head_profile", locals: {path1: overview_divisions_path, title: "Quản lý task dự án thuộc bộ phận", link1: "Quản lý bộ phận", link2: "Danh sách Tasks"}%>
-    <section class="content">
+ <%= render partial: "shared/head_profile", locals: {path1: overview_personals_path, title: "Quản lý task dự án thuộc bộ phận", link1: "Quản lý cá nhân", link2: "Danh sách Tasks"}%>
+  <section class="content">
 
-      <div class="card">
+    <div class="card">
 
-        <div class="card-body">
-          <div class="row">
-            <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
-              <div class="row">
-                <div class="col-12 col-sm-6 col-md-4">
-                  <div class="info-box mb-3">
-                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-tasks"></i></span>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="info-box mb-3">
+                  <span class="info-box-icon bg-info elevation-1"><i class="fas fa-tasks"></i></span>
 
-                    <div class="info-box-content">
-                      <span class="info-box-text">Task dự kiến</span>
-                      <span class="info-box-number">
-                        536
-                        <small>Task</small>
-                        / 3005
-                        <small>Hours</small>
-                      </span>
-                    </div>
-                    <!-- /.info-box-content -->
+                  <div class="info-box-content">
+                    <span class="info-box-text">Task dự kiến</span>
+                    <span class="info-box-number">
+                      <%= @children_tasks.count %>
+                      <small>Task</small>
+                      <%= "/ #{@count_day}" %>
+                      <small>Days</small>
+                    </span>
                   </div>
-                  <!-- /.info-box -->
+                  <!-- /.info-box-content -->
                 </div>
-                <!-- /.col -->
-                <div class="col-12 col-sm-6 col-md-4">
-                  <div class="info-box mb-3">
-                    <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-clock"></i></span>
-
-                    <div class="info-box-content">
-                      <span class="info-box-text">Hiện tại</span>
-                      <span class="info-box-number">
-                        53
-                        <small>%</small>
-                        / 267
-                        <small>Task</small>
-                      </span>
-                    </div>
-                    <!-- /.info-box-content -->
-                  </div>
-                  <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-
-                <!-- fix for small devices only -->
-                <div class="clearfix hidden-md-up"></div>
-
-                <div class="col-12 col-sm-6 col-md-4">
-                  <div class="info-box mb-3">
-                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-clipboard-check"></i></span>
-
-                    <div class="info-box-content">
-                      <span class="info-box-text">Thực tế</span>
-                      <span class="info-box-number">
-                        51
-                        <small>%</small>
-                        / 260
-                        <small>Task</small>
-                      </span>
-                    </div>
-                    <!-- /.info-box-content -->
-                  </div>
-                  <!-- /.info-box -->
-                </div>
+                <!-- /.info-box -->
               </div>
+              <!-- /.col -->
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="info-box mb-3">
+                  <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-clock"></i></span>
 
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="row float-right" style="margin: 0 0 10px 0px;">
-                    <%= search_form_for @q, url: personal_tasks_path, class: "form-inline", method: :get do |f| %>
-                      <%= f.select :project_id_in, @projects.collect{|i| [i.name, i.id]}, {include_blank: "Choose Project"}, class: "form-control select mr-sm-2" %>
-                      <%= f.search_field :title_cont, class: "form-control mr-sm-2", placeholder: "Search" %>
-                      <%= f.submit class: "btn btn-outline-success my-2 mr-sm-2 my-sm-0" %>
-                    <% end %>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Hiện tại</span>
+                    <span class="info-box-number">
+                      <%= "#{(@now_day.to_f / @count_day *100).round(2)}" %>
+                      <small>%</small>
+                      <%="/ #{@now_day}" %>
+                      <small>Days</small>
+                    </span>
                   </div>
-
-                  <div class="card" style="width: 100%">
-                    <!-- /.card-header -->
-                    <div class="card-body p-0">
-                      <div class="table-responsive">
-                        <table class="table m-0 table-striped projects">
-                          <thead>
-                          <tr style="color: #17a2b8;">
-                            <th>Order ID</th>
-                            <th>Title</th>
-                            <th>Project</th>
-                            <th>Type</th>
-                            <th>Popularity</th>
-                            <th class="text-center">More</th>
-                          </tr>
-                          </thead>
-                          <tbody>
-                            <%= render partial: "personal_tasks/task", collection: @tasks %>
-                          </tbody>
-                        </table>
-                      </div>
-                      <!-- /.table-responsive -->
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer clearfix">
-                      <div id="pagina" class="btn btn-sm">
-                        <%= link_to new_personal_task_path, {class: "btn btn-success btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
-                          <i class="fas fa-plus">
-                          </i>
-                          Add Childrent Task
-                        <% end %>
-                      </div>
-                      <div class="float-right">
-                        <%= will_paginate @tasks if @tasks %>
-                      </div>
-                    </div>
-                    <!-- /.card-footer -->
-                  </div>
-                  <!-- /.card -->
+                  <!-- /.info-box-content -->
                 </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+
+              <!-- fix for small devices only -->
+              <div class="clearfix hidden-md-up"></div>
+
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="info-box mb-3">
+                  <span class="info-box-icon bg-success elevation-1"><i class="fas fa-clipboard-check"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">Thực tế</span>
+                    <span class="info-box-number">
+                      <%= @progress %>
+                      <small>%</small>
+                      <%="/ #{@now_day}" %>
+                      <small>Days</small>
+                    </span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
               </div>
             </div>
 
-            <div class="card bg-gradient-success col-12 col-md-12 col-lg-4 order-1 order-md-2" style="max-height: 460px;">
-              <div class="card-header border-0">
-
-                <h3 class="card-title">
-                  <i class="far fa-calendar-alt"></i>
-                  Calendar
-                </h3>
-                <!-- tools card -->
-                <div class="card-tools">
-                  <!-- button with a dropdown -->
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
-                      <i class="fas fa-bars"></i></button>
-                    <div class="dropdown-menu float-right" role="menu">
-                      <a href="#" class="dropdown-item">Add new event</a>
-                      <a href="#" class="dropdown-item">Clear events</a>
-                      <div class="dropdown-divider"></div>
-                      <a href="#" class="dropdown-item">View calendar</a>
-                    </div>
-                  </div>
-                  <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                </div>
-                <!-- /. tools -->
-              </div>
-              <div class="card-body pt-0">
-                <!--The calendar -->
-                <div id="task-calendar" style="width: 100%">
-                  <%= month_calendar events: @children_tasks do |date, tasks| %>
-                    <div class="calendar-day"><%= date.day %></div>
-                    <% tasks.each do |task| %>
-                      <div class="calendar-task">
-                        <div class="calendar-show">
-                          <%= "#{task.title} / #{task.start_time} - #{task.end_time}" %>
-                        </div>
-                      </div>
-                    <% end %>
+            <div class="row">
+              <div class="col-md-12">
+                  <%= link_to new_personal_task_path, {class: "btn btn-success btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+                  <i class="fas fa-plus">
+                  </i>
+                  Add Childrent Task
+                <% end %>
+                <div class="row float-right" style="margin: 0 0 10px 0px;">
+                  <%= search_form_for @q, url: personal_tasks_path, class: "form-inline", method: :get do |f| %>
+                    <%= f.select :project_id_in, @projects.collect{|i| [i.name, i.id]}, {include_blank: "Choose Project"}, class: "form-control select mr-sm-2" %>
+                    <%= f.search_field :title_cont, class: "form-control mr-sm-2", placeholder: "Search" %>
+                    <%= f.submit class: "btn btn-outline-success my-2 mr-sm-2 my-sm-0" %>
                   <% end %>
                 </div>
+
+                <div class="card" style="width: 100%">
+                  <!-- /.card-header -->
+                  <div class="card-body p-0">
+                    <div class="table-responsive">
+                      <table class="table m-0 table-striped projects">
+                        <thead>
+                        <tr style="color: #17a2b8;">
+                          <th>#</th>
+                          <th>Order ID</th>
+                          <th style="min-width: 200px;">Title</th>
+                          <th style="min-width: 180px;">Project</th>
+                          <th>Type</th>
+                          <th>Progress</th>
+                          <th class="text-center">More</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                          <%= render partial: "personal_tasks/task", collection: @tasks %>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer clearfix">
+
+                  </div>
+                  <!-- /.card-footer -->
+                </div>
+                <!-- /.card -->
+              </div>
+            </div>
+          </div>
+
+          <div class="card bg-gradient-success col-12 col-md-12 col-lg-4 order-1 order-md-2" style="max-height: 460px;">
+            <div class="card-header border-0">
+
+              <h3 class="card-title">
+                <i class="far fa-calendar-alt"></i>
+                Calendar
+              </h3>
+              <!-- tools card -->
+              <div class="card-tools">
+                <!-- button with a dropdown -->
+                <div class="btn-group">
+                  <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
+                    <i class="fas fa-bars"></i></button>
+                  <div class="dropdown-menu float-right" role="menu">
+                    <a href="#" class="dropdown-item">Add new event</a>
+                    <a href="#" class="dropdown-item">Clear events</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">View calendar</a>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <!-- /. tools -->
+            </div>
+            <div class="card-body pt-0">
+              <!--The calendar -->
+              <div id="task-calendar" style="width: 100%">
+                <%= month_calendar events: @children_tasks do |date, tasks| %>
+                  <div class="calendar-day"><%= date.day %></div>
+                  <% tasks.each do |task| %>
+                    <div class="calendar-task">
+                      <div class="calendar-show">
+                        <%= "#{task.title} / #{task.start_time} - #{task.end_time}" %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
               </div>
             </div>
           </div>
         </div>
-        <!-- /.card-body -->
       </div>
-      <!-- /.card -->
-    </section>
-    <!-- /.content -->
-  </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </section>
+  <!-- /.content -->
+</div>

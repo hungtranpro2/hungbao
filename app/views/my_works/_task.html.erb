@@ -1,0 +1,21 @@
+<tr>
+  <td><%= task_counter + 1 %></td>
+  <td><%= "OR#{task.id}" %></td>
+  <td><%= task.title %></td>
+  <td><%= "#{task.start_time} - #{task.end_time}" %></td>
+
+  <td class="project-actions text-right" style="max-width: 150px;">
+    <%= link_to personal_task_path(task), {class: "btn btn-primary btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+      <i class="fas fa-eye">
+      </i>
+      View
+    <% end %>
+    <% if task.user_id == current_user.id && task.parent_task? %>
+      <%= link_to add_task_user_path(task), {class: "btn btn-success btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+        <i class="fas fa-plus">
+        </i>
+        Add User
+      <% end %>
+    <% end %>
+  </td>
+</tr>

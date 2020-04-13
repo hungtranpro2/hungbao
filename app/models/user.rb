@@ -16,7 +16,7 @@ class User < ApplicationRecord
   enum status: {free: 0, medium: 1, busy: 2}
 
   belongs_to :division, class_name: Division.name, foreign_key: "division_id"
-
+  has_many :my_works, dependent: :destroy
   has_many :user_projects, dependent: :destroy
   has_many :projects, through: :user_projects
 
