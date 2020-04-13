@@ -9,6 +9,10 @@ class CompanyProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
@@ -24,12 +28,19 @@ class CompanyProjectsController < ApplicationController
       redirect_to company_projects_path
     else
       flash[:error] = "Khởi tạo dự án thất bại"
-      render :new
+      respond_to do |format|
+        format.html
+        format.js{render :new}
+      end
     end
   end
 
   def edit
     @project = Project.find_by id: params[:id]
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def update
@@ -38,8 +49,8 @@ class CompanyProjectsController < ApplicationController
       flash[:success] = "Cập nhật dự án thành công"
       redirect_to company_projects_path
     else
-      flash[:error] = t "Cập nhật dự án thất bại"
-      redirect_to root_path
+      flash[:error] = "Cập nhật dự án thất bại"
+      render :edit
     end
   end
 

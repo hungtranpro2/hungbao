@@ -1,9 +1,9 @@
 <div class="card card-primary">
   <div class="text-center" style="margin-top: 10px;">
-     <%if current_user.avatar?%>
-      <%= image_tag current_user.avatar.url, class: "img-circle img-fluid" %>
+    <%if @user.avatar?%>
+      <%= image_tag @user.avatar.url, class: "img-circle img-fluid", style: "width: 215px; height: 215px;" %>
     <%else%>
-      <%= image_tag "avatar.png", class: "img-circle img-fluid" %>
+      <%= image_tag "avatar.png", class: "img-circle img-fluid", style: "width: 215px; height: 215px;" %>
     <%end%>
   </div>
 <!-- /.card-header -->

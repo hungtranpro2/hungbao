@@ -1,0 +1,159 @@
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Dashboard v2</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard v2</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Info boxes -->
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-3">
+          <%= link_to project_tasks_path, style: "text-decoration: none; color: #333333" do %>
+            <div class="info-box">
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-tasks"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Tasks</span>
+                <span class="info-box-number">
+                 <span class="info-box-number"><%= @sum_task %></span>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+          <% end %>
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <%= link_to project_reports_path, style: "text-decoration: none; color: #333333" do %>
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-user-edit"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Reports</span>
+                  <span class="info-box-number"><%= @sum_report %></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+            <% end %>
+          </div>
+          <!-- /.col -->
+
+          <!-- fix for small devices only -->
+          <div class="clearfix hidden-md-up"></div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <%= link_to approval_requests_path, style: "text-decoration: none; color: #333333" do %>
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-user-tag"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Requests</span>
+                  <span class="info-box-number"><%= @sum_request %></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+            <% end %>
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <%= link_to project_members_path, style: "text-decoration: none; color: #333333" do %>
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Members</span>
+                  <span class="info-box-number"><%= @sum_member %></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+            <% end %>
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="far fa-chart-bar"></i>
+              jQuery Knob
+            </h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                  class="fas fa-minus"></i>
+              </button>
+
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <%= timeline @time_line %>
+          </div>
+          <!-- /.card-body -->
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <!-- AREA CHART -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Thời gian công việc của bộ phận</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <%= pie_chart @pie_chart_task_division, donut: true %>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+
+           <div class="col-md-6">
+            <!-- AREA CHART -->
+            <div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">Thành viên tham gia dự án</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <%= pie_chart @pie_chart_division, donut: true %>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+
+
+        <!-- /.row -->
+      </div><!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
