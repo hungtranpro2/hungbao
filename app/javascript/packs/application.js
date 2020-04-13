@@ -23,3 +23,4 @@ require("packs/dashboard")
 require("packs/select")
 require("packs/pagination")
 require("packs/sale_chart")
+

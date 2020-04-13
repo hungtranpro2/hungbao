@@ -1,0 +1,5 @@
+<% if @type == "month" %>
+  $("#my-calendar").html("<%= j(render :partial => "my_calendars/month_calendar")%>");
+<% else %>
+  $("#my-calendar").html("<%= j(render :partial => "my_calendars/week_calendar")%>");
+<% end %>

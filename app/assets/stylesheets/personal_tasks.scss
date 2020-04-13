@@ -45,3 +45,40 @@
   display: block;
 }
 
+
+
+#my-calendar .calendar-heading {
+    text-align: center;
+}
+
+#my-calendar .calendar-heading a{
+  color: #333333;
+}
+
+#my-calendar .calendar-heading span{
+  color: #333333;
+  font-weight: 800;
+  font-size: 30px;
+}
+
+#my-calendar td.day{
+  padding: 2px;
+  height: 50px;
+}
+
+#my-calendar tr{
+  background-color: #FFFFFF;
+}
+
+#my-calendar thead tr{
+  background-color: #28a745;
+}
+
+#my-calendar thead tr{
+  color: #FFFFFF;
+}
+
+
+.my_calendar-task {
+  padding: 5px 10px;
+}
