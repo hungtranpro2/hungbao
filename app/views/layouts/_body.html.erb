@@ -140,24 +140,6 @@
 
           <% if current_user.manager? && current_division.is_project?%>
             <li class="nav-item has-treeview">
-              <%= link_to overview_companys_path, class: "nav-link" do %>
-                <i class="nav-icon fas fa-chart-pie"></i>
-                <p>
-                  Quản lý dự án
-                </p>
-              <% end %>
-            </li>
-
-             <li class="nav-item has-treeview">
-              <%= link_to company_projects_path, class: "nav-link" do %>
-                <i class="nav-icon fas fa-list-ul"></i>
-                <p>
-                  Danh sách dự án
-                </p>
-              <% end %>
-            </li>
-
-            <li class="nav-item has-treeview">
               <%= link_to personal_tasks_path, class: "nav-link" do %>
                 <i class="nav-icon fas fa-tasks"></i>
                 <p>
@@ -165,35 +147,101 @@
                 </p>
               <% end %>
             </li>
-          <% end %>
 
-          <% if current_user.member? && current_division.is_project? %>
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
+                <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
-                  Nhà quản lý dự án
+                  Quản lý dự án
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <%= link_to manage_projects_path, class: "nav-link" do %>
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Quản lý dự án</p>
+                <li class="nav-item has-treeview">
+                  <%= link_to overview_companys_path, class: "nav-link" do %>
+                    <i class="far fa-circle nav-icon text-danger"></i>
+                    <p>
+                      Tổng quan
+                    </p>
+                  <% end %>
+                </li>
+
+                <li class="nav-item has-treeview">
+                  <%= link_to company_projects_path, class: "nav-link" do %>
+                    <i class="far fa-circle nav-icon text-primary"></i>
+                    <p>
+                      Danh sách dự án
+                    </p>
                   <% end %>
                 </li>
               </ul>
             </li>
 
+          <% end %>
+
+          <% if current_user.member? && current_division.is_project? %>
             <li class="nav-item has-treeview">
-              <%= link_to personal_tasks_path, class: "nav-link" do %>
-                <i class="nav-icon fas fa-tasks"></i>
+              <%= link_to my_works_path, class: "nav-link" do %>
+                <i class="nav-icon fas fa-thumbtack"></i>
                 <p>
-                  Task công việc
+                  Công việc của tôi
                 </p>
               <% end %>
             </li>
+            <% if current_user.projects.present? %>
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <p>
+                    Nhà quản lý dự án
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <%= link_to overview_projects_path, class: "nav-link" do %>
+                      <i class="far fa-circle nav-icon text-warning"></i>
+                      <p>Tổng quan</p>
+                    <% end %>
+                  </li>
+
+                  <li class="nav-item">
+                    <%= link_to project_members_path, class: "nav-link" do %>
+                      <i class="far fa-circle nav-icon text-danger"></i>
+                      <p>Thành viên</p>
+                    <% end %>
+                  </li>
+
+                   <li class="nav-item">
+                    <%= link_to project_reports_path, class: "nav-link" do %>
+                      <i class="far fa-circle nav-icon text-primary"></i>
+                      <p>Báo cáo từ thành viên</p>
+                    <% end %>
+                  </li>
+
+                   <li class="nav-item">
+                    <%= link_to approval_requests_path, class: "nav-link" do %>
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Yêu cầu từ thành viên</p>
+                    <% end %>
+                  </li>
+
+                  <li class="nav-item">
+                    <%= link_to project_tasks_path, class: "nav-link" do %>
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Công việc thuộc dự án</p>
+                    <% end %>
+                  </li>
+
+                  <li class="nav-item">
+                    <%= link_to project_requests_path, class: "nav-link" do %>
+                      <i class="far fa-circle nav-icon text-success"></i>
+                      <p>Tạo công việc cho dự án</p>
+                    <% end %>
+                  </li>
+                </ul>
+              </li>
+            <% end %>
           <% end %>
 
           <% if current_user.manager? && !current_division.is_project?%>
@@ -289,6 +337,26 @@
                     <p>Personal Projects</p>
                   <% end %>
                 </li>
+              </ul>
+            </li>
+          <% end %>
+          <% if current_user.hr? %>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-copy"></i>
+                <p>
+                  Quản lý nhân sự
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <%= link_to user_managers_path, class: "nav-link" do %>
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Danh sách nhân sự</p>
+                  <% end %>
+                </li>
+
               </ul>
             </li>
           <% end %>

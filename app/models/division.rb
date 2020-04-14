@@ -5,4 +5,5 @@ class Division < ApplicationRecord
   has_many :reports, through: :users
   has_many :projects, through: :users
   has_many :tasks, through: :users
+  has_many :project_requests, dependent: :destroy
 end

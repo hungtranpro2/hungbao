@@ -40,6 +40,11 @@ Rails.application.routes.draw do
   resources :personal_projects
   resources :my_calendars
   resources :my_works
+  resources :user_managers
+  resources :overview_projects
+  resources :project_reports
+  resources :project_tasks
+  resources :project_requests
   devise_for :users
   # get 'static_pages/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

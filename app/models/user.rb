@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  PARAMS_USER = %i(email name password password_confirmation staff_type workspace nationality position role division_id).freeze
   PARAMS_PROFILE = %i(name birthday phone skill gender avatar).freeze
   PARAMS_PASSWORD = %i(password).freeze
 
@@ -16,7 +17,6 @@ class User < ApplicationRecord
   enum status: {free: 0, medium: 1, busy: 2}
 
   belongs_to :division, class_name: Division.name, foreign_key: "division_id"
-  has_many :my_works, dependent: :destroy
   has_many :user_projects, dependent: :destroy
   has_many :projects, through: :user_projects
 
@@ -33,8 +33,7 @@ class User < ApplicationRecord
                            foreign_key: :receiver_id, dependent: :destroy
 
   validates :name, presence: true, length: {maximum: 50}
-  validates :phone, :numericality => true, presence: true
-  validates :skill, presence: true
+
 
   mount_uploader :avatar, AvatarUploader
 end
