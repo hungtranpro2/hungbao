@@ -1,9 +1,10 @@
 class CompanyProjectsController < ApplicationController
+
   before_action :authenticate_user!
 
   def index
     @q = Project.ransack(params[:q])
-    @projects = @q.result.paginate(page: params[:page], per_page: 10)
+    @projects = @q.result.paginate(page: params[:page], per_page: 5)
   end
 
   def new

@@ -1,0 +1,134 @@
+<% provide(:title, t(".begin_title")) %>
+<div id="my_container" class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <%= render partial: "shared/head_profile", locals: {path1: user_managers_path, title: "Create User", link1: "User Manager", link2: "Create User"}%>
+  <!-- Main content -->
+ <section class="content" style="height: 600px; margin-top: 50px;">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Add Users</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                  <i class="fas fa-minus"></i></button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                  <i class="fas fa-times"></i></button>
+              </div>
+            </div>
+
+            <div class="card-body" style="margin: 20px 0px;">
+              <div class="tab-content">
+                <div class="active tab-pane" id="settings">
+                  <%= form_for(@user, url: user_managers_path, class: "form-horizontal") do |f|%>
+                    <%= render "shared/error_messages", object: f.object %>
+                    <%= f.hidden_field :path, value: @path %>
+                    <div class="form-group row">
+                      <div class="col-sm-2">
+                        <%= f.label :email, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-10">
+                        <%= f.text_field :email, class: "form-control", placeholder:"Email" %>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-2">
+                        <%= f.label :name, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-10">
+                        <%= f.text_field :name, class: "form-control", placeholder:"Name" %>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-2">
+                        <%= f.label :password, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-10">
+                        <%= f.password_field :password, class: "form-control", placeholder:"password" %>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-2">
+                        <%= f.label :password_confirmation, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-10">
+                        <%= f.password_field :password_confirmation, class: "form-control", placeholder:"password" %>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-sm-2">
+                        <%= f.label :staff_type, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-10">
+                        <%= f.select :staff_type, staff_type_select ,{}, {class: "form-control custom-select" } %>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-2">
+                        <%= f.label :workspace, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-10">
+                        <%= f.select :workspace, workspace_select ,{}, {class: "form-control custom-select" } %>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-2">
+                        <%= f.label :nationality, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-10">
+                        <%= f.select :nationality, nationality_select ,{}, {class: "form-control custom-select" } %>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-2">
+                        <%= f.label :position, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-10">
+                        <%= f.select :position, positon_select ,{}, {class: "form-control custom-select" } %>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-2">
+                        <%= f.label :role, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-10">
+                        <%= f.select :role, role_select ,{}, {class: "form-control custom-select" } %>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-2">
+                        <%= f.label :division_id, class: "col-form-label" %>
+                      </div>
+                      <div class="col-sm-10">
+                        <%= f.select :division_id,  division_select.collect{|i| [i.name, i.id]}, {class: "form-control custom-select" } %>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="offset-sm-2 col-sm-10">
+                        <%= f.submit "Add User", class: "btn btn-success" %>
+                      </div>
+                    </div>
+                    <% end %>
+                  </div>
+                </div>
+                <!-- /.tab-pane -->
+              </div>
+              <!-- /.tab-content -->
+            </div><!-- /.card-body -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-2">
+        </div>
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+
+</div>

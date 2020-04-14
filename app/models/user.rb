@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  PARAMS_USER = %i(email name password password_confirmation staff_type workspace nationality position role division_id).freeze
   PARAMS_PROFILE = %i(name birthday phone skill gender avatar).freeze
   PARAMS_PASSWORD = %i(password).freeze
 
@@ -26,11 +27,14 @@ class User < ApplicationRecord
 
   has_many :personal_requests, dependent: :destroy
   has_many :reports, dependent: :destroy
+
+  has_many :tasks
+
   has_many :notifications, class_name: Notification.name,
                            foreign_key: :receiver_id, dependent: :destroy
+
   validates :name, presence: true, length: {maximum: 50}
-  validates :phone, :numericality => true, presence: true
-  validates :skill, presence: true
+
 
   mount_uploader :avatar, AvatarUploader
 end

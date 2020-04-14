@@ -1,5 +1,5 @@
 Division.create!(name: "Project Department", is_project: true, image: "project.png")
-Division.create!(name: "Design Department", image: "design.jpg")
+Division.create!(name: "Design Department", image: "design.png")
 Division.create!(name: "Android Department", image: "android.png")
 Division.create!(name: "IOS Department", image: "ios.png")
 
@@ -52,6 +52,17 @@ User.create!(name:  "GD IOS",
                skill: "Khong co ki nang chi",
                role: 1)
 
+User.create!(name:  "GD IOS",
+               email: "hung@gmail.com",
+               password: "123456",
+               password_confirmation: "123456",
+               birthday: Faker::Date.birthday,
+               phone: "0388967331",
+               status: rand(0..2),
+               division_id: 4,
+               skill: "Khong co ki nang chi",
+               role: 2)
+
 5.times do |n|
   name  = Faker::Name.name
   email = "bao#{n +4}@gmail.com"
@@ -65,7 +76,7 @@ User.create!(name:  "GD IOS",
                division_id: 1,
                avatar: "avatar.png",
                skill: "Khong co ki nang chi",
-               role: 0)
+               role: 1)
 end
 
 50.times do |n|

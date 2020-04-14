@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+
   PARAMS = %i{user_id project_id title start_time end_time description progess parent_id path_github}
   enum lock: {open: 0, close: 1}
 

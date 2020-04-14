@@ -292,6 +292,26 @@
               </ul>
             </li>
           <% end %>
+          <% if current_user.hr? %>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-copy"></i>
+                <p>
+                  Quản lý nhân sự
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <%= link_to user_managers_path, class: "nav-link" do %>
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Danh sách nhân sự</p>
+                  <% end %>
+                </li>
+
+              </ul>
+            </li>
+          <% end %>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -53,4 +53,35 @@ module ProfilesHelper
     current_user.tasks.where(parent_task: true)
   end
 
+  def avatar_for(user)
+    if user.avatar?
+      image_tag user.avatar.url(:thumb), class: "profile-user-img img-fluid img-circle"
+    else
+      image_tag "user-5.png", class: "profile-user-img img-fluid img-circle"
+    end
+  end
+
+  def staff_type_select
+    User.staff_types.keys.map{|i| i}
+  end
+
+  def workspace_select
+    User.workspaces.keys.map{|i| i}
+  end
+
+  def nationality_select
+    User.nationalities.keys.map{|i| i}
+  end
+
+  def positon_select
+    User.positions.keys.map{|i| i}
+  end
+
+  def role_select
+    User.roles.keys.map{|i| i}
+  end
+
+  def division_select
+    Division.all.map{|i| i}
+  end
 end

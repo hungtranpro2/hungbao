@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_04_12_041239) do
 
-  create_table "approval_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "approval_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "status", default: 0
     t.integer "send_for", default: 0
     t.integer "personal_request_id"
@@ -21,7 +21,17 @@ ActiveRecord::Schema.define(version: 2020_04_12_041239) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "divisions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "count_messes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "count_mess"
+    t.bigint "list_message_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["list_message_id"], name: "index_count_messes_on_list_message_id"
+    t.index ["user_id"], name: "index_count_messes_on_user_id"
+  end
+
+  create_table "divisions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.integer "is_project", default: 0
     t.string "image"
@@ -29,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_04_12_041239) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "list_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "list_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "logo"
     t.integer "type_mes", default: 0
@@ -37,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_04_12_041239) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "content"
     t.string "file_name"
     t.integer "to_id"
@@ -50,7 +60,7 @@ ActiveRecord::Schema.define(version: 2020_04_12_041239) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "my_works", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "my_works", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.date "start_time"
     t.date "end_time"
@@ -61,7 +71,7 @@ ActiveRecord::Schema.define(version: 2020_04_12_041239) do
     t.index ["user_id"], name: "index_my_works_on_user_id"
   end
 
-  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.integer "object_id"
     t.string "object_type"
@@ -73,7 +83,7 @@ ActiveRecord::Schema.define(version: 2020_04_12_041239) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "personal_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "personal_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "request_type", default: 0
     t.datetime "time_from"
     t.datetime "time_to"
@@ -85,7 +95,7 @@ ActiveRecord::Schema.define(version: 2020_04_12_041239) do
     t.index ["user_id"], name: "index_personal_requests_on_user_id"
   end
 
-  create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.string "document_link"
@@ -94,7 +104,7 @@ ActiveRecord::Schema.define(version: 2020_04_12_041239) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "reports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "reports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.integer "project_id"
     t.text "plan"
@@ -107,7 +117,7 @@ ActiveRecord::Schema.define(version: 2020_04_12_041239) do
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
-  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.date "start_time"
     t.date "end_time"
@@ -126,7 +136,7 @@ ActiveRecord::Schema.define(version: 2020_04_12_041239) do
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
-  create_table "user_projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "user_projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "role", default: 0
     t.bigint "user_id"
     t.bigint "project_id"
@@ -136,7 +146,7 @@ ActiveRecord::Schema.define(version: 2020_04_12_041239) do
     t.index ["user_id"], name: "index_user_projects_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.text "skill"
     t.date "birthday"
@@ -161,6 +171,8 @@ ActiveRecord::Schema.define(version: 2020_04_12_041239) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "count_messes", "list_messages"
+  add_foreign_key "count_messes", "users"
   add_foreign_key "messages", "list_messages"
   add_foreign_key "messages", "users"
   add_foreign_key "my_works", "users"
