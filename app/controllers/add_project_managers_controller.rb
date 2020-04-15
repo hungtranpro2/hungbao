@@ -3,7 +3,7 @@ class AddProjectManagersController < ApplicationController
 
   def show
     @project = Project.find_by id: params[:id]
-    @users =current_division.users.where.not(id: current_user.id)
+    @users = current_division.users.where.not(id: current_user.id).where(role: 0)
     respond_to do |format|
       format.html
       format.js

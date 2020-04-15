@@ -1,19 +1,21 @@
 $(document).on('turbolinks:load', function () {
-  var isFetching = false;
+    isScroll = false;
   $("#message").on('scroll', function(){
     var more_posts_url = $('.pagination a:last').attr('href');
     var scroll = $("#message").scrollTop();
-    if (scroll  <  1 && isFetching == false) {
-      // $('#loading').css('display', 'block');
-      setTimeout(function() {
-        $("#message").animate({scrollTop: $("#message").height()}, 500);
-      }, 2000);
+    var height = $("#message").prop('scrollHeight') - $("#message").height() - 30;
 
-      isFetching = true;
+    if (more_posts_url  != undefined && scroll > height && isScroll == false) {
+      $('#loading').css("display","block");
+        setTimeout(function() {
+          $('#loading').css("display","none");
+        }, 2000);
       $.getScript(more_posts_url);
+      isScroll = true;
     }else{
-      // $('#loading').css('display', 'none');
-      isFetching = false;
+      if (scroll < $("#message").prop('scrollHeight') - $("#message").height() - 30){
+        isScroll = false;
+      }
     }
   });
 });

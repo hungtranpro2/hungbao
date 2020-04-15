@@ -1,16 +1,10 @@
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="background-color: #FFFFFF">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Chat Work</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Chat Work</li>
-            </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -39,19 +33,8 @@
 
           <section class="col-lg-9 connectedSortable">
             <div class="card direct-chat direct-chat-primary">
-              <div class="card-header">
-                <h3 class="card-title">Direct Chat</h3>
-
-                <div class="card-tools">
-
-                  <%= link_to message_notifications_path, {class: "btn btn-tool", remote: true} do %>
-                    <i class="fas fa-comments" ></i>
-                  <% end %>
-
-                  <%= link_to message_notifications_path, {class: "btn btn-tool", "data-toggle": "tooltip", "data-widget": "chat-pane-toggle"} do %>
-                    <i class="fas fa-plus" ></i>
-                  <% end %>
-                </div>
+              <div class="card-header" style="height: 40px;">
+                <h3 class="card-title"><b><%= @group_chat.name %></b></h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -60,29 +43,8 @@
                   <!-- Message. Default to the left -->
                   <%= render partial: "room_chats/room_chat", locals: {room_chat: @group_chat} %>
                 </div>
-                <!--/.direct-chat-messages-->
-
-                <!-- Contacts are loaded here -->
-                <div class="direct-chat-contacts" style="height: 500px;">
-                  <ul id="message_seen" class="contacts-list">
-
-                  </ul>
-                  <!-- /.contacts-list -->
-                </div>
-                <!-- /.direct-chat-pane -->
               </div>
-              <!-- /.card-body -->
-             <!--  <div class="card-footer">
-                <%#= form_for @message, url: static_pages_path do |f| %>
-                  <div class="input-group">
-                    <%#= f.text_area:content, class: "form-control", placeholder: "Type Message ..." %>
-                    <span class="input-group-append">
-                      <%#= f.submit "Submit", class: "btn btn-primary" %>
-                    </span>
-                  </div>
-                <%# end %>
-              </div> -->
-              <!-- /.card-footer-->
+
               <div class="card-footer">
                 <%= form_for @message, url: messages_path, remote: true do |f| %>
                   <div class="input-group">

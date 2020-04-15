@@ -140,8 +140,8 @@
 
           <% if current_user.manager? && current_division.is_project?%>
             <li class="nav-item has-treeview">
-              <%= link_to personal_tasks_path, class: "nav-link" do %>
-                <i class="nav-icon fas fa-tasks"></i>
+              <%= link_to my_works_path, class: "nav-link" do %>
+                <i class="nav-icon fas fa-thumbtack"></i>
                 <p>
                   Công việc của tôi
                 </p>
