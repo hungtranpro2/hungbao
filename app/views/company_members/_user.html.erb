@@ -25,18 +25,20 @@
     </small>
     80%
   </td>
+  <td>
+    <% if user.status == "busy" %>
+      <span class="badge badge-success" style="background: #dc3545;"><%= user.status %></span>
+    <% elsif user.status == "medium" %>
+      <span class="badge badge-success" style="background: #6c757d;"><%= user.status %></span>
+    <% else %>
+      <span class="badge badge-success"><%= user.status %></span>
+    <% end %>
+  </td>
   <td class="project-actions text-right" style="max-width: 150px;">
     <%= link_to show_profile_path(user), {class: "btn btn-primary btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
       <i class="fas fa-folder">
       </i>
       View
-    <% end %>
-    <% if user.member? &&  user.status != "busy" %>
-      <%= link_to show_project_path(user), { class: "btn btn-success btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
-        <i class="fas fa-plus">
-        </i>
-        Thêm vào dự án
-      <% end %>
     <% end %>
   </td>
 </tr>

@@ -1,8 +1,13 @@
-<div id="message" data-channel-subscribe="room" class="direct-chat-messages" data-chat-room-id="<%= room_chat.id %>" style="height: 500px; padding-top: 50px; ">
-  <div id="loading" class="text-center" style="position: absolute; top: 0px; width: 100%">
-    <img src="/assets/loading.gif" alt="Loading..." title="Loading..." style="height: 50px;" />
-  </div>
-  <div style="display: none;" ><%= will_paginate @messages%></div>
+<div id="message" data-channel-subscribe="room" class="direct-chat-messages" data-chat-room-id="<%= room_chat.id %>" style="height: 500px;">
+
   <%= render partial: "room_chats/message", collection: @messages %>
 </div>
-
+<div id="pagi-show" style="display: none;">
+  <%= will_paginate @messages %>
+</div>
+<div id="pagi-show" style="display: none;">
+  <%= will_paginate @messages %>
+</div>
+<div id="loading" class="text-center" style="position: absolute; bottom: 0px; width: 100%; display: none;">
+    <img src="/assets/loading.gif" style="height: 50px;" />
+</div>
