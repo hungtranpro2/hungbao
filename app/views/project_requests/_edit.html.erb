@@ -2,8 +2,10 @@
 <div class="card-body">
   <div class="tab-content">
     <div class="active tab-pane" id="settings">
-      <%= form_for(@project_request, url: project_requests_path, class: "form-horizontal", remote: true) do |f|%>
+      <%= form_for(@project_request, url: project_request_path, class: "form-horizontal", remote: true) do |f|%>
         <%= render "shared/error_messages", object: f.object %>
+
+        <%= f.hidden_field :project_id, class: "form-control", value: "#{current_user.projects.first.id}" %>
         <div class="form-group row">
           <div class="col-sm-2">
             <%= f.label :title, class: "col-form-label" %>
@@ -17,12 +19,12 @@
         <div class="form-group row">
           <%= f.label :division_id, class: "col-sm-2 col-form-label" %>
           <div class="col-sm-4">
-            <%= f.select :division_id, division_request_select.collect{|i| [i.name, i.id]},{}, {class: "form-control custom-select"}  %>
+            <%= f.select :division_id, division_request_select.collect{|i| [i.name, i.id]},{}, {class: "form-control custom-select", readonly: true}  %>
           </div>
 
-          <%= f.label :project_id, class: "col-sm-2 col-form-label" %>
+          <label for="country" class="col-sm-2">Project</label>
           <div class="col-sm-4">
-             <%= f.text_field :project_id, class: "form-control", value: "#{current_user.projects.first.name}", readonly: true %>
+            <input class="form-control" id="country" readonly value="<%= current_user.projects.first.name %>">
           </div>
         </div>
 
@@ -63,7 +65,7 @@
 
         <div class="form-group row">
           <div class="offset-sm-2 col-sm-10">
-            <%= f.submit "Tạo Yêu Cầu", class: "btn btn-success" %>
+            <%= f.submit "Cập nhật", class: "btn btn-success" %>
           </div>
         </div>
       <% end %>

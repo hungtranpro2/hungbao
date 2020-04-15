@@ -1,11 +1,6 @@
 <% if item_list_chat.id == item_active %>
   <%= link_to room_chat_path(item_list_chat), class: "list-group-item list-group-item-action active", id: "click_group" do %>
-  <div class="row">
-    <div class="col-10">
-      <%= image_tag "user.jpg", class: "direct-chat-img size-min" %>
       <%= item_list_chat.name %>
-    </div>
-  </div>
   <% end %>
 <% else %>
  <%= link_to room_chat_path(item_list_chat), class: "list-group-item list-group-item-action", id: "click_group" do %>

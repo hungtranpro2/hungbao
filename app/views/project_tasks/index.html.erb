@@ -41,12 +41,6 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer clearfix">
-                      <div id="pagina" class="btn btn-sm">
-                        <%= link_to new_division_task_path, {class: "btn btn-sm btn-info float-left", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
-                         <i class="fas fa-tasks"></i>
-                          Thêm tasks cho dự án
-                        <% end %>
-                      </div>
                       <div class="float-right">
                         <%= will_paginate @tasks if @tasks %>
                       </div>

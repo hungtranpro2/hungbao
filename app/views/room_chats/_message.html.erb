@@ -1,5 +1,5 @@
 <div class="direct-chat-msg" data-role="message-template">
-  <div class="direct-chat-infos clearfix row">
+  <div class="direct-chat-infos row" style="margin: 0px;">
     <%if message.user.avatar?%>
       <%= image_tag message.user.avatar.url, class: "message-item green" %>
     <%else%>
@@ -19,9 +19,8 @@
       </div>
       <% if message.file_name.present? %>
         <div class="attachment">
-          <p><b>New file uploaded.</b></p>
           <%= link_to message_path(message), target: :_blank do %>
-            <i class="fas fa-download"></i>
+            <i class="fas fa-download" style="font-size: 12px;"></i>
             <%= message.file_name %>
           <% end %>
         </div>
@@ -29,3 +28,5 @@
     </div>
   </div>
 </div>
+
+

@@ -45,10 +45,12 @@
       </i>
       Add Project Leader
     <% end %>
+    <% if project.users.where(division_id: current_division.id).present? %>
       <%= link_to add_project_division_path(project), {class: "btn btn-sm btn-success", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
-      <i class="fas fa-plus">
-      </i>
-      Add Team Leader
+        <i class="fas fa-plus">
+        </i>
+        Add Team Leader
+      <% end %>
     <% end %>
     <%= link_to company_project_path(project), {method: :delete, class: "btn btn-danger btn-sm",data: {confirm: "Bạn chắc chứ"}} do %>
       <i class="fas fa-trash">
