@@ -1,13 +1,13 @@
 class PersonalRequest < ApplicationRecord
-  PARAMS = %i(request_type time_from time_to reason).freeze
+  PARAMS = %i(user_id project_id title reason).freeze
 
   enum status: {waiting: 0, approval: 1, rejected: 2, forwarded: 3}
-  enum request_type: {lated: 0, leaved: 1}
 
   belongs_to :user
+  belongs_to :project, class_name: Project.name, foreign_key: :project_id
   has_many :notifications, as: :object
   has_many :approval_requests, dependent: :destroy
 
-  validates :time_from, presence: true
-  validates :time_to, presence: true
+  validates :title, presence: true
+  validates :reason, presence: true
 end

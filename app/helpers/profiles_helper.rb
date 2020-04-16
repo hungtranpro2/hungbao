@@ -8,9 +8,9 @@ module ProfilesHelper
     PersonalRequest.statuses.keys.map{|i| "<option>#{i}</option>"}
   end
 
-  def request_type_select
-    PersonalRequest.request_types.keys.map{|i| i}
-  end
+  # def request_type_select
+  #   PersonalRequest.request_types.keys.map{|i| i}
+  # end
 
   def my_group_select
     Project.all.map{|i| i}

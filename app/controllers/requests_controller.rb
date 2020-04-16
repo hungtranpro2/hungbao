@@ -15,44 +15,43 @@ class RequestsController < ApplicationController
   end
 
   def new
-    @request = current_user.personal_requests.new
+    @personal_request = current_user.personal_requests.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 
   def edit
-    @request = current_user.personal_requests.find_by id: params[:id]
+    @personal_request = current_user.personal_requests.find_by id: params[:id]
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
-    @request = current_user.personal_requests.new request_params
-    if params[:personal_request][:time_from] > params[:personal_request][:time_to] ||  params[:personal_request][:time_to] > Time.now.to_s
-      @request.errors.add(:time_from, "Thời gian bắt đầu và kết thúc không hợp lệ!")
-      render :new
-    else
-      ActiveRecord::Base.transaction do
-        @request.save!
-
-        if !current_division.is_project? && current_user.member? || current_user.hr?
-          send_division_manager
-        elsif current_division.is_project? && current_user.member?
-          send_project_manager
-        elsif !current_division.is_project? && current_user.manager?
-          send_project_leader
-        end
-
-        flash[:success] = "Tạo yêu cầu thành công"
-        redirect_to requests_path
-      rescue ActiveRecord::RecordInvalid
-        flash.now[:error] = "Tạo yêu cầu thất bại"
-        render :new
+    @personal_request = current_user.personal_requests.new request_params
+    ActiveRecord::Base.transaction do
+      @personal_request.save!
+      if !current_division.is_project? && current_user.member? || current_user.hr?
+        send_division_manager @personal_request
+      elsif !current_division.is_project? && current_user.manager?
+        send_project_leader params[:personal_request][:project_id], @personal_request
       end
+
+      flash[:success] = "Tạo yêu cầu thành công"
+      redirect_to requests_path
+    rescue ActiveRecord::RecordInvalid
+      render :new
     end
   end
 
   def update
-     @request = current_user.personal_requests.find_by id: params[:id]
-     if @request.status == "waiting"
-       if @request.update(request_params)
+     @personal_request = current_user.personal_requests.find_by id: params[:id]
+     if @personal_request.status == "waiting"
+       if @personal_request.update(request_params)
           flash[:success] = "Cập nhật yêu cầu thành công"
           redirect_to requests_path
        else
@@ -66,9 +65,9 @@ class RequestsController < ApplicationController
   end
 
   def destroy
-    @request = current_user.personal_requests.find_by id: params[:id]
-    if @request.status == "waiting"
-      if @request.destroy
+    @personal_request = current_user.personal_requests.find_by id: params[:id]
+    if @personal_request.status == "waiting"
+      if @personal_request.destroy
         flash[:success] = "Xóa yêu cầu thành công"
         redirect_to requests_path
       else
@@ -83,26 +82,27 @@ class RequestsController < ApplicationController
 
   private
 
-  def send_division_manager
-    @approval_request = @request.approval_requests.create! division_id: current_division.id
+  def send_division_manager request
+    @approval_request = request.approval_requests.create! division_id: current_division.id
     current_division.users.manager.each do |manager|
       @approval_request.notifications.create!(title: "Bạn có một yêu cầu mới", sender_id: current_user.id, receiver_id: manager.id)
     end
   end
 
-  def send_project_leader
-    @approval_request = @request.approval_requests.create! division_id: Division.where(is_project: true).first.id
-    Division.where(is_project: true).first.users.member.each do |manager|
+  def send_project_leader project_id, request
+    @approval_request = request.approval_requests.create! division_id: Division.where(is_project: true).first.id
+    @project = Project.find_by id: project_id
+    @project.users.where(division_id: Division.where(is_project: true)).each do |manager|
       @approval_request.notifications.create!(title: "Bạn có một yêu cầu mới", sender_id: current_user.id, receiver_id: manager.id)
     end
   end
 
-  def send_project_manager
-    @approval_request = @request.approval_requests.create! division_id: current_division.id
-    current_division.users.manager.each do |manager|
-      @approval_request.notifications.create!(title: "Bạn có một yêu cầu mới", sender_id: current_user.id, receiver_id: manager.id)
-    end
-  end
+  # def send_project_manager
+  #   @approval_request = @request.approval_requests.create! division_id: current_division.id
+  #   current_division.users.manager.each do |manager|
+  #     @approval_request.notifications.create!(title: "Bạn có một yêu cầu mới", sender_id: current_user.id, receiver_id: manager.id)
+  #   end
+  # end
 
   def request_params
     params.require(:personal_request).permit PersonalRequest::PARAMS

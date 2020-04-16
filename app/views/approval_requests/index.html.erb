@@ -1,6 +1,10 @@
 <% provide(:title, t(".begin_title")) %>
 <div class="content-wrapper" style="height: 500px;">
-  <%= render partial: "shared/head_profile", locals: {path1: "#", title: "Yêu cầu thành viên cho dự án", link1: "Trang chủ", link2: "Danh sách yêu cầu"}%>
+  <% if current_division.is_project? && current_user.member? %>
+    <%= render partial: "shared/head_profile", locals: {path1: overview_projects_path, title: "Phê duyệt yêu cầu của thành viên", link1: "Quản lý dự án", link2: "Danh sách yêu cầu"}%>
+  <% elsif !current_division.is_project? && current_user.manager? %>
+   <%= render partial: "shared/head_profile", locals: {path1: overview_divisions_path, title: "Phê duyệt yêu cầu của thành viên", link1: "Quản lý bộ phận", link2: "Danh sách yêu cầu"}%>
+  <% end %>
   <section class="content">
     <div class="col-12">
     <div class="float-right" style="margin: 10px 15px;">
@@ -33,10 +37,11 @@
             <thead>
             <tr>
               <th>#</th>
-              <th>Ngày khởi tạo</th>
-              <th>Loại yêu cầu</th>
+              <th>Tiêu đề</th>
+              <th>Dự án</th>
+              <th>Người gửi</th>
+              <th>Thời gian gửi</th>
               <th>Lý do</th>
-              <th>Thời gian yêu cầu</th>
               <th>Trạng thái</th>
               <th class="text-center">More</th>
             </tr>

@@ -21,16 +21,6 @@ ActiveRecord::Schema.define(version: 2020_04_13_104136) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "count_messes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.integer "count_mess"
-    t.bigint "list_message_id"
-    t.bigint "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["list_message_id"], name: "index_count_messes_on_list_message_id"
-    t.index ["user_id"], name: "index_count_messes_on_user_id"
-  end
-
   create_table "divisions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.integer "is_project", default: 0
@@ -41,7 +31,6 @@ ActiveRecord::Schema.define(version: 2020_04_13_104136) do
 
   create_table "list_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
-    t.string "logo"
     t.integer "type_mes", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -71,11 +60,10 @@ ActiveRecord::Schema.define(version: 2020_04_13_104136) do
   end
 
   create_table "personal_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.integer "request_type", default: 0
-    t.datetime "time_from"
-    t.datetime "time_to"
+    t.string "title"
     t.text "reason"
     t.integer "status", default: 0
+    t.integer "project_id"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -172,8 +160,6 @@ ActiveRecord::Schema.define(version: 2020_04_13_104136) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "count_messes", "list_messages"
-  add_foreign_key "count_messes", "users"
   add_foreign_key "messages", "list_messages"
   add_foreign_key "messages", "users"
   add_foreign_key "personal_requests", "users"
