@@ -1,12 +1,12 @@
 <% provide(:title, t(".begin_title")) %>
 <div class="content-wrapper" style="height: 500px;">
-  <%= render partial: "shared/head_profile", locals: {path1: "#", title: "Yêu cầu thành viên cho dự án", link1: "Thành viên của dự án", link2: "Yêu cầu thành viên cho dự án"}%>
+  <%= render partial: "shared/head_profile", locals: {path1: root_path, title: "Yêu cầu cá nhân", link1: "Trang chủ", link2: "Yêu cầu"}%>
   <section class="content">
     <div class="col-12">
     <div class="float-right" style="margin: 10px 15px;">
       <div class="row">
         <div style="margin-right: 50px;">
-          <%= link_to new_request_path, class: "btn btn-success" do %>
+          <%= link_to new_request_path, {class: "btn btn-success", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
             <i class="fas fa-plus"></i>
             Tạo yêu cầu
           <% end %>
@@ -36,10 +36,10 @@
             <thead>
             <tr>
               <th>#</th>
-              <th>Ngày khởi tạo</th>
-              <th>Loại yêu cầu</th>
+              <th>Tiêu đề</th>
+              <th>Dự án</th>
+              <th>Thời gian gửi</th>
               <th>Lý do</th>
-              <th>Thời gian yêu cầu</th>
               <th>Trạng thái</th>
               <th class="text-center">More</th>
             </tr>

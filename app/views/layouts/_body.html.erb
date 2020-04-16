@@ -102,15 +102,6 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         <li class="nav-item has-treeview">
-          <%= link_to requests_path, class: "nav-link" do %>
-            <i class="nav-icon fas fa-user-tag"></i>
-            <p>
-              Yêu cầu cá nhân
-            </p>
-          <% end %>
-        </li>
-
-        <li class="nav-item has-treeview">
           <%= link_to reports_path, class: "nav-link" do %>
             <i class="nav-icon fas fa-user-edit"></i>
             <p>
@@ -263,6 +254,15 @@
           <% end %>
 
           <% if current_user.manager? && !current_division.is_project?%>
+             <li class="nav-item has-treeview">
+              <%= link_to requests_path, class: "nav-link" do %>
+                <i class="nav-icon fas fa-user-tag"></i>
+                <p>
+                  Yêu cầu cá nhân
+                </p>
+              <% end %>
+            </li>
+
             <li class="nav-item has-treeview">
               <%= link_to my_works_path, class: "nav-link" do %>
                 <i class="nav-icon fas fa-thumbtack"></i>
@@ -322,6 +322,14 @@
           <% end %>
 
           <% if current_user.member? && !current_division.is_project?%>
+            <li class="nav-item has-treeview">
+              <%= link_to requests_path, class: "nav-link" do %>
+                <i class="nav-icon fas fa-user-tag"></i>
+                <p>
+                  Yêu cầu cá nhân
+                </p>
+              <% end %>
+            </li>
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>

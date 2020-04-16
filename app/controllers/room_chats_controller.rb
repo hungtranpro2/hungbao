@@ -18,7 +18,11 @@ class RoomChatsController < ApplicationController
     @message = Message.new
     @group_chats = current_user.list_messages.uniq
     @group_chat = ListMessage.find_by id: params[:id]
-    @messages = @group_chat.messages.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    if @group_chat.my_chat?
+      @messages = @group_chat.messages.where(user_id: current_user.id).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    else
+      @messages = @group_chat.messages.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    end
     @item_active = params[:id].to_i
 
     respond_to do |format|

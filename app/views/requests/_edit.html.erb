@@ -1,0 +1,54 @@
+<div class="card-body">
+  <div class="tab-content">
+    <div class="active tab-pane" id="settings">
+      <%= form_for(@personal_request, url: request_path, class: "form-horizontal", remote: true) do |f|%>
+        <%= render "shared/error_messages", object: f.object %>
+          <div class="form-group row">
+            <div class="col-sm-2">
+              <%= f.label :title, class: "col-form-label" %>
+            </div>
+            <div class="col-sm-10">
+              <%= f.text_field :title, class: "form-control", placeholder: "Title" %>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-2">
+              <%= f.label "Name", class: "col-form-label" %>
+            </div>
+            <div class="col-sm-4">
+              <input type="email" class="form-control" disabled="disabled"  placeholder="<%= current_user.name %>">
+            </div>
+
+            <%= f.label :project_id, class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-4">
+              <% if personal_project.present? %>
+                <%= f.select :project_id, personal_project.collect{|i| [i.name, i.id]}, {} , {class: "form-control custom-select", disabled: true}  %>
+              <% else %>
+               <%= f.text_field :project_id , {class: "form-control custom-select", value: "Không có dự án nào", readonly: true}  %>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-2">
+              <%= f.label :reason, class: "col-form-label" %>
+            </div>
+            <div class="col-sm-10">
+              <%= f.text_area :reason, class: "form-control", placeholder: "Reason", style: "height: 150px;" %>
+            </div>
+          </div>
+          <% if personal_project.present? %>
+            <div class="form-group row">
+              <div class="offset-sm-2 col-sm-10">
+                <%= f.submit "Gửi yêu cầu", class: "btn btn-success" %>
+              </div>
+            </div>
+          <% end %>
+      <% end %>
+    </div>
+    <!-- /.tab-pane -->
+  </div>
+  <!-- /.tab-content -->
+</div><!-- /.card-body -->
+

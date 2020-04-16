@@ -1,9 +1,9 @@
 <tr>
   <td><%= request_counter + 1 %></td>
+  <td><%= request.title %></td>
+  <td><%= request.project.name %></td>
   <td><%= request.created_at %></td>
-  <td><%= request.request_type %></td>
   <td><%= request.reason %></td>
-  <td  class="hidden_content"><%= "#{request.time_from} - #{request.time_to}" %></td>
   <td>
     <% if request.status == "waiting" %>
       <span class="badge badge-primary"><%= request.status %></span>
@@ -17,13 +17,13 @@
   </td>
   <td class="project-actions text-right">
     <%= link_to request_path(request), {class: "btn btn-primary btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
-      <i class="fas fa-folder">
+      <i class="fas fa-eye">
       </i>
       View
     <% end %>
 
     <% if request.status == "waiting" %>
-      <%= link_to edit_request_path(request),{ class: "btn btn-info btn-sm"} do %>
+      <%= link_to edit_request_path(request),{class: "btn btn-info btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
         <i class="fas fa-pencil-alt">
         </i>
         Edit
