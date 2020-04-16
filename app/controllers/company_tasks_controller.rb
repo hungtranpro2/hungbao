@@ -1,4 +1,6 @@
 class CompanyTasksController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @projects = Project.all
     @q = Task.where(parent_task: true).ransack(params[:q])

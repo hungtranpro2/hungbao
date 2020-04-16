@@ -1,9 +1,9 @@
 <% provide(:title, t(".begin_title")) %>
 <div class="content-wrapper" style="height: 500px;">
-  <%= render partial: "shared/head_profile", locals: {path1: "#", title: "Yêu cầu thành viên cho dự án", link1: "Thành viên của dự án", link2: "Yêu cầu thành viên cho dự án"}%>
+  <%= render partial: "shared/head_profile", locals: {path1: "#", title: "Yêu cầu thành viên cho dự án", link1: "Trang chủ", link2: "Danh sách yêu cầu"}%>
   <section class="content">
     <div class="col-12">
-    <div class="card-header row" style="margin: 10px 1px;">
+    <div class="float-right" style="margin: 10px 15px;">
       <div class="row">
         <%= search_form_for @q, url: requests_path, class: "form-inline", method: :get do |f| %>
           <%= f.date_field :created_at_gteq, class: "form-control select" %>
@@ -15,8 +15,8 @@
           <% end %>
         <% end %>
       </div>
-    </div>
-     <div class="card">
+     </div>
+     <div class="card" style="width: 100%">
         <div class="card-header border-0">
           <h3 class="card-title">Thêm quản lý dự án</h3>
           <div class="card-tools">

@@ -3,7 +3,7 @@
   <%= render partial: "shared/head_profile", locals: {path1: "#", title: "Yêu cầu thành viên cho dự án", link1: "Thành viên của dự án", link2: "Yêu cầu thành viên cho dự án"}%>
   <section class="content">
     <div class="col-12">
-    <div class="card-header row" style="margin: 10px 1px;">
+    <div class="float-right" style="margin: 10px 15px;">
       <div class="row">
         <div style="margin-right: 50px;">
           <%= link_to new_report_path, class: "btn btn-success" do %>
@@ -25,17 +25,12 @@
       </div>
 
     </div>
-     <div class="card">
-        <div class="card-header border-0">
-          <h3 class="card-title">Thêm quản lý dự án</h3>
-          <div class="card-tools">
-            <a href="#" class="btn btn-tool btn-sm">
-              <i class="fas fa-download"></i>
-            </a>
-            <a href="#" class="btn btn-tool btn-sm">
-              <i class="fas fa-bars"></i>
-            </a>
-          </div>
+     <div class="card" style="width: 100%">
+        <div class="card-header border-0" style="height: 40px;">
+          <h3 class="card-title"><b>Danh sách báo cáo</b></h3>
+          <% if @reports.blank? %>
+            <h3 class="card-title text-danger" style="margin-left: 30px;"><b>không có báo cáo nào</b></h3>
+          <% end %>
         </div>
         <div class="card-body table-responsive p-0">
           <table class="table table-striped table-valign-middle">
