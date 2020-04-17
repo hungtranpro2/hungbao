@@ -1,21 +1,6 @@
  <div class="content-wrapper" style="background: white;">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Danh sách cá dự án</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v2</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+   <%= render partial: "shared/head_profile", locals: {path1: overview_divisions_path, title: "Danh sách dự án bộ phận #{current_division.name}", link1: "Quản lý bộ phận", link2: "Thành viên"}%>
 
     <!-- Main content -->
     <section class="content">
@@ -23,20 +8,23 @@
 
         <div class="row">
           <!-- Left col -->
-          <div class="col-md-9">
-
-            <div class="card">
-              <div class="card-header border-transparent">
+          <div class="col-md-12">
+            <div class="float-right" style="margin: 10px 1px;">
+              <div>
+                <%= search_form_for @q, url: division_projects_path, class: "form-inline" do |f| %>
+                  <%= f.search_field :name_cont, class: "form-control mr-sm-2", placeholder: "Search" %>
+                  <%= f.submit class: "btn btn-outline-success my-2 my-sm-0" do %>
+                    <i class="fas fa-search"></i>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+            <div class="card" style="width: 100%">
+              <div class="card-header border-transparent" style="height: 40px;">
                 <h3 class="card-title" style="font-weight: 700">Dự án</h3>
-
-                 <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 250px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-success"><i class="fas fa-search"></i></button>
-                    </div>
-                  </div>
-                </div>
+                <% if @projects.blank? %>
+                  <h3 class="card-title text-danger" style="font-weight: 700; margin-left: 10px;">- không có dự án nào</h3>
+                <% end %>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
@@ -47,27 +35,22 @@
                       <th>Order ID</th>
                       <th>Project Name</th>
                       <th>Client Company</th>
-                      <th>Popularity</th>
-                      <th>Status</th>
+                      <th>Document Link</th>
+                      <th>Description</th>
+                      <th>Expected</th>
+                      <th>Progress</th>
+
                       <th>More</th>
                     </tr>
                     </thead>
                     <tbody id="show-task-pr">
-                      <%= render partial: "division_projects/task", collection: @tasks %>
+                      <%= render partial: "division_projects/project", collection: @projects %>
                     </tbody>
                   </table>
                 </div>
-                <!-- /.table-responsive -->
               </div>
             </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-
-          <div class="col-md-3">
-            <!-- Info Boxes Style 2 -->
-            <%= render partial: "division_projects/project", collection: @projects %>
-
+            <%= will_paginate @projects if @projects %>
           </div>
           <!-- /.col -->
         </div>

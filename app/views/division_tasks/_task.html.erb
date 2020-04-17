@@ -1,23 +1,69 @@
 <tr class="hidden_content">
   <td><%= task_counter + 1 %></td>
   <td><%= "OR#{task.id}" %></td>
+  <td><%= task.project.name %></td>
   <td><%= task.title %></td>
+  <% if task.parent_task? %>
+    <td><span class="badge badge-info">parent task</span></td>
+  <% else %>
+    <td><span class="badge badge-warning">children task</span></td>
+  <% end %>
   <% if task.project.present? %>
     <td><%= task.project.name %></td>
   <% else %>
     <td><%= task.parent&.project&.name %></td>
   <% end %>
   <td><%= task.user.name %></td>
-  <% if task.parent_task? %>
-    <td><span class="badge badge-info">parent task</span></td>
+  <% if task.start_time > Date.today %>
+    <td><span class="badge badge-info">transfer</span></td>
+  <% elsif task.end_time > Date.today %>
+    <td><span class="badge badge-warning">unfinished</span></td>
   <% else %>
-    <td><span class="badge badge-warning">children task</span></td>
+    <td><span class="badge badge-danger">finished</span></td>
   <% end %>
   <td>
-    <% if (task.end_time < Date.today) %>
-      <span style="color: #dc3545; font-weight: 800;"><%= "#{task.progress } %" %></span>
+    <% if task.end_time < Date.today %>
+      <span class="text-success" style="font-weight: 800;"><%= "100 %" %></span>
     <% else %>
-      <span style="color: #28a745; font-weight: 800;"><%= "#{task.progress } %" %></span>
+      <span class="text-success" style="font-weight: 800;"><%= "#{ ((task.start_time..Date.today).count.to_f / (task.start_time..task.end_time).count * 100).round(2)} %" %></span>
+    <% end %>
+  </td>
+
+  <td>
+    <% if task.end_time < Date.today %>
+      <% if task.progress == 100 %>
+        <span class="description-percentage text-warning">
+            <i class="fas fa-caret-left"></i>
+          <b><%= "0 %" %></b>
+        </span>
+      <% elsif task.progress < 100 %>
+        <span class="description-percentage text-danger">
+            <i class="fas fa-caret-down"></i>
+          <b><%= "#{(task.progress - 100).round(2)}%" %></b>
+        </span>
+      <% else %>
+        <span class="description-percentage text-danger">
+            <i class="fas fa-caret-up"></i>
+          <b><%= "#{(task.progress - 100).round(2)}%" %></b>
+        </span>
+      <% end %>
+    <% else %>
+      <% if task.progress < ((task.start_time..Date.today).count.to_f / (task.start_time..task.end_time).count * 100).round(2) %>
+        <span class="description-percentage text-danger">
+          <i class="fas fa-caret-down"></i>
+          <b><%= "#{(task.progress - (task.start_time..Date.today).count.to_f / (task.start_time..task.end_time).count * 100).round(2)} %" %></b>
+        </span>
+      <% elsif task.progress > ((task.start_time..Date.today).count.to_f / (task.start_time..task.end_time).count * 100).round(2) %>
+         <span class="description-percentage text-success">
+          <i class="fas fa-caret-up"></i>
+          <b><%= "#{(task.progress - (task.start_time..Date.today).count.to_f / (task.start_time..task.end_time).count * 100).round(2) } %" %></b>
+        </span>
+      <% else %>
+        <span class="description-percentage text-warning">
+          <i class="fas fa-caret-left"></i>
+          <b><%= "0 %" %></b>
+        </span>
+      <% end %>
     <% end %>
   </td>
 
