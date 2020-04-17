@@ -1,48 +1,45 @@
 <% provide(:title, t(".begin_title")) %>
 <div class="content-wrapper" style="height: 500px;">
-  <%= render partial: "shared/head_profile", locals: {path1: "#", title: "Yêu cầu thành viên cho dự án", link1: "Thành viên của dự án", link2: "Yêu cầu thành viên cho dự án"}%>
+  <%= render partial: "shared/head_profile", locals: {path1: root_path, title: "Yêu cầu cá nhân", link1: "Trang chủ", link2: "Yêu cầu"}%>
   <section class="content">
     <div class="col-12">
-    <div class="card-header row" style="margin: 10px 1px;">
+    <div class="float-right" style="margin: 10px 15px;">
       <div class="row">
         <div style="margin-right: 50px;">
-          <%= link_to new_request_path, class: "btn btn-success" do %>
+          <%= link_to new_request_path, {class: "btn btn-success", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
             <i class="fas fa-plus"></i>
-            Rạo yêu cầu
+            Tạo yêu cầu
           <% end %>
         </div>
-        <%= search_form_for @q, url: requests_path, class: "form-inline", method: :get do |f| %>
-          <%= f.date_field :created_at_gteq, class: "form-control select" %>
-          <%= f.date_field :created_at_lteq, class: "form-control select" %>
-          <%= f.select :status_cont, raw(status_request_select), {include_blank: "Choose status"}, class: "form-control select" %>
-          <%= f.search_field :reason_cont, class: "form-control mr-sm-2", placeholder: "Search" %>
-          <%= f.submit class: "btn btn-outline-success my-2 my-sm-0" do %>
-            <i class="fas fa-search"></i>
+        <div class="float-right">
+          <%= search_form_for @q, url: requests_path, class: "form-inline", method: :get do |f| %>
+            <%= f.date_field :created_at_gteq, class: "form-control select" %>
+            <%= f.date_field :created_at_lteq, class: "form-control select" %>
+            <%= f.select :status_cont, raw(status_request_select), {include_blank: "Choose status"}, class: "form-control select" %>
+            <%= f.search_field :reason_cont, class: "form-control mr-sm-2", placeholder: "Search" %>
+            <%= f.submit class: "btn btn-outline-success my-2 my-sm-0" do %>
+              <i class="fas fa-search"></i>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
     </div>
-     <div class="card">
-        <div class="card-header border-0">
-          <h3 class="card-title">Thêm quản lý dự án</h3>
-          <div class="card-tools">
-            <a href="#" class="btn btn-tool btn-sm">
-              <i class="fas fa-download"></i>
-            </a>
-            <a href="#" class="btn btn-tool btn-sm">
-              <i class="fas fa-bars"></i>
-            </a>
-          </div>
+     <div class="card" style="width: 100%">
+        <div class="card-header border-0" style="height: 40px;">
+          <h3 class="card-title"><b>Thêm quản lý dự án</b></h3>
+          <% if @requests.blank? %>
+            <h3 class="card-title text-danger" style="margin-left: 30px;"><b>không có báo cáo nào</b></h3>
+          <% end %>
         </div>
         <div class="card-body table-responsive p-0">
           <table class="table table-striped table-valign-middle">
             <thead>
             <tr>
               <th>#</th>
-              <th>Ngày khởi tạo</th>
-              <th>Loại yêu cầu</th>
+              <th>Tiêu đề</th>
+              <th>Dự án</th>
+              <th>Thời gian gửi</th>
               <th>Lý do</th>
-              <th>Thời gian yêu cầu</th>
               <th>Trạng thái</th>
               <th class="text-center">More</th>
             </tr>

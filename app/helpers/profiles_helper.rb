@@ -8,9 +8,9 @@ module ProfilesHelper
     PersonalRequest.statuses.keys.map{|i| "<option>#{i}</option>"}
   end
 
-  def request_type_select
-    PersonalRequest.request_types.keys.map{|i| i}
-  end
+  # def request_type_select
+  #   PersonalRequest.request_types.keys.map{|i| i}
+  # end
 
   def my_group_select
     Project.all.map{|i| i}
@@ -75,5 +75,9 @@ module ProfilesHelper
 
   def division_select
     Division.all.map{|i| i}
+  end
+
+  def division_request_select
+    current_user.projects.first.divisions.where.not(id: current_division.id).uniq.map{|i| i}
   end
 end

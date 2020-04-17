@@ -1,5 +1,10 @@
 <div class="content-wrapper">
-   <%= render partial: "shared/head_profile", locals: {path1: overview_projects_path, title: "Quản lý task dự án thuộc dự án", link1: "Quản lý dự án", link2: "Danh sách Tasks"}%>
+  <% if current_user.member? %>
+    <%= render partial: "shared/head_profile", locals: {path1: overview_projects_path, title: "Quản lý task dự án thuộc dự án", link1: "Quản lý dự án", link2: "Danh sách Tasks"}%>
+  <% else %>
+    <%= render partial: "shared/head_profile", locals: {path1: overview_divisions_path, title: "Quản lý task dự án thuộc dự án", link1: "Quản lý bộ phận", link2: "Danh sách Tasks"}%>
+  <% end %>
+
     <section class="content">
 
       <div class="card container">
@@ -23,13 +28,12 @@
                           <thead>
                           <tr style="color: #17a2b8;">
                             <th>#</th>
-                            <th>Order ID</th>
-                            <th style="min-width: 150px;">Title</th>
-                            <th style="min-width: 180px;">Project</th>
-                            <th>Member</th>
-                            <th>Type</th>
-                            <th>Progress</th>
-                            <th class="text-center">More</th>
+                            <th>Title</th>
+                            <th>Project</th>
+                            <th>Division</th>
+                            <th>Document Link</th>
+                            <th>Description</th>
+                            <th class="text-center" style="width: 20%">More</th>
                           </tr>
                           </thead>
                           <tbody>

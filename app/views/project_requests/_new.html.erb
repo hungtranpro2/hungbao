@@ -2,7 +2,7 @@
 <div class="card-body">
   <div class="tab-content">
     <div class="active tab-pane" id="settings">
-      <%= form_for(@request, url: division_tasks_path, class: "form-horizontal", remote: true) do |f|%>
+      <%= form_for(@project_request, url: project_requests_path, class: "form-horizontal", remote: true) do |f|%>
         <%= render "shared/error_messages", object: f.object %>
         <div class="form-group row">
           <div class="col-sm-2">
@@ -16,13 +16,13 @@
 
         <div class="form-group row">
           <%= f.label :division_id, class: "col-sm-2 col-form-label" %>
-          <div class="col-sm-3">
-            <%= f.select :division_id, lock_task_select,{}, {class: "form-control custom-select", disabled: true }  %>
+          <div class="col-sm-4">
+            <%= f.select :division_id, division_request_select.collect{|i| [i.name, i.id]},{}, {class: "form-control custom-select"}  %>
           </div>
 
           <%= f.label :project_id, class: "col-sm-2 col-form-label" %>
-          <div class="col-sm-4" style="padding-right: 0px;">
-            <%= f.select :project_id, project_tag.collect{|i| [i.name, i.id]}, {}, {class: "form-control custom-select" }  %>
+          <div class="col-sm-4">
+             <%= f.text_field :project_id, class: "form-control", value: "#{current_user.projects.first.name}", readonly: true %>
           </div>
         </div>
 
@@ -30,20 +30,26 @@
           <div class="col-sm-2">
             <%= f.label :client_company, class: "col-form-label" %>
           </div>
-          <div class="col-sm-10">
+          <div class="col-sm-4">
             <%= f.text_field :client_company, class: "form-control", placeholder:"Link Pull Request" %>
+          </div>
+
+          <div class="col-sm-2">
+            <%= f.label :project_leader, class: "col-form-label" %>
+          </div>
+          <div class="col-sm-4">
+            <%= f.text_field :project_leader, {class: "form-control", value: "#{current_user.name}", readonly: true} %>
           </div>
         </div>
 
         <div class="form-group row">
           <div class="col-sm-2">
-            <%= f.label :project_leader, class: "col-form-label" %>
+            <%= f.label :document_link, class: "col-form-label" %>
           </div>
           <div class="col-sm-10">
-            <%= f.text_field :project_leader, class: "form-control", placeholder:"Link Pull Request" %>
+            <%= f.text_field :document_link, {class: "form-control", value: "#{current_user.name}"} %>
           </div>
         </div>
-
 
         <div class="form-group row">
           <div class="col-sm-2">
@@ -57,7 +63,7 @@
 
         <div class="form-group row">
           <div class="offset-sm-2 col-sm-10">
-            <%= f.submit "Tạo Task", class: "btn btn-success" %>
+            <%= f.submit "Tạo Yêu Cầu", class: "btn btn-success" %>
           </div>
         </div>
       <% end %>

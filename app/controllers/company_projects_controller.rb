@@ -23,15 +23,13 @@ class CompanyProjectsController < ApplicationController
 
   def create
     @project = Project.new project_params
-    if @project.save
+    ActiveRecord::Base.transaction do
+      @project.save!
+      create_room_chat @project
       flash[:success] = "Khởi tạo dự án thành công"
       redirect_to company_projects_path
-    else
-      flash[:error] = "Khởi tạo dự án thất bại"
-      respond_to do |format|
-        format.html
-        format.js{render :new}
-      end
+    rescue ActiveRecord::RecordInvalid
+      render :new
     end
   end
 
@@ -56,16 +54,28 @@ class CompanyProjectsController < ApplicationController
 
   def destroy
     @project = Project.find_by id: params[:id]
-    if @project.destroy
+    ActiveRecord::Base.transaction do
+      @project.destroy!
+      delete_room_chat @project
       flash[:success] = "Xóa dự án thành công"
       redirect_to company_projects_path
-    else
-      flash[:success] = "Xóa dự án thất bại"
+    rescue ActiveRecord::RecordInvalid
+      flash[:error] = "Xóa dự án thất bại"
       redirect_to root_path
     end
   end
 
   private
+
+  def create_room_chat project
+    list = ListMessage.create!(name: project.name, type_mes: 1)
+    Message.create!(content: "#{current_user.name} đã tham gia dự án", list_message_id: list.id, user_id: current_user.id)
+  end
+
+  def delete_room_chat project
+    @list = ListMessage.find_by name: project.name
+    @list.destroy! if @list.present?
+  end
 
   def project_params
     params.require(:project).permit Project::PARAMS
