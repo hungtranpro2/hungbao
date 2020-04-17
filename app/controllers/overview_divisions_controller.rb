@@ -1,6 +1,8 @@
 class OverviewDivisionsController < ApplicationController
   before_action :authenticate_user!
   before_action :count_overview, only: [:index]
+  before_action :correct_team_leader
+
   def index
     @tasks = current_division.tasks.where(parent_task: true, active: true)
     time_line @tasks
@@ -21,5 +23,11 @@ class OverviewDivisionsController < ApplicationController
     @project_count = current_division.projects.uniq.count
     @report_count = current_division.reports.uniq.count
     @task_count = current_division.tasks.uniq.count
+  end
+
+  def correct_team_leader
+    unless current_user.manager? && !current_division.is_project?
+      redirect_to root_path
+    end
   end
 end

@@ -1,6 +1,7 @@
 class CompanyProjectsController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :correct_boss
 
   def index
     @q = Project.ransack(params[:q])
@@ -81,4 +82,9 @@ class CompanyProjectsController < ApplicationController
     params.require(:project).permit Project::PARAMS
   end
 
+  def correct_boss
+    unless current_user.manager? && current_division.is_project?
+      redirect_to root_path
+    end
+  end
 end

@@ -80,4 +80,75 @@ module ProfilesHelper
   def division_request_select
     current_user.projects.first.divisions.where.not(id: current_division.id).uniq.map{|i| i}
   end
+
+  def progress_project project
+    @tasks = project.tasks.where(parent_task: true)
+
+    sum_progress = @tasks.inject(0) do |sum, task|
+       sum + task.progress*(task.start_time..task.end_time).count
+    end
+
+    sum_expected_day = @tasks.inject(0) do |sum, task|
+      sum + (task.start_time..task.end_time).count
+    end
+    if sum_expected_day != 0
+      return (sum_progress.to_f / sum_expected_day).round(2)
+    else
+      return 0
+    end
+  end
+
+  def expected_project project
+    @tasks = project.tasks.where(parent_task: true)
+
+    sum_expected_day = @tasks.inject(0) do |sum, task|
+      sum + (task.start_time..task.end_time).count
+    end
+
+    sum_progress_day =  @tasks.inject(0) do |sum, task|
+      (task.end_time < Date.today) ? sum + (task.start_time..task.end_time).count : sum + (task.start_time..Date.today).count
+    end
+
+    if sum_expected_day != 0
+      return (sum_progress_day.to_f / sum_expected_day *100).round(2)
+    else
+      return 0
+    end
+  end
+
+  def progress_division project
+    @tasks = current_division.tasks.where(parent_task: true, project_id: project.id).uniq
+
+    sum_progress = @tasks.inject(0) do |sum, task|
+       sum + task.progress*(task.start_time..task.end_time).count
+    end
+
+    sum_expected_day = @tasks.inject(0) do |sum, task|
+      sum + (task.start_time..task.end_time).count
+    end
+    if sum_expected_day != 0
+      return (sum_progress.to_f / sum_expected_day).round(2)
+    else
+      return 0
+    end
+  end
+
+  def expected_division project
+    @tasks = current_division.tasks.where(parent_task: true, project_id: project.id).uniq
+
+    sum_expected_day = @tasks.inject(0) do |sum, task|
+      sum + (task.start_time..task.end_time).count
+    end
+
+    sum_progress_day =  @tasks.inject(0) do |sum, task|
+      (task.end_time < Date.today) ? sum + (task.start_time..task.end_time).count : sum + (task.start_time..Date.today).count
+    end
+
+    if sum_expected_day != 0
+      return (sum_progress_day.to_f / sum_expected_day *100).round(2)
+    else
+      return 0
+    end
+  end
+
 end

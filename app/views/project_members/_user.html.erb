@@ -20,49 +20,42 @@
   </td>
   <td><%= user.skill %></td>
   <td><%= "#{user.user_projects.count} Project" %></td>
+
   <td>
     <% if user.member? && !user.division.is_project? %>
       <% if user.tasks.blank? %>
         <span class="badge badge-info">work empty</span>
       <% else %>
-        <% if (user.tasks.where(parent_task: true).first.progress - 100) > 0 %>
-          <b class="text-success">
-            <i class="fas fa-caret-up"></i>
-            <%= "#{user.tasks.where(parent_task: true).first.progress - 100} %"%>
-          </b>
-        <% elsif (user.tasks.where(parent_task: true).first.progress - 100) < 0%>
-           <b class="text-danger">
-            <i class="fas fa-caret-down"></i>
-            <%= "#{user.tasks.where(parent_task: true).first.progress - 100} %"%>
-          </b>
+        <% if user.tasks.where(parent_task: true).first.start_time > Date.today %>
+          <span class="badge badge-primary">transfer</span>
+        <% elsif user.tasks.where(parent_task: true).first.end_time > Date.today %>
+          <span class="badge badge-warning">unfinished</span>
         <% else %>
-           <b class="text-warning">
-            <i class="fas fa-caret-left"></i>
-            <%= "#{user.tasks.where(parent_task: true).first.progress - 100} %"%>
-          </b>
+          <span class="badge badge-danger">finished</span>
         <% end %>
       <% end %>
     <% else %>
-       <span class="badge badge-danger">manage</span>
+       <span class="badge badge-info">work empty</span>
     <% end %>
   </td>
+
+  <td>
+    <% if user.member? && !user.division.is_project? %>
+      <% if user.tasks.blank? %>
+        <span class="badge badge-info">work empty</span>
+      <% else %>
+        <span class="badge bg-success"><%= "#{user.tasks.where(parent_task: true).first.progress} %"%></span>
+      <% end %>
+    <% else %>
+       <span class="badge badge-info">work empty</span>
+    <% end %>
+  </td>
+
   <td class="project-actions text-right" style="max-width: 150px;">
     <%= link_to show_profile_path(user.id), {class: "btn btn-primary btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
       <i class="fas fa-eye">
       </i>
       Xem
-    <% end %>
-    <% if user.member? && !user.division.is_project? %>
-      <%= link_to "#", class: "btn btn-success btn-sm" do %>
-        <i class="fas fa-plus">
-        </i>
-        Yêu cầu thêm
-      <% end %>
-      <%= link_to "#", class: "btn btn-danger btn-sm" do %>
-        <i class="fas fa-plus">
-        </i>
-        Yêu cầu xóa
-      <% end %>
     <% end %>
   </td>
 </tr>

@@ -116,7 +116,7 @@ ActiveRecord::Schema.define(version: 2020_04_13_104136) do
     t.boolean "active", default: true
     t.integer "parent_id"
     t.boolean "parent_task", default: false
-    t.integer "progress"
+    t.float "progress"
     t.bigint "user_id"
     t.bigint "project_id"
     t.datetime "created_at", precision: 6, null: false
