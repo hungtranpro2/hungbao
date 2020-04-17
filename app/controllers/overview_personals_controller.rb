@@ -1,5 +1,6 @@
 class OverviewPersonalsController < ApplicationController
   before_action :authenticate_user!
+  before_action :correct_member
 
   def index
     @count_request = current_user.personal_requests.count
@@ -40,5 +41,11 @@ class OverviewPersonalsController < ApplicationController
     end
 
     @progress = (@sum_progress.to_f / @count_day).round(2)
+  end
+
+  def correct_member
+    unless current_user.member? && !current_division.is_project?
+      redirect_to root_path
+    end
   end
 end

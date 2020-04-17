@@ -14,7 +14,6 @@ class User < ApplicationRecord
   enum workspace: {Hanoi: 0, DaNang: 1}
   enum gender: {Male: 0, Female: 1}
   enum position: {DEV: 0, QA: 1, HR: 2, ProjectManager: 3}
-  enum status: {free: 0, medium: 1, busy: 2}
 
   belongs_to :division, class_name: Division.name, foreign_key: "division_id"
   has_many :user_projects, dependent: :destroy

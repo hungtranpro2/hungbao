@@ -24,7 +24,7 @@
             </div>
             <%= f.label :progress, class: "col-sm-2 col-form-label" %>
             <div class="col-sm-3">
-              <%= f.select :progress, progress_task_select.collect{|i| i}, {}, {class: "form-control custom-select"}  %>
+              <%= f.select :progress, options_for_select(progress_task_select.collect{|i| i}, @task.progress.to_i), {} , {class: "form-control custom-select"}  %>
             </div>
           </div>
 

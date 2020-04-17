@@ -28,7 +28,7 @@
       </div>
     </form>
 
-    <!-- Right navbar links -->
+    <!-- Riht navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
         <%= render partial: "notifications/notification_center" %>
@@ -167,15 +167,6 @@
                 </li>
 
                 <li class="nav-item has-treeview">
-                  <%= link_to company_tasks_path, class: "nav-link" do %>
-                    <i class="far fa-circle nav-icon text-warning"></i>
-                    <p>
-                      Danh sách task
-                    </p>
-                  <% end %>
-                </li>
-
-                <li class="nav-item has-treeview">
                   <%= link_to company_reports_path, class: "nav-link" do %>
                     <i class="far fa-circle nav-icon"></i>
                     <p>
@@ -309,12 +300,6 @@
                   <%= link_to division_tasks_path, class: "nav-link" do %>
                     <i class="far fa-circle nav-icon text-danger"></i>
                     <p>Task công việc</p>
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to project_requests_path, class: "nav-link" do %>
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Yêu cầu công việc</p>
                   <% end %>
                 </li>
               </ul>

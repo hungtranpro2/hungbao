@@ -10,7 +10,7 @@ class CreateTasks < ActiveRecord::Migration[6.0]
       t.boolean :active, default: true
       t.integer :parent_id
       t.boolean :parent_task, default: false
-      t.integer :progress
+      t.float :progress
       t.references :user, foreign_key: true
       t.references :project, foreign_key: true
 

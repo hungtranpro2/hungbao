@@ -1,17 +1,16 @@
 class DivisionProjectsController < ApplicationController
   before_action :authenticate_user!
+  before_action :correct_team_leader
 
   def index
-    @projects = current_division.projects.uniq
-    @tasks = current_division.projects.first.tasks.where(parent_task: true).uniq
+    @q = current_division.projects.ransack(params[:q])
+    @projects = @q.result(distinct: true).paginate(page: params[:page], per_page: 7)
   end
 
-  def show
-    @projects = current_division.projects.uniq
-    @tasks = current_division.projects.where(id: params[:id]).first.tasks.where(parent_task: true).uniq
-    respond_to do |format|
-      format.html
-      format.js
+  private
+  def correct_team_leader
+    unless current_user.manager? && !current_division.is_project?
+      redirect_to root_path
     end
   end
 end

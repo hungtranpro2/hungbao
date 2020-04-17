@@ -20,7 +20,7 @@
           <% if @users.blank? %>
             <input class="form-control", readonly="readonly", value="Không có thành viên nào!"/>
           <% else %>
-            <%= f.select :user_id, @users.collect{|i| ["#{i.name} - #{i.tasks.first&.title}", i.id]}, {} , {class: "form-control custom-select" }  %>
+            <%= f.select :user_id, @users.collect{|i| ["#{i.name} - #{i.tasks.where(project_id: @project).first&.title}", i.id]}, {} , {class: "form-control custom-select" }  %>
           <% end %>
         </div>
       </div>
