@@ -44,7 +44,12 @@
 
           <%= f.label :project_id, class: "col-sm-2 col-form-label" %>
           <div class="col-sm-4" style="padding-right: 0px;">
-            <%= f.select :project_id, project_tag.collect{|i| [i.name, i.id]}, {}, {class: "form-control custom-select" }  %>
+            <% if current_division.projects.present? %>
+              <%= f.select :project_id, project_tag.collect{|i| [i.name, i.id]}, {}, {class: "form-control custom-select" }  %>
+            <% else %>
+              <%= f.text_field :project_id, class: "form-control custom-select", value: "Không có dự án nào
+                ", disabled: true  %>
+            <% end %>
           </div>
         </div>
 

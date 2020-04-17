@@ -1,5 +1,6 @@
 class ProjectMembersController < ApplicationController
-   before_action :authenticate_user!
+  before_action :authenticate_user!
+  before_action :correct_project_leader
 
   def index
     @q = current_user.projects.first.users.ransack(params[:q])
@@ -19,6 +20,14 @@ class ProjectMembersController < ApplicationController
       redirect_to project_member_path(params[:project_id])
     else
       flash[:error] = "Bạn đã xóa thất bại thành viên này"
+      redirect_to root_path
+    end
+  end
+
+  private
+
+  def correct_project_leader
+    unless current_user.member? && current_division.is_project?
       redirect_to root_path
     end
   end

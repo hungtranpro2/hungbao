@@ -1,21 +1,6 @@
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark"><%= "Quản lý bộ phận #{current_division.name}" %></h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v2</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+    <%= render partial: "shared/head_profile", locals: {path1: room_chats_path, title: "Quản lý dự án cá nhân", link1: "Trang chủ", link2: "Thống kê"}%>
 
     <!-- Main content -->
     <section class="content">
@@ -78,8 +63,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-                  <i class="far fa-chart-bar"></i>
-                  jQuery Knob
+                  Time Line
                 </h3>
 
                 <div class="card-tools">
@@ -105,7 +89,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="card-title">Monthly Recap Report</h5>
+                <h5 class="card-title">Progress</h5>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -117,9 +101,6 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-8">
-                    <p class="text-center">
-                      <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
-                    </p>
 
                     <div class="chart">
                       <!-- Sales Chart Canvas -->
@@ -131,7 +112,7 @@
                   <!-- /.col -->
                   <div class="col-md-4">
                     <p class="text-center">
-                      <strong>Goal Completion</strong>
+                      <strong>Tỉ lệ tiến độ</strong>
                     </p>
 
                     <%= pie_chart @tasks.group(:progress).count, donut: true %>
@@ -148,7 +129,7 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
                       <h5 class="description-header text-info"><%= "#{@children_tasks.count} Task - #{@count_day} Days"%></h5>
-                      <span class="description-text">TOTAL DAYS</span>
+                      <span class="description-text">KẾ HOẠCH</span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -156,7 +137,7 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
                       <h5 class="description-header text-primary"> <%= "#{(@now_day.to_f / @count_day *100).round(2)} % - #{@now_day} Days" %></h5>
-                      <span class="description-text">TOTAL COST</span>
+                      <span class="description-text">DỰ KIẾN</span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -164,7 +145,7 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
                       <h5 class="description-header text-warning"> <%= "#{@progress} % - #{@now_day} Days" %></h5>
-                      <span class="description-text">TOTAL PROFIT</span>
+                      <span class="description-text">THỰC TẾ</span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -178,7 +159,7 @@
                          <h5 class="description-header text-success"><i class="fas fa-caret-up"></i><%= " #{(@progress - @now_day.to_f / @count_day *100).round(2)} %" %>
                         </h5>
                       <% end %>
-                      <span class="description-text">GOAL COMPLETIONS</span>
+                      <span class="description-text">CHÊNH LỆCH</span>
                     </div>
                     <!-- /.description-block -->
                   </div>

@@ -1,0 +1,50 @@
+<div class="card" style="margin-top: 10px;">
+  <table class="table table-striped projects">
+    <tbody>
+      <tr class="hidden_content">
+        <th>
+          Tiêu đề
+        </th>
+        <th>
+          <%= @task.title %>
+        </th>
+      </tr>
+
+
+
+      <tr class="hidden_content">
+        <th>
+          Người đảm nhiệm
+        </th>
+          <th><%= @task.user.name %></td>
+      </tr>
+
+      <tr class="hidden_content">
+        <th>
+          Loại Công việc
+        </th>
+        <th>
+          <span class="badge badge-info">của riêng tôi</span>
+        </th>
+      </tr>
+
+       <tr class="hidden_content">
+        <th>
+          Thời gian
+        </th>
+        <th>
+          <%= "#{@task.start_time} - #{@task.end_time}" %>
+        </th>
+      </tr>
+
+      <tr class="hidden_content">
+        <th>
+          Mô tả
+        </th>
+        <th>
+          <%= @task.description %>
+        </th>
+      </tr>
+    <tbody>
+  </table>
+</div>

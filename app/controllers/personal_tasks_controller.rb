@@ -1,12 +1,11 @@
 class PersonalTasksController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_task, only: [:show]
-  # before_action :overview, only:[:index]
-  # before_action :overview_now, only: [:index]
+  before_action :correct_member, except: [:show]
 
   def index
     @projects = current_user.projects
-    @q = current_user.tasks.where(active: true).ransack(params[:q])
+    @q = current_user.tasks.where(active: true).where.not(project_id: nil).ransack(params[:q])
     @tasks = @q.result(distinct: true)
     overview @tasks
     # overview_now @tasks
@@ -98,15 +97,17 @@ class PersonalTasksController < ApplicationController
   def update_parent_task task
     @parent_task = task.parent
     @children_tasks = @parent_task.childrens.uniq
-    @sum_day = @children_tasks.inject(0) do |sum, task|
-      (task.end_time < Date.today) ? sum + (task.start_time..task.end_time).count : sum + (task.start_time..Date.today).count
+
+    sum_expected_day = @children_tasks.inject(0) do |sum, task|
+      sum + (task.start_time..task.end_time).count
     end
-    @sum_progress = @children_tasks.inject(0) do |sum, task|
+
+    sum_progress = @children_tasks.inject(0) do |sum, task|
        sum + task.progress*(task.start_time..task.end_time).count
     end
 
-    @parent_progress = (@sum_progress / @sum_day).round(2)
-    @parent_task.update!(progress: @parent_progress.to_i)
+    parent_progress = (sum_progress.to_f / sum_expected_day).round(2)
+    @parent_task.update!(progress: parent_progress.to_f)
   end
 
   def overview tasks
@@ -126,5 +127,11 @@ class PersonalTasksController < ApplicationController
     end
 
     @progress = (@sum_progress.to_f / @count_day).round(2)
+  end
+
+  def correct_member
+    unless current_user.member? && !current_division.is_project?
+      redirect_to root_path
+    end
   end
 end

@@ -5,17 +5,20 @@
   <td><%= "#{task.start_time} - #{task.end_time}" %></td>
 
   <td class="project-actions text-right" style="max-width: 150px;">
-    <%= link_to personal_task_path(task), {class: "btn btn-primary btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+    <%= link_to my_work_path(task), {class: "btn btn-primary btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
       <i class="fas fa-eye">
       </i>
       View
     <% end %>
-    <% if task.user_id == current_user.id && task.parent_task? %>
-      <%= link_to add_task_user_path(task), {class: "btn btn-success btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
-        <i class="fas fa-plus">
-        </i>
-        Add User
-      <% end %>
+    <%= link_to edit_my_work_path(task), {class: "btn btn-info btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+      <i class="fas fa-pencil-alt">
+      </i>
+      Edit
+    <% end %>
+    <%= link_to my_work_path(task), {class: "btn btn-danger btn-sm", method: :delete} do %>
+      <i class="fas fa-trash">
+      </i>
+      Delete
     <% end %>
   </td>
 </tr>

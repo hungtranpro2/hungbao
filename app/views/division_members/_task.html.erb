@@ -1,0 +1,32 @@
+<% if task.end_time < Date.today %>
+  <span class="description-percentage text-danger">
+    <i class="fas fa-caret-down"></i>
+    <b><%= "#{(task.progress - 100).round(2)} %" %></b>
+  </span>
+<%else %>
+  <% if task.progress < ((task.start_time..Date.today).count.to_f / (task.start_time..task.end_time).count * 100).round(2) %>
+    <span class="description-percentage text-danger">
+      <i class="fas fa-caret-down"></i>
+      <b><%= "#{(task.progress - (task.start_time..Date.today).count.to_f / (task.start_time..task.end_time).count * 100).round(2)} %" %></b>
+    </span>
+
+  <% elsif task.progress > ((task.start_time..Date.today).count.to_f / (task.start_time..task.end_time).count * 100).round(2) %>
+     <span class="description-percentage text-success">
+      <i class="fas fa-caret-up"></i>
+      <b><%= "#{(task.progress - (task.start_time..Date.today).count.to_f / (task.start_time..task.end_time).count * 100).round(2) } %" %></b>
+    </span>
+
+  <% else %>
+    <span class="description-percentage text-warning">
+      <i class="fas fa-caret-left"></i>
+      <b><%= "0 %" %></b>
+    </span>
+  <% end %>
+
+<% end %>
+
+<% if task.end_time < Date.today %>
+  <span class="text-success" style="font-weight: 800;"><%= "/ 100 % -" %></span>
+<% else %>
+  <span class="text-success" style="font-weight: 800;"><%= "/ #{ ((task.start_time..Date.today).count.to_f / (task.start_time..task.end_time).count * 100).round(2)} % -" %></span>
+<% end %>

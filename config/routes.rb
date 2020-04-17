@@ -37,7 +37,6 @@ Rails.application.routes.draw do
   resources :add_task_users
   resources :personal_tasks
   resources :add_personal_tasks
-  resources :personal_projects
   resources :my_calendars
   resources :my_works
   resources :user_managers

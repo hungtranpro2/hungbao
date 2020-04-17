@@ -17,6 +17,10 @@ class CompanyProjectsController < ApplicationController
 
   def show
     @project = Project.find_by id: params[:id]
+    respond_to do |format|
+      format.html
+      format.js
+    end
     # @leaders = @project.users.where(@project.user_projects.where(role: 1))
   end
 
@@ -81,4 +85,9 @@ class CompanyProjectsController < ApplicationController
     params.require(:project).permit Project::PARAMS
   end
 
+  def correct_boss
+    unless current_user.manager? && current_division.is_project?
+      redirect_to root_path
+    end
+  end
 end

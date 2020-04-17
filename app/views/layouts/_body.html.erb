@@ -28,7 +28,7 @@
       </div>
     </form>
 
-    <!-- Right navbar links -->
+    <!-- Riht navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
         <%= render partial: "notifications/notification_center" %>
@@ -102,14 +102,13 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         <li class="nav-item has-treeview">
-          <%= link_to reports_path, class: "nav-link" do %>
-            <i class="nav-icon fas fa-user-edit"></i>
+          <%= link_to my_works_path, class: "nav-link" do %>
+            <i class="nav-icon fas fa-thumbtack"></i>
             <p>
-              Viết báo cáo ngày
+              Công việc của tôi
             </p>
           <% end %>
         </li>
-
         <li class="nav-item">
           <%= link_to my_calendars_path, class: "nav-link" do %>
             <i class="nav-icon far fa-calendar-alt"></i>
@@ -118,8 +117,6 @@
             </p>
           <% end %>
         </li>
-
-
         <li class="nav-item has-treeview">
           <%= link_to room_chats_path, class: "nav-link" do %>
             <i class="nav-icon fas fa-comment-dots"></i>
@@ -130,15 +127,6 @@
         </li>
 
           <% if current_user.manager? && current_division.is_project?%>
-            <li class="nav-item has-treeview">
-              <%= link_to my_works_path, class: "nav-link" do %>
-                <i class="nav-icon fas fa-thumbtack"></i>
-                <p>
-                  Công việc của tôi
-                </p>
-              <% end %>
-            </li>
-
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -167,15 +155,6 @@
                 </li>
 
                 <li class="nav-item has-treeview">
-                  <%= link_to company_tasks_path, class: "nav-link" do %>
-                    <i class="far fa-circle nav-icon text-warning"></i>
-                    <p>
-                      Danh sách task
-                    </p>
-                  <% end %>
-                </li>
-
-                <li class="nav-item has-treeview">
                   <%= link_to company_reports_path, class: "nav-link" do %>
                     <i class="far fa-circle nav-icon"></i>
                     <p>
@@ -190,13 +169,14 @@
 
           <% if current_user.member? && current_division.is_project? %>
             <li class="nav-item has-treeview">
-              <%= link_to my_works_path, class: "nav-link" do %>
-                <i class="nav-icon fas fa-thumbtack"></i>
-                <p>
-                  Công việc của tôi
-                </p>
-              <% end %>
+                <%= link_to reports_path, class: "nav-link" do %>
+                  <i class="nav-icon fas fa-user-edit"></i>
+                  <p>
+                    Viết báo cáo ngày
+                  </p>
+                <% end %>
             </li>
+
             <% if current_user.projects.present? %>
               <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
@@ -217,7 +197,7 @@
                   <li class="nav-item">
                     <%= link_to project_members_path, class: "nav-link" do %>
                       <i class="far fa-circle nav-icon text-danger"></i>
-                      <p>Thành viên</p>
+                      <p>Thành viên dự án</p>
                     <% end %>
                   </li>
 
@@ -254,20 +234,20 @@
           <% end %>
 
           <% if current_user.manager? && !current_division.is_project?%>
-             <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview">
+                <%= link_to reports_path, class: "nav-link" do %>
+                  <i class="nav-icon fas fa-user-edit"></i>
+                  <p>
+                    Viết báo cáo ngày
+                  </p>
+                <% end %>
+            </li>
+
+            <li class="nav-item has-treeview">
               <%= link_to requests_path, class: "nav-link" do %>
                 <i class="nav-icon fas fa-user-tag"></i>
                 <p>
                   Yêu cầu cá nhân
-                </p>
-              <% end %>
-            </li>
-
-            <li class="nav-item has-treeview">
-              <%= link_to my_works_path, class: "nav-link" do %>
-                <i class="nav-icon fas fa-thumbtack"></i>
-                <p>
-                  Công việc của tôi
                 </p>
               <% end %>
             </li>
@@ -290,7 +270,7 @@
                 <li class="nav-item">
                   <%= link_to division_members_path, class: "nav-link" do %>
                     <i class="far fa-circle nav-icon text-primary"></i>
-                    <p>Thành viên</p>
+                    <p>Thành viên bộ phận</p>
                   <% end %>
                 </li>
                 <li class="nav-item">
@@ -311,66 +291,52 @@
                     <p>Task công việc</p>
                   <% end %>
                 </li>
-                <li class="nav-item">
-                  <%= link_to project_requests_path, class: "nav-link" do %>
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Yêu cầu công việc</p>
-                  <% end %>
-                </li>
               </ul>
             </li>
           <% end %>
 
           <% if current_user.member? && !current_division.is_project?%>
-            <li class="nav-item has-treeview">
-              <%= link_to requests_path, class: "nav-link" do %>
-                <i class="nav-icon fas fa-user-tag"></i>
-                <p>
-                  Yêu cầu cá nhân
-                </p>
-              <% end %>
-            </li>
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
-                <p>
-                  Personal OverView
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <%= link_to overview_personals_path, class: "nav-link" do %>
-                    <i class="far fa-circle nav-icon text-danger"></i>
-                    <p>General</p>
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to personal_tasks_path, class: "nav-link" do %>
-                    <i class="far fa-circle nav-icon text-success"></i>
-                    <p>Personal Tasks</p>
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to reports_path, class: "nav-link" do %>
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Personal Reports</p>
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to requests_path, class: "nav-link" do %>
-                    <i class="far fa-circle nav-icon text-warning"></i>
-                    <p>Personal Requests</p>
-                  <% end %>
-                </li>
-                 <li class="nav-item">
-                  <%= link_to requests_path, class: "nav-link" do %>
-                    <i class="far fa-circle nav-icon text-primary"></i>
-                    <p>Personal Projects</p>
-                  <% end %>
-                </li>
-              </ul>
-            </li>
+            <% if current_user.projects.present? %>
+              <li class="nav-item has-treeview">
+                <%= link_to reports_path, class: "nav-link" do %>
+                  <i class="nav-icon fas fa-user-edit"></i>
+                  <p>
+                    Viết báo cáo ngày
+                  </p>
+                <% end %>
+              </li>
+              <li class="nav-item has-treeview">
+                <%= link_to requests_path, class: "nav-link" do %>
+                  <i class="nav-icon fas fa-user-tag"></i>
+                  <p>
+                    Yêu cầu cá nhân
+                  </p>
+                <% end %>
+              </li>
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <p>
+                    Personal OverView
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <%= link_to overview_personals_path, class: "nav-link" do %>
+                      <i class="far fa-circle nav-icon text-danger"></i>
+                      <p>General</p>
+                    <% end %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to personal_tasks_path, class: "nav-link" do %>
+                      <i class="far fa-circle nav-icon text-success"></i>
+                      <p>Personal Tasks</p>
+                    <% end %>
+                  </li>
+                </ul>
+              </li>
+            <% end %>
           <% end %>
           <% if current_user.hr? %>
             <li class="nav-item has-treeview">
