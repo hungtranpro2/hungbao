@@ -1,9 +1,9 @@
 <% provide(:title, t(".begin_title")) %>
 <div class="content-wrapper" style="height: 500px;">
-  <%= render partial: "shared/head_profile", locals: {path1: overview_divisions_path, title: "Danh sách thành viên dự án", link1: "Quản lý bộ phận", link2: "Thành viên"}%>
+  <%= render partial: "shared/head_profile", locals: {path1: overview_divisions_path, title: "Danh sách thành viên bộ phận #{current_division.name}", link1: "Quản lý bộ phận", link2: "Thành viên"}%>
   <section class="content">
     <div class="col-12">
-    <div class="card-header row" style="margin: 10px 1px;">
+    <div class="float-right" style="margin: 10px 1px;">
       <div>
         <%= search_form_for @q, url:"#", class: "form-inline" do |f| %>
           <%= f.search_field :name_cont, class: "form-control mr-sm-2", placeholder: "Search" %>
@@ -13,7 +13,7 @@
         <% end %>
       </div>
     </div>
-     <div class="card">
+     <div class="card" style="width: 100%">
         <div class="card-header border-0">
           <h3 class="card-title">Thêm quản lý dự án</h3>
           <div class="card-tools">
@@ -31,11 +31,10 @@
             <tr>
               <th>#</th>
               <th>Member</th>
-              <th>Division</th>
               <th>Role</th>
+              <th>Skill</th>
               <th>Join the project</th>
               <th>Progress</th>
-              <th>Status</th>
               <th class="text-center">More</th>
             </tr>
             </thead>

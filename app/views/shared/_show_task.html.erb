@@ -23,6 +23,13 @@
 
       <tr class="hidden_content">
         <th>
+          Người đảm nhiệm
+        </th>
+          <th><%= @task.user.name %></td>
+      </tr>
+
+      <tr class="hidden_content">
+        <th>
           Loại Task
         </th>
         <th>
@@ -45,10 +52,23 @@
 
        <tr class="hidden_content">
         <th>
-          Tiến độ
+          Tiến độ dự tính
         </th>
         <th>
-          <%= "#{@task.progress} %" %>
+          <% if @task.end_time < Date.today %>
+            <span class="text-success" style="font-weight: 800;"><%= "100 %" %></span>
+          <% else %>
+            <span class="text-success" style="font-weight: 800;"><%= "#{ ((@task.start_time..Date.today).count.to_f / (@task.start_time..@task.end_time).count * 100).round(2)} %" %></span>
+          <% end %>
+        </th>
+      </tr>
+
+       <tr class="hidden_content">
+        <th>
+          Tiến độ thực tế
+        </th>
+        <th>
+          <span class="text-danger" style="font-weight: 800;"><%= "#{@task.progress} %" %></span>
         </th>
       </tr>
 

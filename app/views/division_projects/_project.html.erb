@@ -1,9 +1,25 @@
-<%= link_to division_project_path(project), remote: true, style: "text-decoration: none;" do %>
-  <div class="info-box mb-3 bg-warning">
-    <span class="info-box-icon"><i class="fas fa-tag"></i></span>
-    <div class="info-box-content">
-      <span class="info-box-text"><%= project.name %></span>
-      <span class="info-box-number">5,200</span>
-    </div>
-  </div>
-<% end %>
+<tr class="hidden_content">
+  <td><%= project_counter + 1 %></td>
+  <td><%= project.name %></td>
+  <td><%= project.client_company %></td>
+  <td><%= project.document_link %></td>
+  <td><%= project.description %></td>
+  <td><b class="text-success"><%= "#{expected_division(project)} %" %></b></td>
+
+  <td><b class="text-danger"><%= "#{progress_division(project)} %" %></b></td>
+
+  <td class="project-actions text-right" style="max-width: 150px;">
+    <%= link_to company_project_path(project), {class: "btn btn-sm btn-info", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+      <i class="fas fa-eye">
+      </i>
+      View
+    <% end %>
+    <% if current_division.project_requests.present? %>
+      <%= link_to project_request_path(ProjectRequest.where(project_id: project.id, division: current_division.id)&.first.id), {class: "btn btn-primary btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+        <i class="fas fa-eye">
+        </i>
+        Xem yêu cầu
+      <% end %>
+    <% end %>
+  </td>
+</tr>

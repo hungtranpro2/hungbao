@@ -1,5 +1,6 @@
 class RequestsController < ApplicationController
   before_action :authenticate_user!
+  before_action :correct_project
 
   def index
     @q = current_user.personal_requests.ransack(params[:q])
@@ -108,4 +109,9 @@ class RequestsController < ApplicationController
     params.require(:personal_request).permit PersonalRequest::PARAMS
   end
 
+  def correct_project
+    if current_user.member? && current_user.projects.blank?
+      redirect_to root_path
+    end
+  end
 end

@@ -1,6 +1,6 @@
 class AddTaskUsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_project, only: [:show]
+  before_action :correct_task, only: [:show]
 
   def show
     @project = Project.find_by id: @task.project_id
@@ -24,7 +24,7 @@ class AddTaskUsersController < ApplicationController
 
   private
 
-  def correct_project
+  def correct_task
     @task = Task.find_by id: params[:id]
     return @task if @task.present?
 

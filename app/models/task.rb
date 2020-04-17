@@ -9,6 +9,7 @@ class Task < ApplicationRecord
   has_many :childrens, class_name: Task.name, foreign_key: :parent_id, dependent: :destroy
 
   validates :title, presence: true, uniqueness: true
+  validates :description, presence: true
   validates :start_time, presence: true
   validates :end_time, presence: true
 end

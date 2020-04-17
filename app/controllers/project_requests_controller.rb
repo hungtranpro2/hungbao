@@ -62,4 +62,10 @@ class ProjectRequestsController < ApplicationController
   def params_project_request
     params.require(:project_request).permit ProjectRequest::PARAMS
   end
+
+  def correct_project_leader
+    unless current_user.member? && current_division.is_project?
+      redirect_to root_path
+    end
+  end
 end

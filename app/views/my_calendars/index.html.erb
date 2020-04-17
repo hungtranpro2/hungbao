@@ -15,16 +15,9 @@
           <div class="card-tools">
             <!-- button with a dropdown -->
             <div class="btn-group">
-              <% if current_user.member? && !current_division.is_project? %>
-                <%= link_to personal_tasks_path, class: "btn btn-success btn-sm" do %>
-                  <i class="fas fa-plus"></i>
-                  Thêm công việc
-                <% end %>
-              <% else %>
-                 <%= link_to my_works_path, class: "btn btn-success btn-sm" do %>
-                  <i class="fas fa-plus"></i>
-                  Thêm công việc
-                <% end %>
+              <%= link_to my_works_path, class: "btn btn-success btn-sm" do %>
+                <i class="fas fa-plus"></i>
+                Thêm công việc
               <% end %>
               <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
                 <i class="fas fa-bars"></i></button>
