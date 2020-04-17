@@ -2,6 +2,7 @@ class DivisionTasksController < ApplicationController
   before_action :authenticate_user!
   # before_action :correct_project, only: [:show]
   before_action :manager
+  before_action :correct_team_leader
 
   def index
     @projects = current_division.projects.uniq
@@ -74,5 +75,11 @@ class DivisionTasksController < ApplicationController
 
   def task_params
     params.require(:task).permit Task::PARAMS
+  end
+
+  def correct_team_leader
+    unless current_user.manager? && !current_division.is_project?
+      redirect_to root_path
+    end
   end
 end

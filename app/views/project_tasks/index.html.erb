@@ -1,5 +1,5 @@
 <div class="content-wrapper">
-   <%= render partial: "shared/head_profile", locals: {path1: overview_projects_path, title: "Quản lý task dự án thuộc dự án", link1: "Quản lý dự án", link2: "Danh sách Tasks"}%>
+   <%= render partial: "shared/head_profile", locals: {path1: overview_projects_path, title: "Công việc dự án #{current_user.projects.first.name}", link1: "Quản lý dự án", link2: "Danh sách Tasks"}%>
     <section class="content">
 
       <div class="card container">
@@ -25,9 +25,10 @@
                             <th>#</th>
                             <th>Order ID</th>
                             <th style="min-width: 150px;">Title</th>
-                            <th style="min-width: 180px;">Project</th>
                             <th>Member</th>
                             <th>Type</th>
+                            <th>Status</th>
+                            <th>Expectations</th>
                             <th>Progress</th>
                             <th class="text-center">More</th>
                           </tr>
