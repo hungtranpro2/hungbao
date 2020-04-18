@@ -1,7 +1,6 @@
 class PersonalTasksController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_task, only: [:show]
-  before_action :correct_member
 
   def index
     @projects = current_user.projects

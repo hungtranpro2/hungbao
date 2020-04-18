@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 2020_04_13_104136) do
     t.string "name"
     t.text "description"
     t.string "document_link"
+    t.boolean "active", default: true
     t.string "client_company"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -146,7 +147,6 @@ ActiveRecord::Schema.define(version: 2020_04_13_104136) do
     t.integer "nationality", default: 0
     t.integer "position", default: 0
     t.integer "role", default: 0
-    t.integer "status", default: 0
     t.integer "division_id"
     t.string "avatar", default: "avatar.png"
     t.datetime "created_at", precision: 6, null: false

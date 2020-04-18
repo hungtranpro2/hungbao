@@ -1,6 +1,5 @@
 class ProjectRequestsController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_project_leader
 
   def index
     if current_user.member?

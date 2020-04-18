@@ -1,7 +1,6 @@
 class CompanyProjectsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :correct_boss
 
   def index
     @q = Project.ransack(params[:q])
@@ -18,6 +17,10 @@ class CompanyProjectsController < ApplicationController
 
   def show
     @project = Project.find_by id: params[:id]
+    respond_to do |format|
+      format.html
+      format.js
+    end
     # @leaders = @project.users.where(@project.user_projects.where(role: 1))
   end
 
