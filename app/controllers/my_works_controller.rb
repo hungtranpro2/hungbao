@@ -24,6 +24,14 @@ class MyWorksController < ApplicationController
     end
   end
 
+  def edit
+    @task = Task.find_by id: params[:id]
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   def create
     @task = Task.new task_params
     if params[:task][:start_time] <= Time.now.to_s || params[:task][:start_time] > params[:task][:end_time]
@@ -36,6 +44,28 @@ class MyWorksController < ApplicationController
       else
         render :new
       end
+    end
+  end
+
+  def update
+    @task = Task.find_by id: params[:id]
+    if @task.update(task_params)
+      flash[:success] = "Cập nhật thành công"
+      redirect_to my_works_path
+    else
+      flash.now[:error] = "Cập nhật thất bại"
+      render :edit
+    end
+  end
+
+  def destroy
+    @task = Task.find_by id: params[:id]
+    if @task.destroy
+      flash[:success] = "Xóa thành công"
+      redirect_to my_works_path
+    else
+      flash.now[:error] = "Xóa thất bại"
+      redirect_to errors_path
     end
   end
 
@@ -52,7 +82,6 @@ class MyWorksController < ApplicationController
     flash[:error] = "Task không tồn tại"
     redirect_to errors_path
   end
-
 
   def overview tasks
     @sum_days = tasks.inject(0) do |sum , task|
