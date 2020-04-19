@@ -3,7 +3,7 @@ class CompanyReportsController < ApplicationController
   before_action :correct_boss
 
   def index
-    @q = Report.all.ransack(params[:q])
+    @q = current_division.reports.ransack(params[:q])
     @reports = @q.result(distinct: true).paginate(page: params[:page], per_page: 7)
   end
 

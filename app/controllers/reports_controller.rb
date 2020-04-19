@@ -43,9 +43,16 @@ class ReportsController < ApplicationController
     current_division.users.manager.each do |manager|
       report.notifications.create!(title: report.title, sender_id: current_user.id, receiver_id: manager.id)
     end
+    unless current_user.member? && current_division.is_project?
+      @project.users.where(division_id: 1).each do |manager|
+        report.notifications.create!(title: report.title, sender_id: current_user.id, receiver_id: manager.id)
+      end
+    end
+  end
 
-    @project.users.where(division_id: 1).each do |manager|
-      report.notifications.create!(title: report.title, sender_id: current_user.id, receiver_id: manager.id)
+  def correct_project
+    if current_user.projects.blank?
+      redirect_to root_path
     end
   end
 end

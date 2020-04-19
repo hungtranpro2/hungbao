@@ -1,10 +1,11 @@
 class PersonalTasksController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_task, only: [:show]
+  before_action :correct_member, except: [:show]
 
   def index
     @projects = current_user.projects
-    @q = current_user.tasks.where(active: true).ransack(params[:q])
+    @q = current_user.tasks.where(active: true).where.not(project_id: nil).ransack(params[:q])
     @tasks = @q.result(distinct: true)
     overview @tasks
     # overview_now @tasks

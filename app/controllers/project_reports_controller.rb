@@ -1,5 +1,5 @@
 class ProjectReportsController < ApplicationController
-   before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :correct_project_leader
 
   def index
