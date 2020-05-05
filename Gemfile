@@ -50,6 +50,8 @@ gem 'mini_magick',             '4.7.0'
 
 gem "simple_calendar", "~> 2.0"
 
+gem 'rails-i18n'
+
 group :production do
   gem 'fog-aws'
 end

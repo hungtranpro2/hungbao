@@ -32,12 +32,12 @@
     <%= link_to company_project_path(project), class: "btn btn-primary btn-sm" do %>
       <i class="fas fa-folder">
       </i>
-      View
+      <%= t".view"%>
     <% end %>
     <%= link_to edit_company_project_path(project), class: "btn btn-info btn-sm" do %>
       <i class="fas fa-pencil-alt">
       </i>
-      Edit
+      <%= t".edit"%>
     <% end %>
   </td>
 </tr>

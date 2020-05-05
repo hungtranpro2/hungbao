@@ -1,13 +1,13 @@
 <% provide(:title, t(".begin_title")) %>
 <div class="content-wrapper">
-  <%= render partial: "shared/head_profile", locals: {path1: manage_projects_path, title: "Manage Member", link1: "Manage Group", link2: "Member in Group"}%>
+  <%= render partial: "shared/head_profile", locals: {path1: manage_projects_path, title: t(".title"), link1: t(".group"), link2: t(".in_group")}%>
   <section class="content">
     <div class="col-12">
       <div class="card">
           <div class="card-header">
-            <h3 class="card-title"><b>Manage Member</b></h3>
+            <h3 class="card-title"><b><%= t".manager_member"%></b></h3>
             <% if @users.blank? %>
-              <h3 class="no_data card-title">( <i>No data displayed!</i> )</h3>
+              <h3 class="no_data card-title">( <i><%= t".no_data"%></i> )</h3>
             <% end %>
             <div class="card-tools">
               <%= search_form_for @q, url: add_members_path, class: "form-inline", method: :get do |f| %>
@@ -24,14 +24,14 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Gender</th>
-                  <th scope="col">Birthday</th>
-                  <th scope="col">Phone</th>
-                  <th scope="col">Staff Type</th>
-                  <th scope="col">Work Space</th>
-                  <th scope="col">Action</th>
+                  <th scope="col"><%= t ".email"%></th>
+                  <th scope="col"><%= t ".name"%></th>
+                  <th scope="col"><%= t ".gender"%></th>
+                  <th scope="col"><%= t ".birthday"%></th>
+                  <th scope="col"><%= t ".phone"%></th>
+                  <th scope="col"><%= t ".staff_type"%></th>
+                  <th scope="col"><%= t ".work_space"%></th>
+                  <th scope="col"><%= t ".action"%></th>
                 </tr>
               </thead>
               <tbody>

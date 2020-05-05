@@ -4,16 +4,16 @@
   <td><%= task.title %></td>
 
   <% if task.parent_task? %>
-    <td><span class="badge badge-info">parent task</span></td>
+    <td><span class="badge badge-info"><%= t".parent_task"%></span></td>
   <% else %>
-    <td><span class="badge badge-warning">children task</span></td>
+    <td><span class="badge badge-warning"><%= t".childrent_task"%></span></td>
   <% end %>
   <% if task.start_time > Date.today %>
-    <td><span class="badge badge-info">transfer</span></td>
+    <td><span class="badge badge-info"><%= t".transfer"%></span></td>
   <% elsif task.end_time > Date.today %>
-    <td><span class="badge badge-warning">unfinished</span></td>
+    <td><span class="badge badge-warning"><%= t".unfinished"%></span></td>
   <% else %>
-    <td><span class="badge badge-danger">finished</span></td>
+    <td><span class="badge badge-danger"><%= t".finished"%></span></td>
   <% end %>
 
     <td>
@@ -66,20 +66,20 @@
     <%= link_to personal_task_path(task), {class: "btn btn-primary btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
       <i class="fas fa-eye">
       </i>
-      View
+      <%= t".view"%>
     <% end %>
     <% if !task.parent_task?%>
       <% if task.parent.lock == "open" %>
         <%= link_to personal_task_path(task), class: "btn btn-danger btn-sm", method: :delete do %>
           <i class="fas fa-trash">
           </i>
-          Delete
+          <%= t".delete"%>
         <% end %>
       <% else %>
         <%= link_to edit_personal_task_path(task), {class: "btn btn-info btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
           <i class="fas fa-pencil-alt">
           </i>
-          Edit
+          <%= t".edit"%>
         <% end %>
       <% end %>
     <% end %>

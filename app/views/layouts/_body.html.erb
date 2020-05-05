@@ -9,10 +9,10 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <%= link_to t(".home"), root_path, class: "nav-link" %>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <%= link_to t(".contact"), "#", class: "nav-link" %>
       </li>
     </ul>
 
@@ -58,31 +58,36 @@
 
           <li class="text-center row">
             <div class="col-4 text-center">
-              <a href="#">Followers</a>
+              <a href="#"><%= t ".followers"%></a>
             </div>
             <div class="col-4 text-center">
-              <a href="#">Sales</a>
+              <a href="#"><%= t ".sales"%></a>
             </div>
             <div class="col-4 text-center">
-              <a href="#">Friends</a>
+              <a href="#"><%= t ".friends"%></a>
             </div>
           </li>
           <!-- Menu Footer-->
           <li class="row footer-user-profile">
             <div class="col-6 text-center">
-              <%= link_to 'Profile', edit_profile_path(current_user), class: 'btn btn-primary' %>
+              <%= link_to t(".profile"), edit_profile_path(current_user), class: 'btn btn-primary' %>
             </div>
             <div class="col-6 text-center">
-              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+              <%= link_to t(".logout"), destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
             </div>
           </li>
         </ul>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-          <i class="fas fa-th-large"></i>
-        </a>
+      <li class="dropdown">
+        <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#"><%= t ".languages"%></a>
+        <ul class="dropdown-menu">
+          <li>
+            <%= link_to t(".vietnam"), locale: "vi" %>
+          </li>
+          <li>
+            <%= link_to t(".english"), locale: "en" %>
+          </li>
+        </ul>
       </li>
     </ul>
   </nav>
@@ -92,7 +97,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link text-center">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light"><%= t ".name_project"%></span>
     </a>
 
     <!-- Sidebar -->
@@ -105,7 +110,7 @@
           <%= link_to my_works_path, class: "nav-link" do %>
             <i class="nav-icon fas fa-thumbtack"></i>
             <p>
-              Công việc của tôi
+              <%= t ".my_work" %>
             </p>
           <% end %>
         </li>
@@ -113,7 +118,7 @@
           <%= link_to my_calendars_path, class: "nav-link" do %>
             <i class="nav-icon far fa-calendar-alt"></i>
             <p>
-              Lịch của tôi
+              <%= t ".my_calendar"%>
             </p>
           <% end %>
         </li>
@@ -121,7 +126,7 @@
           <%= link_to room_chats_path, class: "nav-link" do %>
             <i class="nav-icon fas fa-comment-dots"></i>
             <p>
-              Kênh chat cá nhân
+              <%= t ".persional_chat"%>
             </p>
           <% end %>
         </li>
@@ -131,7 +136,7 @@
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
-                  Quản lý dự án
+                  <%= t ".project_manager"%>
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
@@ -140,7 +145,7 @@
                   <%= link_to overview_companys_path, class: "nav-link" do %>
                     <i class="far fa-circle nav-icon text-danger"></i>
                     <p>
-                      Tổng quan
+                      <%= t ".general"%>
                     </p>
                   <% end %>
                 </li>
@@ -149,7 +154,7 @@
                   <%= link_to company_projects_path, class: "nav-link" do %>
                     <i class="far fa-circle nav-icon text-primary"></i>
                     <p>
-                      Danh sách dự án
+                      <%= t ".project_manager"%>
                     </p>
                   <% end %>
                 </li>
@@ -158,7 +163,7 @@
                   <%= link_to company_reports_path, class: "nav-link" do %>
                     <i class="far fa-circle nav-icon"></i>
                     <p>
-                      Danh sách báo cáo
+                      <%= t ".report_manager"%>
                     </p>
                   <% end %>
                 </li>
@@ -172,7 +177,7 @@
                 <%= link_to reports_path, class: "nav-link" do %>
                   <i class="nav-icon fas fa-user-edit"></i>
                   <p>
-                    Viết báo cáo ngày
+                    <%= t ".write_report"%>
                   </p>
                 <% end %>
             </li>
@@ -182,7 +187,7 @@
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-chart-pie"></i>
                   <p>
-                    Nhà quản lý dự án
+                    <%= t ".project_manager"%>
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
@@ -190,42 +195,42 @@
                   <li class="nav-item">
                     <%= link_to overview_projects_path, class: "nav-link" do %>
                       <i class="far fa-circle nav-icon text-warning"></i>
-                      <p>Tổng quan</p>
+                      <p><%= t ".general"%></p>
                     <% end %>
                   </li>
 
                   <li class="nav-item">
                     <%= link_to project_members_path, class: "nav-link" do %>
                       <i class="far fa-circle nav-icon text-danger"></i>
-                      <p>Thành viên dự án</p>
+                      <p><%= t ".project_member_manager"%></p>
                     <% end %>
                   </li>
 
                    <li class="nav-item">
                     <%= link_to project_reports_path, class: "nav-link" do %>
                       <i class="far fa-circle nav-icon text-primary"></i>
-                      <p>Báo cáo từ thành viên</p>
+                      <p><%= t ".report_manager"%></p>
                     <% end %>
                   </li>
 
                    <li class="nav-item">
                     <%= link_to approval_requests_path, class: "nav-link" do %>
                       <i class="far fa-circle nav-icon text-info"></i>
-                      <p>Yêu cầu từ thành viên</p>
+                      <p><%= t ".require_manager"%></p>
                     <% end %>
                   </li>
 
                   <li class="nav-item">
                     <%= link_to project_tasks_path, class: "nav-link" do %>
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Công việc thuộc dự án</p>
+                      <p><%= t ".task_of_project"%></p>
                     <% end %>
                   </li>
 
                   <li class="nav-item">
                     <%= link_to project_requests_path, class: "nav-link" do %>
                       <i class="far fa-circle nav-icon text-success"></i>
-                      <p>Tạo công việc cho dự án</p>
+                      <p><%= t ".require_task"%></p>
                     <% end %>
                   </li>
                 </ul>
@@ -238,7 +243,7 @@
                 <%= link_to reports_path, class: "nav-link" do %>
                   <i class="nav-icon fas fa-user-edit"></i>
                   <p>
-                    Viết báo cáo ngày
+                    <%= t ".write_report"%>
                   </p>
                 <% end %>
             </li>
@@ -247,7 +252,7 @@
               <%= link_to requests_path, class: "nav-link" do %>
                 <i class="nav-icon fas fa-user-tag"></i>
                 <p>
-                  Yêu cầu cá nhân
+                  <%= t ".write_require"%>
                 </p>
               <% end %>
             </li>
@@ -256,7 +261,7 @@
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
-                  Quản lý bộ phận
+                  <%= t ".department_manager"%>
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
@@ -264,31 +269,31 @@
                 <li class="nav-item">
                   <%= link_to overview_divisions_path, class: "nav-link" do %>
                     <i class="far fa-circle nav-icon text-warning"></i>
-                    <p>Tổng quan</p>
+                    <p><%= t ".general"%></p>
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to division_members_path, class: "nav-link" do %>
                     <i class="far fa-circle nav-icon text-primary"></i>
-                    <p>Thành viên bộ phận</p>
+                    <p><%= t ".department_member_manager"%></p>
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to division_reports_path, class: "nav-link" do %>
                     <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Báo cáo từ thành viên</p>
+                    <p><%= t ".report_manager"%></p>
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to approval_requests_path, class: "nav-link" do %>
                     <i class="far fa-circle nav-icon text-success"></i>
-                    <p>Yêu cầu từ thành viên</p>
+                    <p><%= t ".require_manager"%></p>
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to division_tasks_path, class: "nav-link" do %>
                     <i class="far fa-circle nav-icon text-danger"></i>
-                    <p>Task công việc</p>
+                    <p><%= t ".task_manager"%></p>
                   <% end %>
                 </li>
               </ul>
@@ -301,7 +306,7 @@
                 <%= link_to reports_path, class: "nav-link" do %>
                   <i class="nav-icon fas fa-user-edit"></i>
                   <p>
-                    Viết báo cáo ngày
+                    <%= t ".write_report"%>
                   </p>
                 <% end %>
               </li>
@@ -309,7 +314,7 @@
                 <%= link_to requests_path, class: "nav-link" do %>
                   <i class="nav-icon fas fa-user-tag"></i>
                   <p>
-                    Yêu cầu cá nhân
+                    <%= t ".write_require"%>
                   </p>
                 <% end %>
               </li>
@@ -317,7 +322,7 @@
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-chart-pie"></i>
                   <p>
-                    Personal OverView
+                    <%= t ".persional_overview"%>
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
@@ -325,13 +330,13 @@
                   <li class="nav-item">
                     <%= link_to overview_personals_path, class: "nav-link" do %>
                       <i class="far fa-circle nav-icon text-danger"></i>
-                      <p>General</p>
+                      <p><%= t ".general"%></p>
                     <% end %>
                   </li>
                   <li class="nav-item">
                     <%= link_to personal_tasks_path, class: "nav-link" do %>
                       <i class="far fa-circle nav-icon text-success"></i>
-                      <p>Personal Tasks</p>
+                      <p><%= t ".persional_task"%></p>
                     <% end %>
                   </li>
                 </ul>
@@ -343,7 +348,7 @@
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
-                  Quản lý nhân sự
+                  <%= t ".hr_manager"%>
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
@@ -351,7 +356,7 @@
                 <li class="nav-item">
                   <%= link_to user_managers_path, class: "nav-link" do %>
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Danh sách nhân sự</p>
+                    <p><%= t ".hr_manager"%></p>
                   <% end %>
                 </li>
 

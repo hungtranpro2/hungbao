@@ -1,5 +1,5 @@
 <div class="content-wrapper">
-   <%= render partial: "shared/head_profile", locals: {path1: overview_divisions_path, title: "Quản lý task dự án thuộc bộ phận", link1: "Quản lý bộ phận", link2: "Danh sách Tasks"}%>
+   <%= render partial: "shared/head_profile", locals: {path1: overview_divisions_path, title: t(".title"), link1: t(".link1"), link2: t(".link2")}%>
     <section class="content">
 
       <div class="card">
@@ -11,7 +11,7 @@
                 <div class="col-md-12">
                   <div class="row float-right" style="margin: 0 0 10px 0px;">
                     <%= search_form_for @q, url: division_tasks_path, class: "form-inline", method: :get do |f| %>
-                      <%= f.select :project_id_in, @projects.collect{|i| [i.name, i.id]}, {include_blank: "Choose Project"}, class: "form-control select mr-sm-2" %>
+                      <%= f.select :project_id_in, @projects.collect{|i| [i.name, i.id]}, {include_blank: t(".choose")}, class: "form-control select mr-sm-2" %>
                       <%= f.search_field :user_name_or_title_cont_any, class: "form-control mr-sm-2", placeholder: "Search" %>
                       <%= f.submit class: "btn btn-outline-success my-2 mr-sm-2 my-sm-0" %>
                     <% end %>
@@ -25,16 +25,16 @@
                           <thead>
                           <tr style="color: #17a2b8;">
                             <th>#</th>
-                            <th>Order ID</th>
-                            <th>Project</th>
-                            <th>Title</th>
-                            <th>Type</th>
-                            <th>Project</th>
-                            <th>Member</th>
-                            <th>Status</th>
-                            <th>Expected</th>
-                            <th>Progress</th>
-                            <th class="text-center">More</th>
+                            <th><%= t".id"%></th>
+                            <th><%= t".project"%></th>
+                            <th><%= t".title1"%></th>
+                            <th><%= t".type"%></th>
+                            <th><%= t".project"%></th>
+                            <th><%= t".member"%></th>
+                            <th><%= t".status"%></th>
+                            <th><%= t".expected"%></th>
+                            <th><%= t".progress"%></th>
+                            <th class="text-center"><%= t".more"%></th>
                           </tr>
                           </thead>
                           <tbody>
@@ -49,7 +49,7 @@
                       <div id="pagina" class="btn btn-sm">
                         <%= link_to new_division_task_path, {class: "btn btn-sm btn-info float-left", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
                          <i class="fas fa-tasks"></i>
-                          Thêm tasks cho dự án
+                          <%= t".add"%>
                         <% end %>
                       </div>
                       <div class="float-right">

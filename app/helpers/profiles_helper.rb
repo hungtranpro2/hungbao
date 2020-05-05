@@ -29,7 +29,7 @@ module ProfilesHelper
     if user.avatar?
       image_tag user.avatar.url(:thumb), class: "profile-user-img img-fluid img-circle"
     else
-      image_tag "user-5.png", class: "profile-user-img img-fluid img-circle"
+      image_tag "avatar.png", class: "profile-user-img img-fluid img-circle"
     end
   end
 
@@ -51,14 +51,6 @@ module ProfilesHelper
 
   def personal_parent_task
     current_user.tasks.where(parent_task: true)
-  end
-
-  def avatar_for(user)
-    if user.avatar?
-      image_tag user.avatar.url(:thumb), class: "profile-user-img img-fluid img-circle"
-    else
-      image_tag "user-5.png", class: "profile-user-img img-fluid img-circle"
-    end
   end
 
   def staff_type_select

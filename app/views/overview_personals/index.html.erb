@@ -1,6 +1,6 @@
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <%= render partial: "shared/head_profile", locals: {path1: room_chats_path, title: "Quản lý dự án cá nhân", link1: "Trang chủ", link2: "Thống kê"}%>
+    <%= render partial: "shared/head_profile", locals: {path1: room_chats_path, title: t(".title"), link1: t(".link1"), link2: t(".link2")}%>
 
     <!-- Main content -->
     <section class="content">
@@ -12,10 +12,10 @@
             <div class="info-box">
               <span class="info-box-icon bg-info elevation-1"><i class="fas fa-tasks"></i></span>
               <div class="info-box-content">
-                <span class="info-box-text">Tasks</span>
+                <span class="info-box-text"><%= t".tasks"%></span>
                 <span class="info-box-number">
                   <%= @tasks.count %>
-                  <small>Task</small>
+                  <small><%= t".task"%></small>
                 </span>
               </div>
               <!-- /.info-box-content -->
@@ -28,10 +28,10 @@
               <div class="info-box mb-3">
                 <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-edit"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">Reports</span>
+                  <span class="info-box-text"><%= t".reports"%></span>
                   <span class="info-box-number">
                     <%= @count_report %>
-                  <small>Report</small>
+                  <small><%= t".report"%></small>
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -45,10 +45,10 @@
               <div class="info-box mb-3">
                 <span class="info-box-icon bg-success elevation-1"><i class="fas fa-recycle"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">Requests</span>
+                  <span class="info-box-text"><%= t".requests"%></span>
                   <span class="info-box-number">
                   <%= @count_request %>
-                  <small>Request</small>
+                  <small><%= t".request"%></small>
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -63,7 +63,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-                  Time Line
+                  <%= t".time_line"%>
                 </h3>
 
                 <div class="card-tools">
@@ -89,7 +89,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="card-title">Progress</h5>
+                <h5 class="card-title"><%= t".progress"%></h5>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -112,7 +112,7 @@
                   <!-- /.col -->
                   <div class="col-md-4">
                     <p class="text-center">
-                      <strong>Tỉ lệ tiến độ</strong>
+                      <strong><%= t".progress_rate"%></strong>
                     </p>
 
                     <%= pie_chart @tasks.group(:progress).count, donut: true %>
@@ -129,7 +129,7 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
                       <h5 class="description-header text-info"><%= "#{@children_tasks.count} Task - #{@count_day} Days"%></h5>
-                      <span class="description-text">KẾ HOẠCH</span>
+                      <span class="description-text"><%= t".plan"%></span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -137,7 +137,7 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
                       <h5 class="description-header text-primary"> <%= "#{(@now_day.to_f / @count_day *100).round(2)} % - #{@now_day} Days" %></h5>
-                      <span class="description-text">DỰ KIẾN</span>
+                      <span class="description-text"><%= t".expected"%></span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -145,7 +145,7 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
                       <h5 class="description-header text-warning"> <%= "#{@progress} % - #{@now_day} Days" %></h5>
-                      <span class="description-text">THỰC TẾ</span>
+                      <span class="description-text"><%= t".reality"%></span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -159,7 +159,7 @@
                          <h5 class="description-header text-success"><i class="fas fa-caret-up"></i><%= " #{(@progress - @now_day.to_f / @count_day *100).round(2)} %" %>
                         </h5>
                       <% end %>
-                      <span class="description-text">CHÊNH LỆCH</span>
+                      <span class="description-text"><%= t".difference"%></span>
                     </div>
                     <!-- /.description-block -->
                   </div>
