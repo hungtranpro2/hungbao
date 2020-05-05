@@ -29,7 +29,7 @@ module ProfilesHelper
     if user.avatar?
       image_tag user.avatar.url(:thumb), class: "profile-user-img img-fluid img-circle"
     else
-      image_tag "user-5.png", class: "profile-user-img img-fluid img-circle"
+      image_tag "avatar.png", class: "profile-user-img img-fluid img-circle"
     end
   end
 

@@ -12,13 +12,13 @@
     <%= link_to company_project_path(project), {class: "btn btn-sm btn-info", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
       <i class="fas fa-eye">
       </i>
-      View
+      <%= t".view"%>
     <% end %>
     <% if current_division.project_requests.present? %>
       <%= link_to project_request_path(ProjectRequest.where(project_id: project.id, division: current_division.id)&.first.id), {class: "btn btn-primary btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
         <i class="fas fa-eye">
         </i>
-        Xem yêu cầu
+        <%= t".view_request"%>
       <% end %>
     <% end %>
   </td>

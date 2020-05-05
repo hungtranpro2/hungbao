@@ -1,18 +1,22 @@
  <tr>
   <td><%= user_counter + 1 %></td>
   <td>
-    <%= image_tag "user.jpg", class: "img-circle img-size-32 mr-2" %>
+    <%if user.avatar?%>
+      <%= image_tag user.avatar.url, class: "img-circle img-size-32 mr-2" %>
+    <%else%>
+      <%= image_tag "avatar.png", class: "img-circle img-size-32 mr-2" %>
+    <%end%>
    <%= user.name %>
   </td>
   <td><%= user.skill %></td>
-  <td><%= "#{user.user_projects.count} Project" %></td>
+  <td><%= "#{user.user_projects.count} " + t(".project")  %></td>
   <td class="project-actions text-right">
     <% if user.projects.blank?%>
       <% if @project.user_projects.where(role: 1).blank? %>
         <%= link_to add_project_managers_path(user_id: user.id, project_id: @project.id),{ class: "btn btn-success btn-sm", method: :post} do %>
           <i class="fas fa-plus">
           </i>
-          Add
+          <%= t ".add"%>
         <% end %>
       <% end %>
     <% end %>

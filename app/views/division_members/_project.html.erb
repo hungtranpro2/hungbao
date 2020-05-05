@@ -15,7 +15,7 @@
         <%= f.label :project_id, class: "col-sm-3 col-form-label" %>
         <div class="col-sm-9">
           <% if @projects.blank? %>
-            <input class="form-control", readonly="readonly", value="Không có dự án để tham gia!"/>
+            <input class="form-control", readonly="readonly", value= <%= t ".no_project"%> />
           <% else %>
             <%= f.select :project_id, @projects.collect{|i| [i.name, i.id]}, {} , {class: "form-control custom-select" }  %>
           <% end %>
@@ -25,7 +25,7 @@
       <div class="form-group row">
         <div class="offset-sm-5 col-sm-10">
           <% if @projects.present? %>
-            <%= f.submit "Submit", class: "btn btn-primary" %>
+            <%= f.submit t(".confirm"), class: "btn btn-primary" %>
           <% end %>
         </div>
       </div>

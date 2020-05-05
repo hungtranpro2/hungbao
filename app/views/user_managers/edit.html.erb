@@ -97,7 +97,7 @@
                         <%= f.label :division_id, class: "col-form-label" %>
                       </div>
                       <div class="col-sm-10">
-                        <%= f.select :division_id,  division_select.collect{|i| [i.name, i.id]}, {class: "form-control custom-select" } %>
+                        <%= f.select :division_id,  division_select.collect{|i| [i.name, i.id]},{} ,{class: "form-control custom-select" } %>
                       </div>
                     </div>
                     <div class="form-group row">

@@ -8,17 +8,17 @@
     <%= link_to my_work_path(task), {class: "btn btn-primary btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
       <i class="fas fa-eye">
       </i>
-      View
+      <%= t".view"%>
     <% end %>
     <%= link_to edit_my_work_path(task), {class: "btn btn-info btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
       <i class="fas fa-pencil-alt">
       </i>
-      Edit
+      <%= t".edit"%>
     <% end %>
     <%= link_to my_work_path(task), {class: "btn btn-danger btn-sm", method: :delete} do %>
       <i class="fas fa-trash">
       </i>
-      Delete
+      <%= t".delete"%>
     <% end %>
   </td>
 </tr>

@@ -1,6 +1,6 @@
 <% provide(:title, t(".begin_title")) %>
 <div class="content-wrapper" style="height: 500px; background-color: #FFFFFF">
-  <%= render partial: "shared/head_profile", locals: {path1: overview_projects_path , title: "Quản lý báo cáo thuộc dự án", link1: "Quản lý dự án", link2: "Danh sách báo cáo"}%>
+  <%= render partial: "shared/head_profile", locals: {path1: overview_projects_path , title: t(".title"), link1: t(".link1"), link2: t(".link2")}%>
   <section class="content">
     <div class="col-12">
     <div class="float-right" style="margin-bottom: 10px;">
@@ -13,9 +13,9 @@
     </div>
      <div class="card" style="width: 100%">
         <div class="card-header border-0">
-          <h3 class="card-title" style="font-weight: 700; margin-right: 10px;">Danh sách yêu cầu</h3>
+          <h3 class="card-title" style="font-weight: 700; margin-right: 10px;"><%= t".list_report"%></h3>
           <% if @reports.blank? %>
-            <h5 class="card-title" style="font-weight: 600; color: #dc3545">(không có báo cáo nào)</h5>
+            <h5 class="card-title" style="font-weight: 600; color: #dc3545">(<%= t".no_report"%>)</h5>
           <% end %>
           <div class="card-tools">
             <a href="#" class="btn btn-tool btn-sm">
@@ -28,14 +28,14 @@
             <thead>
             <tr>
               <th>#</th>
-              <th>Title</th>
-              <th>Project Name</th>
-              <th>Sender</th>
-              <th>Plan</th>
-              <th>Actual</th>
-              <th>Next Plan</th>
-              <th>Issue</th>
-              <th class="text-center">More</th>
+              <th><%= t".title1"%></th>
+              <th><%= t".project_name"%></th>
+              <th><%= t".sender"%></th>
+              <th><%= t".plan"%></th>
+              <th><%= t".actual"%></th>
+              <th><%= t".next_plan"%></th>
+              <th><%= t".issue"%></th>
+              <th class="text-center"><%= t".more"%></th>
             </tr>
             </thead>
             <tbody>

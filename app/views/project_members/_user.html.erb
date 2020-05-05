@@ -19,35 +19,35 @@
     <% end %>
   </td>
   <td><%= user.skill %></td>
-  <td><%= "#{user.user_projects.count} Project" %></td>
+  <td><%= "#{user.user_projects.count} "+t(".project") %></td>
 
   <td>
     <% if user.member? && !user.division.is_project? %>
       <% if user.tasks.blank? %>
-        <span class="badge badge-info">work empty</span>
+        <span class="badge badge-info"><%= t".work_empty"%></span>
       <% else %>
         <% if user.tasks.where(parent_task: true).first.start_time > Date.today %>
-          <span class="badge badge-primary">transfer</span>
+          <span class="badge badge-primary"><%= t".transfer"%></span>
         <% elsif user.tasks.where(parent_task: true).first.end_time > Date.today %>
-          <span class="badge badge-warning">unfinished</span>
+          <span class="badge badge-warning"><%= t".unfinished"%></span>
         <% else %>
-          <span class="badge badge-danger">finished</span>
+          <span class="badge badge-danger"><%= t".finished"%></span>
         <% end %>
       <% end %>
     <% else %>
-       <span class="badge badge-info">work empty</span>
+       <span class="badge badge-info"><%= t".work_empty"%></span>
     <% end %>
   </td>
 
   <td>
     <% if user.member? && !user.division.is_project? %>
       <% if user.tasks.blank? %>
-        <span class="badge badge-info">work empty</span>
+        <span class="badge badge-info"><%= t".work_empty"%></span>
       <% else %>
         <span class="badge bg-success"><%= "#{user.tasks.where(parent_task: true).first.progress} %"%></span>
       <% end %>
     <% else %>
-       <span class="badge badge-info">work empty</span>
+       <span class="badge badge-info"><%= t".work_empty"%></span>
     <% end %>
   </td>
 
@@ -55,7 +55,7 @@
     <%= link_to show_profile_path(user.id), {class: "btn btn-primary btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
       <i class="fas fa-eye">
       </i>
-      Xem
+      <%= t".view"%>
     <% end %>
   </td>
 </tr>

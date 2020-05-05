@@ -1,6 +1,6 @@
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <%= render partial: "shared/head_profile", locals: {path1: room_chats_path, title: "Quản lý dự án", link1: "Trang chủ", link2: ""}%>
+    <%= render partial: "shared/head_profile", locals: {path1: room_chats_path, title: t(".title"), link1: t(".link1"), link2: ""}%>
     <!-- /.content-header -->
 
     <!-- Main content -->
@@ -13,10 +13,10 @@
               <div class="info-box mb-3">
                 <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-user-edit"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">Reports</span>
+                  <span class="info-box-text"><%= t".reports"%></span>
                   <span class="info-box-number">
                   <%= @report_count %>
-                  <small>Report</small>
+                  <small><%= t".report"%></small>
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -33,10 +33,10 @@
                 <span class="info-box-icon bg-success elevation-1"><i class="fas fa-project-diagram"></i></span>
 
                 <div class="info-box-content">
-                  <span class="info-box-text">Projects</span>
+                  <span class="info-box-text"><%= t".projects"%></span>
                   <span class="info-box-number">
                   <%= @project_count %>
-                  <small>Project</small>
+                  <small><%= t".project"%></small>
                 </span>
                 </div>
                 <!-- /.info-box-content -->
@@ -52,7 +52,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-                  Time Line
+                  <%= t".time_line"%>
                 </h3>
 
                 <div class="card-tools">
@@ -96,14 +96,14 @@
                             <thead>
                             <tr>
                               <th>#</th>
-                              <th>Project Name</th>
-                              <th>Client Company</th>
-                              <th>Document Link</th>
-                              <th>Description</th>
-                              <th>Expected</th>
-                              <th>Progress</th>
+                              <th><%= t".name"%></th>
+                              <th><%= t".client_company"%></th>
+                              <th><%= t".document_link"%></th>
+                              <th><%= t".description"%></th>
+                              <th><%= t".expected"%></th>
+                              <th><%= t".progress"%></th>
 
-                              <th>More</th>
+                              <th><%= t".more"%></th>
                             </tr>
                             </thead>
                             <tbody id="show-task-pr">
@@ -128,7 +128,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="card-title">Tỉ lệ thành viên bộ phân thuộc dự án</h5>
+                <h5 class="card-title"><%= t".percentage"%></h5>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">

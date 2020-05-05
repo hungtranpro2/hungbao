@@ -1,5 +1,5 @@
 <div class="content-wrapper">
- <%= render partial: "shared/head_profile", locals: {path1: root_path, title: "Công việc cá nhân", link1: "Trang chủ", link2: "Công việc"}%>
+ <%= render partial: "shared/head_profile", locals: {path1: root_path, title: t(".title"), link1: t(".link1"), link2: t(".link2")}%>
   <section class="content">
 
     <div class="card">
@@ -13,10 +13,10 @@
                   <span class="info-box-icon bg-info elevation-1"><i class="fas fa-thumbtack"></i></span>
 
                   <div class="info-box-content">
-                    <span class="info-box-text">Task công việc</span>
+                    <span class="info-box-text"><%= t".task"%></span>
                     <span class="info-box-number">
                       <%= @tasks.count %>
-                      <small>Task</small>
+                      <small><%= t".task"%></small>
                     </span>
                   </div>
                   <!-- /.info-box-content -->
@@ -29,10 +29,10 @@
                   <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-calendar-day"></i></span>
 
                   <div class="info-box-content">
-                    <span class="info-box-text">Tổng số ngày</span>
+                    <span class="info-box-text"><%= t".total_day"%></span>
                     <span class="info-box-number">
                       <%= @sum_days %>
-                      <small>Days</small>
+                      <small><%= t".day"%></small>
                     </span>
                   </div>
                   <!-- /.info-box-content -->
@@ -46,7 +46,7 @@
                 <%= link_to new_my_work_path, {class: "btn btn-success btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
                   <i class="fas fa-plus">
                   </i>
-                  Thêm công việc
+                  <%= t".add_task"%>
                 <% end %>
                 <div class="row float-right" style="margin: 0 0 10px 0px;">
                   <%= search_form_for @q, url: my_works_path, class: "form-inline", method: :get do |f| %>
@@ -63,10 +63,10 @@
                         <thead>
                         <tr style="color: #17a2b8;">
                           <th>#</th>
-                          <th>Order ID</th>
-                          <th style="min-width: 200px;">Title</th>
-                          <th>Time</th>
-                          <th class="text-center">More</th>
+                          <th><%= t".order_id"%></th>
+                          <th style="min-width: 200px;"><%= t".title1"%></th>
+                          <th><%= t".time"%></th>
+                          <th class="text-center"><%= t".more"%></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -92,7 +92,7 @@
 
               <h3 class="card-title">
                 <i class="far fa-calendar-alt"></i>
-                Calendar
+                <%= t".calendar"%>
               </h3>
               <!-- tools card -->
               <div class="card-tools">
@@ -101,10 +101,10 @@
                   <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
                     <i class="fas fa-bars"></i></button>
                   <div class="dropdown-menu float-right" role="menu">
-                    <a href="#" class="dropdown-item">Add new event</a>
-                    <a href="#" class="dropdown-item">Clear events</a>
+                    <a href="#" class="dropdown-item"><%= t".add_new_event"%></a>
+                    <a href="#" class="dropdown-item"><%= t".clear_event"%></a>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">View calendar</a>
+                    <a href="#" class="dropdown-item"><%= t".view_calendar"%></a>
                   </div>
                 </div>
                 <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">

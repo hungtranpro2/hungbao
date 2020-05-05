@@ -8,6 +8,9 @@ class ProfilesController < ApplicationController
 
   def edit
     @user = User.find_by id: params[:id]
+    if @user != current_user
+      redirect_to root_path
+    end
   end
 
   def update
@@ -26,4 +29,5 @@ class ProfilesController < ApplicationController
   def user_params
     params.require(:user).permit User::PARAMS_PROFILE
   end
+
 end

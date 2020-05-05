@@ -1,6 +1,6 @@
 <% provide(:title, t(".begin_title")) %>
 <div class="content-wrapper" style="height: 500px;">
-  <%= render partial: "shared/head_profile", locals: {path1: overview_companys_path, title: "Danh sách thành viên dự án", link1: "Quản lý dự án", link2: "Thành viên"}%>
+  <%= render partial: "shared/head_profile", locals: {path1: overview_companys_path, title: t(".title"), link1: t(".link1"), link2: t(".link2")}%>
   <section class="content">
     <div class="col-12">
     <div class="float-right" style="margin: 10px 1px;">
@@ -13,20 +13,20 @@
     </div>
      <div class="card" style="width: 100%">
         <div class="card-header border-0">
-          <h3 class="card-title">Thêm quản lý dự án</h3>
+          <h3 class="card-title"><%= t".add_project_manager"%></h3>
         </div>
         <div class="card-body table-responsive p-0">
           <table class="table table-striped table-valign-middle">
             <thead>
             <tr>
               <th>#</th>
-              <th>Member</th>
-              <th>Division</th>
-              <th>Role</th>
-              <th>Join the project</th>
-              <th>Progress</th>
-              <th>Status</th>
-              <th class="text-center">More</th>
+              <th><%= t".member"%></th>
+              <th><%= t".division"%></th>
+              <th><%= t".role"%></th>
+              <th><%= t".join_project"%></th>
+              <th><%= t".progress"%></th>
+              <th><%= t".status"%></th>
+              <th class="text-center"><%= t".more"%></th>
             </tr>
             </thead>
             <tbody>

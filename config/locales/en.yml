@@ -1,33 +1,491 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  layouts:
+    body:
+      english: "English"
+      vietnam: "VietNamese"
+      home: "Home"
+      contact: "Contact"
+      followers: "Followers"
+      sales: "Sales"
+      friends: "Friends"
+      profile: "Profile"
+      logout: "Logout"
+      languages: "Languages"
+      name_project: "PROJECT MANAGER"
+      my_work: "My work"
+      my_calendar: "My calendar"
+      persional_chat: "Persional chat"
+      project_manager: "Project manager"
+      general: "General"
+      report_manager: "Report manager"
+      require_manager: "Require manager"
+      write_report: "Write a report"
+      write_require: "Write a require"
+      project_member_manager: "Project member manager"
+      task_of_project: "Task of project"
+      require_task: "Require task"
+      department_manager: "Department manager"
+      department_member_manager: "Department member manager"
+      task_manager: "Task manager"
+      persional_overview: "Persional OverView"
+      persional_task: "Persional task manager"
+      hr_manager: "Human resource manager"
+    application:
+      title: "Project manager"
+  company_projects:
+    index:
+      title: "List of company projects"
+      project_manager: "Project manager"
+      project: "Project"
+      create_project: "Create project"
+      no_data: "No data"
+      project_name: "Project name"
+      division: :"Division"
+      client_company: "Client company"
+      more: "More"
+    project:
+      view: "View"
+      edit: "Edit"
+      delete: "Delete"
+      add_manager: "Add manager project"
+      add_department: "Add department manager"
+    new:
+      project_name: "Project name"
+      document_link: "Document link"
+      client_company: "Client company"
+      description: "Description"
+      add_project: "Create project"
+    edit:
+      title: "Edit project"
+      update: "Update project"
+  add_members:
+    index:
+      title: "Manager Member"
+      group: "Manager Group"
+      in_group: "Member in Group"
+      manager_member: "Manager Member"
+      no_data: "No data displayed!"
+      email: "Email"
+      name: "Name"
+      gender: "Gender"
+      birthday: "Birthday"
+      phone: "Phone"
+      staff_type: "Staff Type"
+      work_space: "Work Space"
+      action: "Action"
+  add_project_divisions:
+    show:
+      title: "Add Department Manager"
+      member: "Member"
+      division: "Division"
+      skill: "Skill"
+      join_project: "Join the project"
+      more: "More"
+    user:
+      project: "Project"
+      add: "Add"
+  add_project_managers:
+    show:
+      title: "Add Project Manager"
+      had: "There is already a manager for this project"
+      member: "Member"
+      skill: "Skill"
+      join_project: "Join the project"
+      more: "More"
+    user:
+      project: "Project"
+      add: "Add"
+  add_project_members:
+    show:
+      title: "Ask members for the project"
+      link1: "Members of the project"
+      link2: "Ask members for the project"
+      add_manager: "Add project manager"
+      member: "Member"
+      position: "Position"
+      role: "Role"
+      skill: "Skill"
+      join_project: "Join the project"
+      progress: "Progress"
+      status: "Status"
+      more: "More"
+    user:
+      project: "Project"
+      view: "View"
+      require: "Require"
+  add_task_users:
+    show_task:
+      no_member: "There_are_no_members!"
+      confirm: "Confirm"
+  approval_requests:
+    index:
+      title: "Approve member request"
+      link1_a: "Projecr manager"
+      link1_b: "Department manager"
+      link2: "Request list"
+      choose: "Choose status"
+      list: "Request list"
+      no_request: "There is no request"
+      title_1: "Title"
+      project: "Project"
+      sender: "Sender"
+      time_send: "Time to send"
+      reason: "Reason"
+      status: "Status"
+      more: "More"
+    request:
+      view: "View"
+      approval: "Approval"
+      rejected: "Rejected"
+      sure: "Are you sure?"
+  company_members:
+    index:
+      title: "List of project members"
+      link1: "Project manager"
+      link2: "Member"
+      add_project_manager: "Add project manager"
+      member: "Member"
+      division: "Division"
+      role: "Role"
+      join_project: "Join the project"
+      progress: "Progress"
+      status: "Status"
+      more: "More"
+    user:
+      project: "Project"
+      view: "View"
+  company_reports:
+    index:
+      title: "Report manager"
+      link1: "Statistical"
+      link2: "List of member reports"
+      list: "Report list"
+      no_report: "There is no report"
+      title1: "Title"
+      project: "Project name"
+      sender: "Sender"
+      plan: "Plan"
+      actual: "Actual"
+      next_plan: "Next plan"
+      issue: "Issue"
+      more: "More"
+    report:
+      view: "View"
+  division_members:
+    index:
+      title: "List of parts members"
+      link1: "Department manager"
+      link2: "Member"
+      add_manager: "Add project manager"
+      member: "Member"
+      role: "Role"
+      skill: "Skill"
+      join_project: "Join the project"
+      progress: "Progress"
+      more: "More"
+    user:
+      project: "Project"
+      view: "View"
+      add: "Add to project"
+    project:
+      no_project: "There_are_no_projects_to_join!"
+      confirm: "Confirm"
+  division_projects:
+    index:
+      title: "List of project parts"
+      link1: "Department manager"
+      link2: "Members"
+      project: "Project"
+      no_project: "There is no project"
+      id: "Order ID"
+      name: "Project name"
+      client_company: "Client company"
+      document_link: "Document link"
+      description: "Description"
+      expected: "Expected"
+      progress: "Progress"
+      more: "More"
+    project:
+      view: "View"
+      view_request: "View request"
+  division_reports:
+    index:
+      title: "Report manager"
+      link1: "Statistical"
+      link2: "List of member reports"
+      list: "Report list"
+      no_report: "There is no report"
+      title1: "Title"
+      project: "Project name"
+      sender: "Sender"
+      plan: "Plan"
+      actual: "Actual"
+      next_plan: "Next plan"
+      issue: "Issue"
+      more: "More"
+    report:
+      view: "View"
+  division_tasks:
+    index:
+      title: "Manage project task in departments"
+      link1: "Department manager"
+      link2: "Tasks list"
+      choose: "Choose project"
+      id: "ID"
+      project: "Project"
+      title1: "Title"
+      type: "Type"
+      member: "Member"
+      status: "Status"
+      expected: "Expected"
+      progress: "Progress"
+      more: "More"
+      add: "Add task for project"
+    task:
+      view: "View"
+      edit: "Edit"
+      add_user: "Add user"
+      delete: "Delete"
+    new:
+      create_task: "Create task"
+      description: "Description"
+      title: "Title"
+      path_github: "Link pull request"
+    edit:
+      confirm: "Confirm"
+  manager_projects:
+    index:
+      title: "Manager Member"
+      link1: "Manager Group"
+      link2: "Member in Group"
+      project: "Project"
+      no_data: "No Data"
+      name: "Project Name"
+      division: "Division"
+      progress: "Project Progress"
+      status: "Status"
+    project:
+      view: "View"
+      edit: "Edit"
+  my_calendars:
+    index:
+      title: "Personal calendar"
+      link1: "Home"
+      link2: "Calendar"
+      calendar: "Calendar"
+      add_task: "Add task"
+      weekly_calendar: "Weekly calendar"
+      monthly_calendar: "Monthly calendar"
+  my_works:
+    index:
+      title: "Persional task"
+      link1: "Home"
+      link2: "Task"
+      task: "Task"
+      total_day: "Total days"
+      day: "Days"
+      add_task: "Add task"
+      order_id: "Order ID"
+      title1: "Title"
+      time: "Time"
+      more: "More"
+      calendar: "Calendar"
+      add_new_event: "Add new event"
+      clear_event: "Clear events"
+      view_calendar: "View calendar"
+    task:
+      view: "View"
+      edit: "Edit"
+      delete: "Delete"
+    new:
+      title: "Title"
+      description: "Description"
+      create_task: "Create task"
+    edit:
+      confirm: "Confirm"
+    show_task:
+      title: "Title"
+      person_in_charge: "Person in charge"
+      type_of_work: "Type of work"
+      my_own: "My own"
+      time: "Time"
+      description: "Description"
+  notifications:
+    notification_center:
+      see_all: "See All Notifications"
+  overview_companys:
+    index:
+      title: "Project manager"
+      link1: "Home"
+      reports: "Reports"
+      report: "Report"
+      projects: "Projects"
+      project: "Project"
+      time_line: "Time Line"
+      name: "Project Name"
+      client_company: "Client Company"
+      document_link: "Document Link"
+      description: "Description"
+      expected: "Expected"
+      progress: "Progress"
+      more: "More"
+      percentage: "Percentage of membership of the project"
+    project:
+      describe: "Describe project"
+  overview_divisions:
+    index:
+      title: "Project manager department"
+      link1: "Home"
+      link2: "Statistical"
+      tasks: "Tasks"
+      task: "Task"
+      reports: "Reports"
+      report: "Report"
+      projects: "Projects"
+      project: "Project"
+      members: "Members"
+      member: "Member"
+      requests: "Requests"
+      request: "Request"
+      time_line: "Time Line"
+      progress: "Progress"
+      progress_rate: "Progress Rate"
+  overview_personals:
+    index:
+      title: "Persional project manager"
+      link1: "Home"
+      link2: "Statistical"
+      tasks: "Tasks"
+      task: "Task"
+      reports: "Reports"
+      report: "Report"
+      requests: "Requests"
+      request: "Request"
+      time_line: "Time Line"
+      progress: "Progress"
+      progress_rate: "Progress Rate"
+      plan: "PLAN"
+      expected: "EXPECTED"
+      reality: "REALITY"
+      difference: "DIFFERENCE"
+  overview_projects:
+    index:
+      title: "Project manager"
+      link1: "Home"
+      link2: "Statistical"
+      tasks: "Tasks"
+      reports: "Reports"
+      requests: "Requests"
+      members: "Members"
+      time_task: "Time of task by department"
+      member_join: "Members participating in the project"
+  personal_tasks:
+    index:
+      title: "Project task manager of department"
+      link1: "Personal manager"
+      link2: "List of tasks"
+      task_expected: "Task expected"
+      task: "Task"
+      day: "Days"
+      present: "Present"
+      reality: "Reality"
+      add_childrent_task: "Add childrent task"
+      order_id: "Order ID"
+      title: "Title"
+      type: "Type"
+      status: "Status"
+      expected: "Expected"
+      progress: "Progress"
+      more: "More"
+      calendar: "Calendar"
+      add_new_event: "Add new event"
+      clear_event: "Clear events"
+      view_calendar: "View calendar"
+    task:
+      parent_task: "Parent task"
+      childrent_task: "Childrent task"
+      transfer: "Transfer"
+      unfinished: "Unfinished"
+      finished: "Finished"
+      view: "View"
+      delete: "Delete"
+      edit: "Edit"
+    new:
+      create_task: "Create task"
+    edit:
+      confirm: "Confirm"
+  profiles:
+    edit:
+      title: "Profile"
+      link1: "Profile"
+      link2: "Update profile"
+      update_profile: "Update profile"
+      reset_password: "Reset password"
+      confirm: "Confirm"
+  project_members:
+    index:
+      title: "List of project members"
+      link1: "Project manager"
+      link2: "Member"
+      project_member: "Project members"
+      name: "Members name"
+      department: "Department"
+      role: "Role"
+      skill: "Skill"
+      project_participation: "Project participation"
+      status: "Status"
+      progress: "Progress"
+      more: "More"
+    user:
+      project: "Project"
+      work_empty: "Work empty"
+      transfer: "Transfer"
+      unfinished: "Unfinished"
+      finished: "Finished"
+      view: "View"
+  project_reports:
+    index:
+      title: "Manage report under project"
+      link1: "Project manager"
+      link2: "List reports"
+      list_report: "List reports"
+      no_report: "No report"
+      title1: "Title"
+      project_name: "Project name"
+      sender: "Sender"
+      plan: "Plan"
+      actual: "Actual"
+      next_plan: "Next plan"
+      issue: "Issue"
+      more: "More"
+  helpers:
+    label:
+      project:
+        name: "Name"
+        document_link: "Document link"
+        client_company: "Client company"
+        description: "Description"
+      task:
+        title: "Title"
+        user_id: "User"
+        start_time: "Start time"
+        end_time: "End time"
+        lock: "Lock"
+        project_id: "Project"
+        path_github: "Path github"
+        description: "Description"
+        parent_id: "Parent"
+        progress: "Progress"
+      user_project:
+        user_id: "User"
+        project_id: "Project"
+      user:
+        name: "Name"
+        phone: "Phone"
+        birthday: "Birthday"
+        gender: "Gender"
+        skill: "Skill"
+        avatar: "Avatar"
+
+
+

@@ -1,5 +1,5 @@
 <div class="content-wrapper">
- <%= render partial: "shared/head_profile", locals: {path1: root_path, title: "Lịch làm việc cá nhân", link1: "Trang chủ", link2: "Lịch"}%>
+ <%= render partial: "shared/head_profile", locals: {path1: root_path, title: t(".title"), link1: t(".link1"), link2: t(".link2")}%>
 
   <div class="card-body  container">
     <div class="row">
@@ -9,7 +9,7 @@
 
           <h3 class="card-title">
             <i class="far fa-calendar-alt"></i>
-            Calendar
+            <%= t".calendar"%>
           </h3>
           <!-- tools card -->
           <div class="card-tools">
@@ -17,17 +17,17 @@
             <div class="btn-group">
               <%= link_to my_works_path, class: "btn btn-success btn-sm" do %>
                 <i class="fas fa-plus"></i>
-                Thêm công việc
+                <%= t".add_task"%>
               <% end %>
               <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
                 <i class="fas fa-bars"></i></button>
               <div class="dropdown-menu float-right" role="menu">
                 <%= link_to my_calendar_path(id: "week"), class: "dropdown-item", remote: true do %>
-                  Lịch tuần
+                  <%= t".weekly_calendar"%>
                 <% end %>
                 <div class="dropdown-divider"></div>
                 <%= link_to my_calendar_path(id: "month"), class: "dropdown-item", remote: true do %>
-                  Lịch tháng
+                  <%= t".monthly_calendar"%>
                 <% end %>
               </div>
             </div>

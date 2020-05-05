@@ -49,12 +49,17 @@ class MyWorksController < ApplicationController
 
   def update
     @task = Task.find_by id: params[:id]
-    if @task.update(task_params)
-      flash[:success] = "Cập nhật thành công"
-      redirect_to my_works_path
+    if params[:task][:start_time] <= Time.now.to_s || params[:task][:start_time] > params[:task][:end_time]
+      @task.errors.add(:time_start, "time exceeding")
+      render :new
     else
-      flash.now[:error] = "Cập nhật thất bại"
-      render :edit
+      if @task.update(task_params)
+        flash[:success] = "Cập nhật thành công"
+        redirect_to my_works_path
+      else
+        flash.now[:error] = "Cập nhật thất bại"
+        render :edit
+      end
     end
   end
 

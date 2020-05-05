@@ -1,6 +1,6 @@
 <% provide(:title, t(".begin_title")) %>
 <div class="content-wrapper" style="height: 500px;">
-  <%= render partial: "shared/head_profile", locals: {path1: overview_projects_path, title: "Danh sách thành viên dự án", link1: "Quản lý dự án", link2: "Thành viên"}%>
+  <%= render partial: "shared/head_profile", locals: {path1: overview_projects_path, title: t(".title"), link1: t(".link1"), link2: t(".link2")}%>
   <section class="content">
     <div class="col-12">
     <div class=" float-right row" style="margin: 10px 1px;">
@@ -13,7 +13,7 @@
     </div>
      <div class="card" style="width: 100%">
         <div class="card-header border-0">
-          <h3 class="card-title">Thành viên dự án</h3>
+          <h3 class="card-title"><%= t".project_member"%></h3>
           <div class="card-tools">
             <a href="#" class="btn btn-tool btn-sm">
               <i class="fas fa-bars"></i>
@@ -25,14 +25,14 @@
             <thead>
             <tr>
               <th>#</th>
-              <th>Tên thành viên</th>
-              <th>Bộ phận</th>
-              <th>Vai trò</th>
-              <th>Kỹ năng</th>
-              <th style="max-width: 100px;">Dự án tham gia</th>
-              <th>Trạng thái</th>
-              <th>Tiến độ</th>
-              <th class="text-center">More</th>
+              <th><%= t".name"%></th>
+              <th><%= t".department"%></th>
+              <th><%= t".role"%></th>
+              <th><%= t".skill"%></th>
+              <th style="max-width: 100px;"><%= t".project_participation"%></th>
+              <th><%= t".status"%></th>
+              <th><%= t".progress"%></th>
+              <th class="text-center"><%= t".more"%></th>
             </tr>
             </thead>
             <tbody>

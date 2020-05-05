@@ -1,9 +1,9 @@
 <% provide(:title, t(".begin_title")) %>
 <div class="content-wrapper" style="height: 500px;">
   <% if current_division.is_project? && current_user.member? %>
-    <%= render partial: "shared/head_profile", locals: {path1: overview_projects_path, title: "Phê duyệt yêu cầu của thành viên", link1: "Quản lý dự án", link2: "Danh sách yêu cầu"}%>
+    <%= render partial: "shared/head_profile", locals: {path1: overview_projects_path, title: t(".title"), link1: t(".link1_a"), link2: t(".link2")}%>
   <% elsif !current_division.is_project? && current_user.manager? %>
-   <%= render partial: "shared/head_profile", locals: {path1: overview_divisions_path, title: "Phê duyệt yêu cầu của thành viên", link1: "Quản lý bộ phận", link2: "Danh sách yêu cầu"}%>
+   <%= render partial: "shared/head_profile", locals: {path1: overview_divisions_path, title: t(".title"), link1: t(".link1_b"), link2: t(".link2")}%>
   <% end %>
   <section class="content">
     <div class="col-12">
@@ -12,7 +12,7 @@
         <%= search_form_for @q, url: requests_path, class: "form-inline", method: :get do |f| %>
           <%= f.date_field :created_at_gteq, class: "form-control select" %>
           <%= f.date_field :created_at_lteq, class: "form-control select" %>
-          <%= f.select :status_cont, raw(status_request_select), {include_blank: "Choose status"}, class: "form-control select" %>
+          <%= f.select :status_cont, raw(status_request_select), {include_blank: t(".choose")}, class: "form-control select" %>
           <%= f.search_field :personal_request_reason, class: "form-control mr-sm-2", placeholder: "Search" %>
           <%= f.submit class: "btn btn-outline-success my-2 my-sm-0" do %>
             <i class="fas fa-search"></i>
@@ -22,9 +22,9 @@
      </div>
      <div class="card" style="width: 100%">
         <div class="card-header border-0" style="height: 40px;">
-          <h3 class="card-title" style="font-weight: 700; margin-right: 10px;">Danh sách báo cáo</h3>
+          <h3 class="card-title" style="font-weight: 700; margin-right: 10px;"><%= t ".list"%></h3>
           <% if @requests.blank? %>
-            <h5 class="card-title" style="font-weight: 600; color: #dc3545">(không có báo cáo nào)</h5>
+            <h5 class="card-title" style="font-weight: 600; color: #dc3545">(<%= t ".no_request"%>)</h5>
           <% end %>
         </div>
         <div class="card-body table-responsive p-0">
@@ -32,13 +32,13 @@
             <thead>
             <tr>
               <th>#</th>
-              <th>Tiêu đề</th>
-              <th>Dự án</th>
-              <th>Người gửi</th>
-              <th>Thời gian gửi</th>
-              <th>Lý do</th>
-              <th>Trạng thái</th>
-              <th class="text-center">More</th>
+              <th><%= t ".title_1"%></th>
+              <th><%= t ".project"%></th>
+              <th><%= t ".sender"%></th>
+              <th><%= t ".time_send"%></th>
+              <th><%= t ".reason"%></th>
+              <th><%= t ".status"%></th>
+              <th class="text-center"><%= t ".more"%></th>
             </tr>
             </thead>
             <tbody>

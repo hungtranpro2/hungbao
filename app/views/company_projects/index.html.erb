@@ -1,13 +1,13 @@
 <div class="content-wrapper" style="background-color: #ffffff">
   <!-- Content Header (Page header) -->
-  <%= render partial: "shared/head_profile", locals: {path1: overview_companys_path, title: "Danh sách dự án công ty", link1: "Quản lý dự án", link2: "Dự án"}%>
+  <%= render partial: "shared/head_profile", locals: {path1: overview_companys_path, title: t(".title"), link1: t(".project_manager"), link2: t(".project")}%>
 
   <!-- Main content -->
   <section class="content container">
     <div class="float-left" style="margin: 0 0 15px 0px;">
       <%= link_to new_company_project_path, {class: "btn btn-sm btn-info float-left", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
         <i class="fas fa-plus"></i>
-        Tạo dự án
+        <%= t ".create_project"%>
       <% end %>
     </div>
 
@@ -23,9 +23,9 @@
     <!-- Default box -->
     <div class="card" style="height: 500px; width: 100%">
       <div class="card-header" style="height: 40px;">
-        <h3 class="card-title">Danh sách dự án</h3>
+        <h3 class="card-title"><%= t ".title" %></h3>
         <% if @projects.blank? %>
-          <h3 class="card-title" style="margin-left: 10px; color: red;">- không có dữ liệu</h3>
+          <h3 class="card-title" style="margin-left: 10px; color: red;">- <%= t".no_data"%></h3>
         <% end %>
       </div>
       <div class="card-body p-0">
@@ -36,16 +36,16 @@
                       #
                     </th>
                     <th>
-                      Project Name
+                      <%= t".project_name"%>
                     </th>
                     <th>
-                        Division
+                      <%= t".division"%>
                     </th>
                     <th>
-                      Client Company
+                      <%= t".client_company"%>
                     </th>
                     <th class="text-center" style="width: 30%">
-                      More
+                      <%= t".more"%>
                     </th>
                 </tr>
             </thead>

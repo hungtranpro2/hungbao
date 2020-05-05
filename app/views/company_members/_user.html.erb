@@ -11,7 +11,7 @@
   <td><%= user.division.name %></td>
   <td><%= user.role %></td>
   <td><%= user.skill %></td>
-  <td><%= "#{user.user_projects.count} Project" %></td>
+  <td><%= "#{user.user_projects.count} " + t(".project") %></td>
   <td>
     <small class="text-success mr-1">
       <i class="fas fa-arrow-up"></i>
@@ -38,7 +38,7 @@
     <%= link_to show_profile_path(user), {class: "btn btn-primary btn-sm", remote: :true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
       <i class="fas fa-folder">
       </i>
-      View
+      <%= t".view"%>
     <% end %>
   </td>
 </tr>

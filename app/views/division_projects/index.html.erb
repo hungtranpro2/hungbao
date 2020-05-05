@@ -1,6 +1,6 @@
  <div class="content-wrapper" style="background: white;">
     <!-- Content Header (Page header) -->
-   <%= render partial: "shared/head_profile", locals: {path1: overview_divisions_path, title: "Danh sách dự án bộ phận #{current_division.name}", link1: "Quản lý bộ phận", link2: "Thành viên"}%>
+   <%= render partial: "shared/head_profile", locals: {path1: overview_divisions_path, title: t(".title") + " #{current_division.name}", link1: t(".link1"), link2: t(".link2")}%>
 
     <!-- Main content -->
     <section class="content">
@@ -21,9 +21,9 @@
             </div>
             <div class="card" style="width: 100%">
               <div class="card-header border-transparent" style="height: 40px;">
-                <h3 class="card-title" style="font-weight: 700">Dự án</h3>
+                <h3 class="card-title" style="font-weight: 700"><%= t".project"%></h3>
                 <% if @projects.blank? %>
-                  <h3 class="card-title text-danger" style="font-weight: 700; margin-left: 10px;">- không có dự án nào</h3>
+                  <h3 class="card-title text-danger" style="font-weight: 700; margin-left: 10px;">- <%= t".no_project"%></h3>
                 <% end %>
               </div>
               <!-- /.card-header -->
@@ -32,15 +32,15 @@
                   <table class="table m-0 table-striped projects">
                     <thead>
                     <tr>
-                      <th>Order ID</th>
-                      <th>Project Name</th>
-                      <th>Client Company</th>
-                      <th>Document Link</th>
-                      <th>Description</th>
-                      <th>Expected</th>
-                      <th>Progress</th>
+                      <th><%= t".id"%></th>
+                      <th><%= t".name"%></th>
+                      <th><%= t".client_company"%></th>
+                      <th><%= t".document_link"%></th>
+                      <th><%= t".description"%></th>
+                      <th><%= t".expected"%></th>
+                      <th><%= t".progress"%></th>
 
-                      <th>More</th>
+                      <th><%= t".more"%></th>
                     </tr>
                     </thead>
                     <tbody id="show-task-pr">

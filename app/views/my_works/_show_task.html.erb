@@ -3,7 +3,7 @@
     <tbody>
       <tr class="hidden_content">
         <th>
-          Tiêu đề
+          <%= t".title"%>
         </th>
         <th>
           <%= @task.title %>
@@ -14,23 +14,23 @@
 
       <tr class="hidden_content">
         <th>
-          Người đảm nhiệm
+          <%= t".person_in_charge"%>
         </th>
           <th><%= @task.user.name %></td>
       </tr>
 
       <tr class="hidden_content">
         <th>
-          Loại Công việc
+          <%= t".type_of_work"%>
         </th>
         <th>
-          <span class="badge badge-info">của riêng tôi</span>
+          <span class="badge badge-info"><%= t".my_own"%></span>
         </th>
       </tr>
 
        <tr class="hidden_content">
         <th>
-          Thời gian
+          <%= t".time"%>
         </th>
         <th>
           <%= "#{@task.start_time} - #{@task.end_time}" %>
@@ -39,7 +39,7 @@
 
       <tr class="hidden_content">
         <th>
-          Mô tả
+          <%= t".description"%>
         </th>
         <th>
           <%= @task.description %>

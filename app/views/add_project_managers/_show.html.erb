@@ -1,8 +1,8 @@
 <div class="card">
   <div class="card-header border-0">
-    <h3 class="card-title"><b>Thêm quản lý dự án</b></h3>
+    <h3 class="card-title"><b><%= t ".title"%></b></h3>
     <% if @project.user_projects.where(role: 1).present? %>
-     <h6 class="card-title" style="margin-left: 10px; color: #dc3545; font-weight: 900">- Đã có quản lý cho dự án này
+     <h6 class="card-title" style="margin-left: 10px; color: #dc3545; font-weight: 900">- <%= t ".had"%>
      </h6>
     <% end %>
   </div>
@@ -11,10 +11,10 @@
       <thead>
       <tr>
         <th>#</th>
-        <th>Member</th>
-        <th>Skill</th>
-        <th>Join the project</th>
-        <th class="text-center">More</th>
+        <th><%= t ".member"%></th>
+        <th><%= t ".skill"%></th>
+        <th><%= t ".join_project"%></th>
+        <th class="text-center"><%= t ".more"%></th>
       </tr>
       </thead>
       <tbody>
