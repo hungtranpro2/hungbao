@@ -4,6 +4,15 @@
   <td><%= task.title %></td>
 
   <td><%= task.user.name %></td>
+
+  <td>
+    <% if task.project.medium? %>
+      <span class="badge badge-success"><%= task.project.importance %></span>
+    <% else %>
+      <span class="badge badge-danger"><%= task.project.importance %></span>
+    <% end %>
+  </td>
+
   <% if task.parent_task? %>
     <td><span class="badge badge-info">parent task</span></td>
   <% else %>

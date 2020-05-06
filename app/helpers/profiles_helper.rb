@@ -37,8 +37,16 @@ module ProfilesHelper
     Task.locks.keys.map {|i| i}
   end
 
+  def improtance_select
+    Project.importances.keys.map {|i| i}
+  end
+
   def progress_task_select
     [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map {|i| ["#{i} %", i]}
+  end
+
+  def edit_progress_task_select progress
+    [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].select {|i| ["#{i} %", i] if i >= progress}
   end
 
   def project_tag

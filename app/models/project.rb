@@ -1,6 +1,8 @@
 class Project < ApplicationRecord
-  PARAMS = %i(name description document_link client_company).freeze
+  PARAMS = %i(name description document_link importance client_company).freeze
 
+
+  enum importance: {medium: 0, important: 1}
 	has_many :user_projects, dependent: :destroy
   has_many :users, through: :user_projects
   has_many :divisions, through: :users

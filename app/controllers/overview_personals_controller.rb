@@ -6,7 +6,7 @@ class OverviewPersonalsController < ApplicationController
     @count_request = current_user.personal_requests.count
     @count_report = current_user.reports.count
     @count_project = current_user.projects.uniq.count
-
+    @count_parent_task = current_user.tasks.where(active: true, parent_task: true).where.not(project_id: nil).count
     @tasks = current_user.tasks.where(active: true, parent_task: false).where.not(project_id: nil)
     time_line @tasks
     overview @tasks

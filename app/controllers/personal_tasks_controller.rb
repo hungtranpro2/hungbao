@@ -57,15 +57,25 @@ class PersonalTasksController < ApplicationController
 
   def update
     @task = Task.find_by id: params[:id]
-    @task.progress = params[:task][:progress].to_i
-    ActiveRecord::Base.transaction do
-      @task.update!(task_params)
-      update_parent_task @task
-      flash[:success] = "Cập nhật thành công"
-      redirect_to personal_tasks_path
-    rescue ActiveRecord::RecordInvalid
-      flash.now[:error] = "Cập nhật thất bại"
-      render :edit
+    if @task.progress != params[:task][:progress].to_i
+      ActiveRecord::Base.transaction do
+        @task.update!(task_params)
+        send_notification @task, params[:task][:progress].to_i
+        update_task @task
+        flash[:success] = "tiến độ sẽ được kiểm định"
+        redirect_to personal_tasks_path
+      rescue ActiveRecord::RecordInvalid
+        flash.now[:error] = "Cập nhật thất bại"
+        render :edit
+      end
+    else
+      if @task.update(task_params)
+        flash[:success] = "Cập nhật thành công"
+        redirect_to personal_tasks_path
+      else
+        flash.now[:error] = "Cập nhật thất bại"
+        render :edit
+      end
     end
   end
 
@@ -82,6 +92,16 @@ class PersonalTasksController < ApplicationController
 
   private
 
+  def send_notification task, progress_i
+    current_division.users.manager.each do |manager|
+      task.notifications.create!(title: "Một tiến độ cần được kiểm định", progress: progress_i,  sender_id: current_user.id, receiver_id: manager.id)
+    end
+  end
+
+  def update_task task
+    task.update!(status: false)
+  end
+
   def task_params
     params.require(:task).permit Task::PARAMS
   end
@@ -92,22 +112,6 @@ class PersonalTasksController < ApplicationController
 
     flash[:error] = "Task không tồn tại"
     redirect_to errors_path
-  end
-
-  def update_parent_task task
-    @parent_task = task.parent
-    @children_tasks = @parent_task.childrens.uniq
-
-    sum_expected_day = @children_tasks.inject(0) do |sum, task|
-      sum + (task.start_time..task.end_time).count
-    end
-
-    sum_progress = @children_tasks.inject(0) do |sum, task|
-       sum + task.progress*(task.start_time..task.end_time).count
-    end
-
-    parent_progress = (sum_progress.to_f / sum_expected_day).round(2)
-    @parent_task.update!(progress: parent_progress.to_f)
   end
 
   def overview tasks

@@ -20,6 +20,14 @@
     <%= project.client_company %>
   </td>
 
+  <td>
+    <% if project.medium? %>
+      <span class="badge badge-success"><%= project.importance %></span>
+    <% else %>
+      <span class="badge badge-danger"><%= project.importance %></span>
+    <% end %>
+  </td>
+
   <td class="project-actions text-right">
     <%= link_to company_project_path(project), {class: "btn btn-sm btn-primary", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
       <i class="fas fa-eye">

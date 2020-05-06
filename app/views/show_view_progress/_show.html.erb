@@ -1,0 +1,33 @@
+<table class="table">
+  <tbody>
+    <tr>
+      <td>Title</td>
+      <td><h5><%= @task.title %></h5></td>
+    </tr>
+
+    <tr>
+      <td>Member</td>
+      <td><%= @task.user.name %></td>
+    </tr>
+
+    <tr>
+      <td>Progress</td>
+      <td><%= @task.notifications.last.progress if @task.notifications.present? %></td>
+    </tr>
+
+    <tr>
+      <td>Link Github</td>
+      <td><p><%= Rinku.auto_link(@task.path_github).html_safe %></p></td>
+    </tr>
+
+  </tbody>
+</table>
+
+<div class="text-center" style="margin: 10px 0">
+  <%= link_to show_view_progress_path(@task, is: true), {class: "btn btn-success", method: :patch} do %>
+    Chấp nhận
+  <% end %>
+  <%= link_to show_view_progress_path(@task, is: false), {class: "btn btn-danger", method: :patch} do %>
+    Từ chối
+  <% end %>
+</div>

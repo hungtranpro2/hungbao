@@ -4,6 +4,7 @@ class Task < ApplicationRecord
   enum lock: {open: 0, close: 1}
 
   belongs_to :user
+  has_many :notifications, as: :object
   belongs_to :project , optional: true
   belongs_to :parent, class_name: Task.name, optional: true
   has_many :childrens, class_name: Task.name, foreign_key: :parent_id, dependent: :destroy

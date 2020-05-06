@@ -1,6 +1,13 @@
 <tr class="hidden_content">
   <td><%= project_counter + 1 %></td>
   <td><%= project.name %></td>
+  <td>
+    <% if project.medium? %>
+      <span class="badge badge-success"><%= project.importance %></span>
+    <% else %>
+      <span class="badge badge-danger"><%= project.importance %></span>
+    <% end %>
+  </td>
   <td><%= project.client_company %></td>
   <td><%= project.document_link %></td>
   <td><%= project.description %></td>

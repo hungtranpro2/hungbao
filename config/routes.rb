@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  scope "(:locale)",locale: /vi|en/ do
+    scope "(:locale)",locale: /vi|en/ do
   	root "room_chats#index"
     mount ActionCable.server => "/cable"
 
@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     resources :company_tasks
     resources :company_reports
     resources :company_members
+    resources :show_view_progress
     devise_for :users
   end
   # get 'static_pages/index'

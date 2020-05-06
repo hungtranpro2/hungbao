@@ -43,6 +43,7 @@ en:
       division: :"Division"
       client_company: "Client company"
       more: "More"
+      importance: "Importance"
     project:
       view: "View"
       edit: "Edit"
@@ -55,6 +56,7 @@ en:
       client_company: "Client company"
       description: "Description"
       add_project: "Create project"
+      importance: "Importance"
     edit:
       title: "Edit project"
       update: "Update project"
@@ -187,6 +189,7 @@ en:
       project: "Project"
       view: "View"
       add: "Add to project"
+      max_project: "Maximum number of projects"
     project:
       no_project: "There_are_no_projects_to_join!"
       confirm: "Confirm"
@@ -205,6 +208,7 @@ en:
       expected: "Expected"
       progress: "Progress"
       more: "More"
+      importance: "Importance"
     project:
       view: "View"
       view_request: "View request"
@@ -241,6 +245,7 @@ en:
       progress: "Progress"
       more: "More"
       add: "Add task for project"
+      importance: "Importance"
     task:
       view: "View"
       edit: "Edit"
@@ -330,6 +335,7 @@ en:
       progress: "Progress"
       more: "More"
       percentage: "Percentage of membership of the project"
+      importance: "Importance"
     project:
       describe: "Describe project"
   overview_divisions:
@@ -357,6 +363,7 @@ en:
       link2: "Statistical"
       tasks: "Tasks"
       task: "Task"
+      parent_task: "Parent Task"
       reports: "Reports"
       report: "Report"
       requests: "Requests"
@@ -401,6 +408,7 @@ en:
       add_new_event: "Add new event"
       clear_event: "Clear events"
       view_calendar: "View calendar"
+      importance: "Importance"
     task:
       parent_task: "Parent task"
       childrent_task: "Childrent task"
@@ -414,6 +422,30 @@ en:
       create_task: "Create task"
     edit:
       confirm: "Confirm"
+  project_tasks:
+    index:
+      title: "Project task manager of department"
+      link1: "Personal manager"
+      link2: "List of tasks"
+      task_expected: "Task expected"
+      task: "Task"
+      day: "Days"
+      member: "Member"
+      present: "Present"
+      reality: "Reality"
+      add_childrent_task: "Add childrent task"
+      order_id: "Order ID"
+      title: "Title"
+      type: "Type"
+      status: "Status"
+      expected: "Expected"
+      progress: "Progress"
+      more: "More"
+      calendar: "Calendar"
+      add_new_event: "Add new event"
+      clear_event: "Clear events"
+      view_calendar: "View calendar"
+      importance: "Importance"
   profiles:
     edit:
       title: "Profile"

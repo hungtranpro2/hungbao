@@ -40,9 +40,10 @@ vi:
       create_project: "Tạo dự án"
       no_data: "Không có dữ liệu"
       project_name: "Tên dự án"
-      division: :"Bộ phận"
+      division: "Bộ phận"
       client_company: "Công ty khách hàng"
       more: "Nhiều hơn"
+      importance: "Mức độ"
     project:
       view: "Xem"
       edit: "Sửa"
@@ -58,6 +59,7 @@ vi:
     edit:
       title: "Cập nhật dự án"
       update: "Cập nhật dự án"
+      importance: "Mức độ"
   add_members:
     index:
       title: "Quản lý thành viên"
@@ -187,6 +189,7 @@ vi:
       project: "Dự án"
       view: "Xem"
       add: "Thêm vào dự án"
+      max_project: "Số dự án tối đa"
     project:
       no_project: "Không_có_dự_án_nào_tham_gia!"
       confirm: "Xác nhận"
@@ -205,6 +208,7 @@ vi:
       expected: "Dự kiến"
       progress: "Tiến độ"
       more: "Nhiều hơn"
+      importance: "Mức độ"
     project:
       view: "Xem"
       view_request: "Xem yêu cầu"
@@ -241,6 +245,7 @@ vi:
       progress: "Tiến độ"
       more: "Nhiều hơn"
       add: "Thêm công việc cho dự án"
+      importance: "Mức độ"
     task:
       view: "Xem"
       edit: "Sửa"
@@ -330,6 +335,7 @@ vi:
       progress: "Tiến độ"
       more: "Nhiều hơn"
       percentage: "Tỷ lệ thành viên của dự án"
+      importance: "Mức độ"
     project:
       describe: "Mô tả dự án"
   overview_divisions:
@@ -357,6 +363,7 @@ vi:
       link2: "Thống kê"
       tasks: "Công việc"
       task: "Công việc"
+      parent_task: "Công việc cha"
       reports: "Báo cáo"
       report: "Báo cáo"
       requests: "Yêu cầu"
@@ -401,6 +408,7 @@ vi:
       add_new_event: "Thêm sự kiện mới"
       clear_event: "Xóa sự kiện"
       view_calendar: "Xem lịch"
+      importance: "Mức độ"
     task:
       parent_task: "Công việc cha"
       childrent_task: "Công việc con"
@@ -414,6 +422,30 @@ vi:
       create_task: "Tạo công việc"
     edit:
       confirm: "Xác nhận"
+  project_tasks:
+    index:
+      title: "Quản lý công việc dự án của bộ phận"
+      link1: "Quản lý cá nhân"
+      link2: "Danh sách công việc"
+      task_expected: "Công việc dự kiến"
+      task: "Công việc"
+      day: "Ngày"
+      present: "Hiện tại"
+      member: "Thành viên"
+      reality: "Thực tế"
+      add_childrent_task: "Thêm công việc con"
+      order_id: "Order ID"
+      title: "Tiêu đề"
+      type: "Loại"
+      status: "Trạng thái"
+      expected: "Dự kiến"
+      progress: "Tiến độ"
+      more: "Nhiều hơn"
+      calendar: "Lịch"
+      add_new_event: "Thêm sự kiện mới"
+      clear_event: "Xóa sự kiện"
+      view_calendar: "Xem lịch"
+      importance: "Mức độ"
   profiles:
     edit:
       title: "Trang cá nhân"
