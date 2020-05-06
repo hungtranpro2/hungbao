@@ -6,6 +6,7 @@ class CreateProjects < ActiveRecord::Migration[6.0]
       t.string :document_link
       t.boolean :active, default: true
       t.string :client_company
+      t.integer :importance, default: 0
       t.timestamps
     end
   end

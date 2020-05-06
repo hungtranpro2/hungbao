@@ -102,19 +102,3 @@ end
            role: 0)
   Message.create!(content: "Hi #{usery.name}", list_message_id: list.id, user_id: usery.id)
 end
-
-# 3.times do |n|
-#   name  = Faker::Name.name
-#   ListMessage.create(name: name)
-# end
-
-# 200.times do |n|
-#   content = "This is Message #{n+1}"
-
-#   Message.create(
-#     list_message_id: rand(ListMessage.count),
-#     user_id: rand(0..(User.count-1)),
-#     content: content
-#   )
-# end
-

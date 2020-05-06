@@ -16,6 +16,9 @@
                 <span class="info-box-number">
                   <%= @tasks.count %>
                   <small><%= t".task"%></small>
+                  <small>/</small>
+                  <%= @count_parent_task %>
+                  <small><%= t".parent_task"%></small>
                 </span>
               </div>
               <!-- /.info-box-content -->

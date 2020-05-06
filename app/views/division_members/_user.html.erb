@@ -31,10 +31,16 @@
       <%= t".view"%>
     <% end %>
     <% if user.member? %>
-      <%= link_to show_project_path(user), { class: "btn btn-success btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
-        <i class="fas fa-plus">
-        </i>
-        <%= t".add"%>
+      <% if user.projects.uniq.count < 2 %>
+        <%= link_to show_project_path(user), { class: "btn btn-success btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+          <i class="fas fa-plus">
+          </i>
+          <%= t".add"%>
+        <% end %>
+      <% else %>
+       <button class="btn btn-danger btn-sm">
+          <%= t".max_project"%>
+       </button>
       <% end %>
     <% end %>
   </td>

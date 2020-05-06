@@ -8,6 +8,7 @@ class CreateTasks < ActiveRecord::Migration[6.0]
       t.string :path_github
       t.integer :lock, default: 0
       t.boolean :active, default: true
+      t.boolean :status, default: true
       t.integer :parent_id
       t.boolean :parent_task, default: false
       t.float :progress

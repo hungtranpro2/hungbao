@@ -3,11 +3,20 @@
   <td><%= "OR#{task.id}"%></a></td>
   <td><%= task.title %></td>
 
+  <td>
+    <% if task.project.medium? %>
+      <span class="badge badge-success"><%= task.project.importance %></span>
+    <% else %>
+      <span class="badge badge-danger"><%= task.project.importance %></span>
+    <% end %>
+  </td>
+
   <% if task.parent_task? %>
     <td><span class="badge badge-info"><%= t".parent_task"%></span></td>
   <% else %>
     <td><span class="badge badge-warning"><%= t".childrent_task"%></span></td>
   <% end %>
+
   <% if task.start_time > Date.today %>
     <td><span class="badge badge-info"><%= t".transfer"%></span></td>
   <% elsif task.end_time > Date.today %>

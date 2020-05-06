@@ -2,6 +2,13 @@
   <td><%= task_counter + 1 %></td>
   <td><%= "OR#{task.id}" %></td>
   <td><%= task.project.name %></td>
+  <td>
+    <% if task.project.medium? %>
+      <span class="badge badge-success"><%= task.project.importance %></span>
+    <% else %>
+      <span class="badge badge-danger"><%= task.project.importance %></span>
+    <% end %>
+  </td>
   <td><%= task.title %></td>
   <% if task.parent_task? %>
     <td><span class="badge badge-info">parent task</span></td>
@@ -93,6 +100,14 @@
         <i class="fas fa-trash">
         </i>
         <%= t".delete"%>
+      <% end %>
+    <% end %>
+
+    <% if task.user_id != current_user.id && !task.parent_task? && !task.status %>
+      <%= link_to show_view_progress_path(task), {class: "btn btn-warning btn-sm", remote: true, "data-toggle": "modal", "data-target": "#show_dialog"} do %>
+        <i class="fas fa-adjust">
+        </i>
+        <%= t".view_progress"%>
       <% end %>
     <% end %>
   </td>
