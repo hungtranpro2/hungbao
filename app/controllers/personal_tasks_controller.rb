@@ -37,16 +37,24 @@ class PersonalTasksController < ApplicationController
   def create
     @parent_task = current_user.tasks.find_by id: params[:task][:parent_id]
     @task = Task.new task_params.merge(progress: params[:task][:progress].to_i, project_id: @parent_task.project_id)
-    is_time =  @task.start_time.to_s < @parent_task.start_time.to_s || @task.end_time.to_s > @parent_task.end_time.to_s
-    if current_user.tasks.where(parent_task: false, project_id: @parent_task.project_id).where("? <= end_time AND ? >= start_time", params[:task][:start_time], params[:task][:end_time]).present?
-      @task.errors.add(:time_start, "time has coincided")
-      render :new
-    elsif is_time
-      @task.errors.add(:time_start, "time exceeding")
-      render :new
+    if @task.start_time && @task.end_time
+       is_time =  @task.start_time.to_s < @parent_task.start_time.to_s || @task.end_time.to_s > @parent_task.end_time.to_s
+      if current_user.tasks.where(parent_task: false, project_id: @parent_task.project_id).where("? <= end_time AND ? >= start_time", params[:task][:start_time], params[:task][:end_time]).present?
+        @task.errors.add(:start_time, "Thời gian này đã bị trùng khớp")
+        render :new
+      elsif is_time
+        @task.errors.add(:start_time, "Thời gian không nằm trong giới hạn")
+        render :new
+      else
+        if @task.save
+          flash[:success] = "Bạn tạo task thành công"
+          redirect_to personal_tasks_path
+        else
+          render :new
+        end
+      end
     else
       if @task.save
-
         flash[:success] = "Bạn tạo task thành công"
         redirect_to personal_tasks_path
       else

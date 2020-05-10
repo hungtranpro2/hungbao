@@ -4,13 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  PARAMS_USER = %i(email name password password_confirmation staff_type workspace nationality position role division_id).freeze
+  PARAMS_USER = %i(email name password password_confirmation staff_type phone workspace nationality position role division_id).freeze
   PARAMS_PROFILE = %i(name birthday phone skill gender avatar).freeze
   PARAMS_PASSWORD = %i(password).freeze
 
   enum role: {member: 0, manager: 1, hr: 2}
   enum staff_type: {EDU: 0, Intern: 1, Fresher: 2, Developer: 3}
-  enum nationality: {Vietnam: 0, Japan: 1}
+  enum nationality: {Vietnam: 0, Japan: 1, China: 3, USA: 4, Korea: 5, Singapore: 6}
   enum workspace: {Hanoi: 0, DaNang: 1}
   enum gender: {Male: 0, Female: 1}
   enum position: {DEV: 0, QA: 1, HR: 2, ProjectManager: 3}
@@ -31,8 +31,10 @@ class User < ApplicationRecord
   has_many :notifications, class_name: Notification.name,
                            foreign_key: :receiver_id, dependent: :destroy
 
-  validates :name, presence: true, length: {maximum: 50}
-
+  validates :name, presence: true, length: {maximum: 255}
+  validates :password, length: { maximum: 16}
+  validates :phone, :numericality => true,
+                 :length => { :minimum => 10, :maximum => 15 }
 
   mount_uploader :avatar, AvatarUploader
 end

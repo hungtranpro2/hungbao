@@ -518,6 +518,24 @@ en:
         gender: "Gender"
         skill: "Skill"
         avatar: "Avatar"
-
-
-
+        password: "Password"
+        password_confirmation: "Password Confirm"
+        staff_type: "Staff Type"
+        workspace: "Work Space"
+        nationality: "Nationality"
+        position: "Position"
+        role: "Role"
+        division_id: "Division"
+      report:
+        project_id: "Project"
+        title: "Title"
+        plan: "Plan"
+        actual: "Actual"
+        next_plan: "Next Plan"
+        issue: "Issue"
+  time:
+    formats:
+      own: "%H:%M:%S, %d %B"
+      default: "%d-%m-%Y"
+      long: "%d %B, %Y"
+      short: "%d %b"

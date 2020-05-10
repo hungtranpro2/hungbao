@@ -15,7 +15,7 @@
       </i>
       <%= t".edit"%>
     <% end %>
-    <%= link_to my_work_path(task), {class: "btn btn-danger btn-sm", method: :delete} do %>
+    <%= link_to my_work_path(task), {class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Bạn chắc chứ"}} do %>
       <i class="fas fa-trash">
       </i>
       <%= t".delete"%>

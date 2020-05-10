@@ -31,7 +31,7 @@
             <%= f.label :client_company, class: "col-form-label" %>
           </div>
           <div class="col-sm-4">
-            <%= f.text_field :client_company, class: "form-control", placeholder:"Link Pull Request" %>
+            <%= f.text_field :client_company, class: "form-control", value: "#{current_user.projects.first.client_company}", readonly: true %>
           </div>
 
           <div class="col-sm-2">

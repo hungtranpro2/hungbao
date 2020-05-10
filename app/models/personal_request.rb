@@ -8,6 +8,7 @@ class PersonalRequest < ApplicationRecord
   has_many :notifications, as: :object
   has_many :approval_requests, dependent: :destroy
 
-  validates :title, presence: true
-  validates :reason, presence: true
+  validates :title, presence: true, length: {maximum: 150}
+  validates :reason, presence: true, length: {maximum: 500}
+
 end

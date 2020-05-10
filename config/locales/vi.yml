@@ -518,7 +518,26 @@ vi:
         gender: "Giới tính"
         skill: "Kỹ năng"
         avatar: "Ảnh "
-
-
+        password: "Mật Khẩu"
+        password_confirmation: "Xác Nhận Mật Khẩu"
+        staff_type: "Loại Nhân Viên"
+        workspace: "Nơi Làm Việc"
+        nationality: "Quốc Gia"
+        position: "Vị Trí"
+        role: "Vai Trò"
+        division_id: "Bộ Phận"
+      report:
+        project_id: "Dự Án"
+        title: "Tiêu Đề"
+        plan: "Kế Hoạch"
+        actual: "Thực Tế"
+        next_plan: "Kế Hoạch Tiếp"
+        issue: "Vấn Đề"
+  time:
+    formats:
+      own: "%H:%M:%S, %d %B"
+      default: "%d-%m-%Y"
+      long: "%d %B, %Y"
+      short: "%d %b"
 
 

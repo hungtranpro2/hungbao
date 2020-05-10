@@ -3,5 +3,6 @@ class ListMessage < ApplicationRecord
 	has_many :messages,  dependent: :destroy
   has_many :user, through: :messages
 
-   validates :name, presence: true, uniqueness: true
+   validates :name, presence: true, uniqueness: true, length: {maximum: 50}
+
 end

@@ -14,7 +14,7 @@ class Project < ApplicationRecord
   has_many :tasks, dependent: :destroy
 
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true, length: {maximum: 255}
   validates :description, presence: true
-  validates :client_company, presence: true
+  validates :client_company, presence: true, length: {maximum: 255}
 end

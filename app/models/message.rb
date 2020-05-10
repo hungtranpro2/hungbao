@@ -7,6 +7,8 @@ class Message < ApplicationRecord
   belongs_to :user
   has_many :notifications, as: :object
 
+  validates :content, length: {maximum: 255}
+
   private
 
   def send_message

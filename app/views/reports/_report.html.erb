@@ -1,7 +1,8 @@
 <tr class="hidden_content">
   <td><%= report_counter +1 %></td>
   <td><%= report.project.name %></td>
-  <td><%= report.created_at %></td>
+  <td><%= report.title %></td>
+  <td><%= l(report.created_at, format: :long)%></td>
   <td><%= Rinku.auto_link(report.plan).html_safe %></td>
   <td><%= Rinku.auto_link(report.actual).html_safe %></td>
   <td><%= Rinku.auto_link(report.next_plan).html_safe %></td>

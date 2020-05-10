@@ -29,7 +29,7 @@ class DivisionTasksController < ApplicationController
   def create
     @task = Task.new task_params.merge(parent_task: true, progress: params[:task][:progress].to_i)
     if params[:task][:start_time] < Time.now.to_s || params[:task][:start_time] > params[:task][:end_time]
-      @task.errors.add(:time_start, "not is valid")
+      @task.errors.add(:time_start, "không hợp lệ")
       render :new
     else
       if @task.save
